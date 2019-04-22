@@ -13,12 +13,13 @@ body {
 }
 
 main, footer, header {
-	max-width: 38rem;
-	padding: 1rem;
+	max-width: 70ch;
+	padding: 2ch;
 	margin: auto;
 }
 
 footer {
+	margin-top: 2rem;
 	background: #f1f1f1;
 }
 
@@ -36,30 +37,21 @@ textarea {
     color: #333;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	clear: both;
-}
-
 pre {
-	background: #eee;
 	font-family: Courier, monospace;
+	background: #eee;
 	font-size: 0.95rem;
-	line-height: 1.5;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
 	padding: 1em;
 }
 
 code, kbd, tt, var {
 	font-family: Courier, monospace;
-	font-size: 0.95rem;
 	background: #eee;
-    padding: 0px 3px;
+	font-size: 0.95rem;
+    padding: 0px 2px;
 }
 
 table {
-	margin: 0 0 1.5em;
 	width: 100%;
 	border-spacing: 0px;
 	border: 1px solid #eee;
@@ -68,11 +60,10 @@ table {
 td, th {
 	border: 1px solid #eee;
 	padding: 0.25em;
-	font-size: 0.9em;
 }
 
 th {
-	background: #ddd;
+	background: #eee;
 }
 
 /* Links */
