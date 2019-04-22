@@ -1,0 +1,11 @@
+main {
+	max-width: 38rem;
+	padding: 2rem;
+	margin: auto;
+}
+
+body {
+    	font-family: sans-serif;
+    	font-size: 12pt;
+    	color: #555;
+}
