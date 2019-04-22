@@ -1,3 +1,3 @@
-# project
+# home
  
-First project.
+Github Pages repository.
