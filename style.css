@@ -14,6 +14,10 @@ nav {
     	border-bottom: 2px dotted gray;
 }
 
+nav a, nav span {
+    	margin-right: 1.5rem;
+}
+
 footer {
 	margin-top: 2rem;
 	background: #f1f1f1;
