@@ -52,8 +52,13 @@ a:hover {
 	text-decoration: underline;
 }
 
+ul, ol {
+	margin-top: 0;
+}
+
 ul.none {
     	margin: 0;
     	list-style: none;
     	padding: 0;
+	margin-bottom: 1rem;
 }
