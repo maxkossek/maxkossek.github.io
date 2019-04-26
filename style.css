@@ -5,7 +5,7 @@ body {
 
 main, footer, header, nav {
 	max-width: 70ch;
-	padding: 2ch;
+	padding: 1.5ch;
 	margin: auto;
 }
 
@@ -24,7 +24,7 @@ body {
 
 pre, code {
 	font-family: Courier, monospace;
-	background: lightyellow;
+	background: lightgray;
 	font-size: 0.95rem;
 	padding: 1em;
 }
@@ -41,10 +41,6 @@ table {
 td, th {
 	border: 1px solid lightgray;
 	padding: 0.25em;
-}
-
-th {
-	background: aliceblue;
 }
 
 /* Links */
