@@ -1,14 +1,5 @@
-/* Normal */
-html {
-	line-height: 1.15; /* 1 */
-	-webkit-text-size-adjust: 100%; /* 2 */
-	box-sizing: border-box;
-}
-
-
 /* Layout */
 body {
-	background: #fff;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -25,45 +16,35 @@ footer {
 
 
 /* Text */
-body,
-button,
-input,
-select,
-optgroup,
-textarea {
+body {
 	font-family: sans-serif;
-   	font-size: 1rem;
-   	line-height: 1.25em;
-    color: #333;
+   	line-height: 1.25rem;
+    	color: #333;
 }
 
-pre {
+pre, code {
 	font-family: Courier, monospace;
-	background: #eee;
+	background: lightyellow;
 	font-size: 0.95rem;
 	padding: 1em;
 }
 
-code, kbd, tt, var {
-	font-family: Courier, monospace;
-	background: #eee;
-	font-size: 0.95rem;
-    padding: 0px 2px;
+code {
+    	padding: 0px 2px;
 }
 
 table {
-	width: 100%;
 	border-spacing: 0px;
-	border: 1px solid #eee;
+	border: 1px solid lightgray; 
 }
 
 td, th {
-	border: 1px solid #eee;
+	border: 1px solid lightgray;
 	padding: 0.25em;
 }
 
 th {
-	background: #eee;
+	background: aliceblue;
 }
 
 /* Links */
