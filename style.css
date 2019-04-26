@@ -11,7 +11,7 @@ main, footer, header, nav {
 
 nav {
 	padding: 0;
-    	border-bottom: 2px dotted gray;
+    	border-bottom: 2px solid gray;
 }
 
 nav a, nav span {
@@ -40,6 +40,11 @@ pre, code {
 
 code {
     	padding: 0px 2px;
+}
+
+.references {
+	background-color: lightyellow;
+	padding: inherit;
 }
 
 table {
