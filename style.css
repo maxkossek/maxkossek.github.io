@@ -3,7 +3,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-main, footer, header {
+main, footer, header, nav {
 	max-width: 70ch;
 	padding: 2ch;
 	margin: auto;
