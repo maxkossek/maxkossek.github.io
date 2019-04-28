@@ -19,7 +19,7 @@ nav a, nav span {
 }
 
 nav a[href~="/"]::before {
-    content: "\00AB ";
+    content: "\00AB  ";
 }
 
 footer {
