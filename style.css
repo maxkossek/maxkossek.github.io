@@ -23,12 +23,18 @@ nav a[href~="/"]::before {
 }
 
 footer {
-	margin-top: 2rem;
-	background: #f1f1f1;
+	margin-top: 3rem;
+	padding: 0;
+}
+footer a {
+	color: blue;
 }
 
-
 /* Text */
+header h1 {
+	margin-bottom: 0;
+}
+
 body {
 	font-family: sans-serif;
 	line-height: 1.3;
