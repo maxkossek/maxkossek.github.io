@@ -71,6 +71,7 @@ a[target="_blank"]::after {
   	margin: 0 3px 0 5px;
 }
 
+/* Lists */
 ul, ol {
 	margin-top: 0;
 }
