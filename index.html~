@@ -19,7 +19,7 @@
 <nav>
 <span><strong>home</strong></span>
 <a href="/about">/about</a>
-</nav>
+<a href="/search">/search</a></nav>
 
 <header>
 <h1>Home</h1>

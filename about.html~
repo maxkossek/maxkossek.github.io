@@ -18,11 +18,8 @@
 
 <nav><a href="/">< home</a></nav>
 
-<header>
-<h1>About</h1>
-</header>
-
 <main>
+<h1>About</h1>
 <strong>Name:</strong> Max Kossek<br>
 <strong>Programming Languages:</strong> C, Java, Scheme, HTML, CSS, PHP<br>
 <strong>Interests:</strong> Baseball (Milkwaukee Brewers), Economics (Austrian)<br>
