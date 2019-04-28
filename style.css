@@ -18,6 +18,10 @@ nav a, nav span {
     	margin-right: 1.5rem;
 }
 
+nav a[href~="/"]::before {
+    content: "\00AB ";
+}
+
 footer {
 	margin-top: 2rem;
 	background: #f1f1f1;
@@ -33,9 +37,10 @@ body {
 
 pre, code {
 	font-family: Courier, monospace;
-	background: lightgray;
+	background: gainsboro;
 	font-size: 0.95rem;
 	padding: 1em;
+	overflow: auto;
 }
 
 code {
@@ -52,11 +57,11 @@ code {
 
 table {
 	border-spacing: 0px;
-	border: 1px solid lightgray; 
+	border: 1px solid gainsboro; 
 }
 
 td, th {
-	border: 1px solid lightgray;
+	border: 1px solid gainsboro;
 	padding: 0.25em;
 }
 
