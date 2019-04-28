@@ -1,0 +1,84 @@
+/* Layout */
+body {
+	-webkit-font-smoothing: antialiased;
+}
+
+main, footer, header, nav {
+	max-width: 70ch;
+	padding: 1.5ch;
+	margin: auto;
+}
+
+nav {
+	padding: 0;
+    	border-bottom: 2px solid gray;
+}
+
+nav a, nav span {
+    	margin-right: 1.5rem;
+}
+
+footer {
+	margin-top: 2rem;
+	background: #f1f1f1;
+}
+
+
+/* Text */
+body {
+	font-family: sans-serif;
+	line-height: 1.3;
+    	color: #333;
+}
+
+pre, code {
+	font-family: Courier, monospace;
+	background: lightgray;
+	font-size: 0.95rem;
+	padding: 1em;
+}
+
+code {
+    	padding: 0px 2px;
+}
+
+.citations {
+	background-color: lightyellow;
+	padding: inherit;
+}
+
+table {
+	border-spacing: 0px;
+	border: 1px solid lightgray; 
+}
+
+td, th {
+	border: 1px solid lightgray;
+	padding: 0.25em;
+}
+
+/* Links */
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a[target="_blank"]::after {
+  	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  	margin: 0 3px 0 5px;
+}
+
+ul, ol {
+	margin-top: 0;
+}
+
+ul.none {
+    	margin: 0;
+    	list-style: none;
+    	padding: 0;
+	margin-bottom: 1rem;
+}
+
