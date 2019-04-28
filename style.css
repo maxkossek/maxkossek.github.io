@@ -11,7 +11,7 @@ main, footer, header, nav {
 
 nav {
 	padding: 0;
-    	border-bottom: 2px solid gray;
+    	border-bottom: 2px solid slategray;
 }
 
 nav a, nav span {
@@ -43,8 +43,11 @@ code {
 }
 
 .citations {
-	background-color: lightyellow;
-	padding: inherit;
+	border-top: 2px solid slategray;
+    	font-size: 0.9rem;
+	color: dimgray;
+    	margin-top: 5em;
+    	padding-top: 1em;	
 }
 
 table {
