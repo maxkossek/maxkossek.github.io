@@ -10,25 +10,26 @@ main, footer, header, nav {
 }
 
 nav {
-	padding: 0 1.5ch;
+	padding: 0 1.5ch 0.5ch;
     	border-bottom: 2px solid slategray;
 }
 nav a, nav span {
     	margin-right: 1.5rem;
+	font-size: 1.1rem;
+	color: inherit;
 }
 nav a[href~="/"]::before {
 	content: "\00AB  ";
 }
 
 footer {
-	padding: 0 1.5ch;
 	margin-top: 3rem;
 }
 footer a {
 	color: blue;
 }
 footer a[href~="#"]::before {
-    	content: "\25B4 ";
+    	content: "\25B4  ";
 }
 
 /* Text */
