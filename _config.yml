@@ -1,2 +1,4 @@
 name: Max Kossek 
 markdown: kramdown
+permalink: /articles/:title
+
