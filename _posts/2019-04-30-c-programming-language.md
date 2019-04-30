@@ -1,8 +1,8 @@
 ---
 layout: post
 title: The C Programming Language (Kernighan & Ritchie)
-date: 2014-04-30
-categories: computer-science
+date: 2019-04-30
+categories: computer-science book
 ---
 
 # 1 - A TUTORIAL INTRODUCTION
