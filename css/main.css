@@ -18,14 +18,11 @@ nav a, nav span {
 	font-size: 1.1rem;
 	color: inherit;
 }
-nav a[href~="/"]::before {
-	content: "\00AB  ";
-}
 
 footer {
 	margin-top: 3rem;
 }
-footer a {
+footer a, a[href~="#"] {
 	color: blue;
 }
 .to-top a[href~="#"]::before {
