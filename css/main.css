@@ -28,7 +28,7 @@ footer {
 footer a {
 	color: blue;
 }
-footer a[href~="#"]::before {
+.to-top a[href~="#"]::before {
     	content: "\25B4  ";
 }
 
