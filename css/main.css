@@ -17,7 +17,7 @@ nav {
 	padding: 0 1.5ch 0.5ch;
     border-bottom: 2px solid slategray;
 }
-nav a, nav span {
+nav a, nav a:visited, nav span {
     margin-right: 1.5rem;
 	font-size: 1.1rem;
 	color: inherit;
@@ -34,7 +34,7 @@ footer {
 	background: whitesmoke;
 	margin-bottom: -0.5em;
 }
-footer a, a[href~="#"] {
+footer a, footer a:visited, a[href~="#"] {
 	color: inherit;
 }
 .to-top a[href~="#"]::before {
