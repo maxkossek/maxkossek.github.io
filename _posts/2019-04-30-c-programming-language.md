@@ -2,7 +2,7 @@
 layout: post
 title: The C Programming Language (Kernighan & Ritchie)
 date: 2019-04-30
-categories: computer-science book
+categories: [computer science, book]
 ---
 
 # 1 - A TUTORIAL INTRODUCTION
@@ -475,6 +475,13 @@ struct node *left;
 struct node *right;
 };
 ```
+
+<div class="citations">
+<strong>Citations:</strong>
+<ol>
+<li id="cite1">Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.</li>
+</ol>
+</div>
 
 
 

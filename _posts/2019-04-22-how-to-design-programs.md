@@ -2,7 +2,7 @@
 layout: post
 title: How to Design Programs (Felleisen) Book Notes
 date: 2019-04-22
-categories: computer-science book
+categories: [computer science, book]
 ---
 
 1. From Problem Analysis to Data Definitions (Analyze problem statement)
@@ -291,7 +291,12 @@ Traversals “forget” pieces of the argument when they progress throughout the
 Computing generalizes simple arithmetic (0’s and 1’s) to more general processes, so we can compute almost any type of data in a variety of ways.
 
 
-
+<div class="citations">
+<strong>Citations:</strong>
+<ol>
+<li id="cite1">Felleisen, M., Findler, R. B., Flatt, M., & Krishnamurthi, S. (2018). How to design programs: an introduction to programming and computing. MIT Press.</li>
+</ol>
+</div>
 
 
 
