@@ -3,15 +3,15 @@ layout: default
 ---
 <header>
 <h1>{{ page.title }}</h1>
-<time class="date">{{ page.date | date_to_string }}</time>
-<div class="meta">
+<time class="date">{{ page.date | date_to_string }}</time> 
+<span class="meta">
 {% if page.categories.size > 0 %}
-categories: {{ page.categories | join: ', ' }}<br>
+ | categories: {{ page.categories | join: ', ' }}
 {% endif %}
 {% if page.tags.size > 0 %}
-tags: {{ page.categories | join: ', ' }}
+ | tags: {{ page.tags | join: ', ' }}
 {% endif %}
-</div>
+</span>
 </header>
 
 <main>
