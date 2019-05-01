@@ -6,7 +6,7 @@ categories: [book]
 tags: [computer science]
 author: [Max Kossek]
 description: Book Notes for the book Structure and interpretation of computer programs Harold Abelson
----#  <#Title#>
+---
 
 ## 1 Building Abstraction with Procedures
 
