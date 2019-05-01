@@ -1,9 +1,10 @@
 ---
 layout: post
 title: How to Design Programs (Felleisen)
-date: 2019-04-22
+date: 2019-03-29
 categories: [book]
 tags: [computer science]
+author: [Max Kossek]
 description: Book Notes for the book How to Design Programs by Matthias Felleisen
 ---
 

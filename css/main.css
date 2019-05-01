@@ -36,6 +36,9 @@ footer {
 footer a, footer a:visited {
 	color: inherit;
 }
+a[href~="#"] {
+    color: blue;
+}
 .to-top a[href~="#"]::before {
     content: "\25B4  ";
 }
@@ -62,6 +65,10 @@ code {
 
 
 /* Page Elements */
+.meta {
+    font-size: 0.9rem;
+    color: dimgray;
+}
 .toc {
     background: whitesmoke;
     display: table;
