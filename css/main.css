@@ -1,47 +1,55 @@
 /* Layout */
 body {
 	-webkit-font-smoothing: antialiased;
+	font-family: sans-serif;
+	line-height: 1.3;
+    color: #333;
 }
-
 main, footer, header, nav {
 	max-width: 70ch;
 	padding: 1.5ch;
 	margin: auto;
 }
 
+
+/* Navigation */
 nav {
 	padding: 0 1.5ch 0.5ch;
-    	border-bottom: 2px solid slategray;
+    border-bottom: 2px solid slategray;
 }
 nav a, nav span {
-    	margin-right: 1.5rem;
+    margin-right: 1.5rem;
 	font-size: 1.1rem;
 	color: inherit;
+	font-weight: bold;
+}
+nav a:hover, nav span:hover {
+    background: gold;
 }
 
+
+/* Footer */
 footer {
 	margin-top: 3rem;
 	background: whitesmoke;
 	margin-bottom: -0.5em;
 }
 footer a, a[href~="#"] {
-	color: blue;
+	color: inherit;
 }
 .to-top a[href~="#"]::before {
-    	content: "\25B4  ";
+    content: "\25B4  ";
 }
+
 
 /* Text */
 header h1 {
-	margin-bottom: 0;
+	margin: 0.5rem auto 0;
+    font-size: 1.8rem;
 }
 
-body {
-	font-family: sans-serif;
-	line-height: 1.3;
-    	color: #333;
-}
 
+/* Code */
 pre, code {
 	font-family: Courier, monospace;
 	background: gainsboro;
@@ -52,6 +60,7 @@ pre, code {
 code {
     	padding: 0px 2px;
 }
+
 
 /* Page Elements */
 .toc {
@@ -70,6 +79,7 @@ code {
     padding-top: 1em;	
 }
 
+
 /* Tables */
 table {
 	border-collapse: collapse;
@@ -83,7 +93,6 @@ td, th {
     border: 1px solid gainsboro;
     padding: 0.25rem 0.5rem;
 }
-
 hr {
 	color: gainsboro;
     background: gainsboro;
@@ -92,29 +101,32 @@ hr {
     margin: 1.5em 0em;
 }
 
+
 /* Links */
 a {
 	text-decoration: none;
+	color: royalblue;
 }
-
+a:visited {
+	color: purple;
+}
 a:hover {
 	text-decoration: underline;
 }
-
 a[target="_blank"]::after {
   	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
   	margin: 0 3px 0 5px;
 }
 
+
 /* Lists */
 ul, ol {
 	margin-top: 0;
 }
-
 ul.none {
-    	margin: 0;
-    	list-style: none;
-    	padding: 0;
+    margin: 0;
+    list-style: none;
+    padding: 0;
 	margin-bottom: 1rem;
 }
 
