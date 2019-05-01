@@ -9,9 +9,8 @@ description: Collection of all articles written by Max Kossek.
 </header>
 <main>
 
-<h3>By Type:</h3>
 {% for category in site.categories %}
-<strong># {{ category | first }}</strong>
+<strong style="text-transform: capitalize;">{{ category | first }}</strong>
 <ul class="none">
 {% for post in category.last %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
@@ -21,7 +20,6 @@ description: Collection of all articles written by Max Kossek.
 
 <hr>
 
-<h3>By Field:</h3>
 {% for tag in site.tags %}
 <strong># {{ tag | first }}</strong>
 <ul class="none">

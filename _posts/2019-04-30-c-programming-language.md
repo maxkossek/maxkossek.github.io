@@ -4,6 +4,7 @@ title: The C Programming Language (Kernighan & Ritchie)
 date: 2019-04-30
 categories: [book]
 tags: [computer science]
+author: [Max Kossek]
 description: Book Notes for the book The C Programming Language by Kernighan & Ritchie
 ---
 
