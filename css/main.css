@@ -16,16 +16,16 @@ main, footer, header, nav {
 /* Navigation */
 .header {
     background: whitesmoke;
-    border-bottom: 1px solid gray;
 }
 nav {
-    padding: 1ch;
+    padding: 2ch 1ch 1ch;
 }
 nav a, nav a:visited, nav span {
-    margin-right: 1.5rem;
-	font-size: 1.1rem;
-	color: inherit;
-	font-weight: bold;
+    margin-right: 0.2ch;
+    font-size: 1.05rem;
+    color: inherit;
+    padding: 1ch 1.5ch;
+    background: lightgray;
 }
 nav a:hover, nav span:hover {
     background: gold;
@@ -35,7 +35,6 @@ nav a:hover, nav span:hover {
 /* Footer */
 .footer {
     background: whitesmoke;
-    border-top: 1px solid gray;
     margin-top: 3em;
 }
 footer {
