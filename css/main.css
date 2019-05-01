@@ -34,7 +34,7 @@ footer {
     background: whitesmoke;
 }
 footer a, footer a:visited {
-	color: royalblue;
+	color: inherit;
 }
 .to-top a[href~="#"]::before {
     content: "\25B4  ";
@@ -57,7 +57,7 @@ pre, code {
 	overflow: auto;
 }
 code {
-    	padding: 0px 2px;
+    padding: 0px 2px;
 }
 
 
@@ -104,10 +104,6 @@ hr {
 /* Links */
 a {
 	text-decoration: none;
-	color: royalblue;
-}
-a:visited {
-	color: purple;
 }
 a:hover {
 	text-decoration: underline;
@@ -127,5 +123,42 @@ ul.none {
     list-style: none;
     padding: 0;
 	margin-bottom: 1rem;
+}
+
+
+/* Logo */
+#logo {
+    height: 1.5rem;
+    margin: 0 auto;
+    overflow:hidden;
+    position:relative;
+    float: left;
+    width: 1.5rem;
+}
+#logo div {
+    position: absolute;
+    float:left;
+}
+#logo #white {
+    background: white;
+    height: 100%;
+    width: 100%;
+    top: 75%;
+    left: 75%;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+}
+#logo #green {
+    height: 100%;
+    width: 100%;
+    background: seagreen;
+}
+#logo #gold {
+    background: gold;
+    height: 100%;
+    width: 100%;
+    bottom: 75%;
 }
 
