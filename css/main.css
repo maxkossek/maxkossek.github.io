@@ -4,6 +4,7 @@ body {
 	font-family: sans-serif;
 	line-height: 1.3;
     color: #333;
+    margin: 0;
 }
 main, footer, header, nav {
 	max-width: 70ch;
@@ -13,9 +14,12 @@ main, footer, header, nav {
 
 
 /* Navigation */
-nav {
-	padding: 0 1.5ch 0.5ch;
+.header {
+    background: whitesmoke;
     border-bottom: 2px solid slategray;
+}
+nav {
+    padding: 1ch;
 }
 nav a, nav a:visited, nav span {
     margin-right: 1.5rem;
@@ -29,13 +33,16 @@ nav a:hover, nav span:hover {
 
 
 /* Footer */
-footer {
-	margin-top: 3rem;
-	background: whitesmoke;
-	margin-bottom: -0.5em;
+.footer {
+    background: whitesmoke;
+    border-top: 2px solid slategray;
+    margin-top: 3em;
 }
-footer a, footer a:visited, a[href~="#"] {
-	color: inherit;
+footer {
+	padding: 3ch 1.5ch;
+}
+footer a, footer a:visited {
+	color: royalblue;
 }
 .to-top a[href~="#"]::before {
     content: "\25B4  ";
