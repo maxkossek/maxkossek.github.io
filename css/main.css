@@ -15,15 +15,9 @@ main, footer, header, nav {
 
 
 /* Navigation */
-.header {
-    background: whitesmoke;
-}
-nav {
-    overflow: auto;
-}
 nav a, nav a:visited, nav span {
     margin-right: 1.5rem;
-    color: dimgray;
+    color: inherit;
     font-weight: bold;
 }
 nav a:hover, nav span:hover {
@@ -33,11 +27,11 @@ nav a:hover, nav span:hover {
 
 /* Footer */
 .footer {
-    background: whitesmoke;
     margin-top: 3em;
 }
 footer {
 	padding: 3ch 1.5ch;
+    background: whitesmoke;
 }
 footer a, footer a:visited {
 	color: royalblue;
