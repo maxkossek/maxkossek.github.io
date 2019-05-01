@@ -16,7 +16,7 @@ main, footer, header, nav {
 /* Navigation */
 .header {
     background: whitesmoke;
-    border-bottom: 2px solid slategray;
+    border-bottom: 1px solid gray;
 }
 nav {
     padding: 1ch;
@@ -35,7 +35,7 @@ nav a:hover, nav span:hover {
 /* Footer */
 .footer {
     background: whitesmoke;
-    border-top: 2px solid slategray;
+    border-top: 1px solid gray;
     margin-top: 3em;
 }
 footer {
