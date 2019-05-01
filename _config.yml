@@ -3,7 +3,6 @@ markdown: kramdown
 description: Personal homepage of Max Kossek
 permalink: /articles/:title
 
-url: "https://maxkossek.github.io" # the base hostname & protocol for your site
-plugins:
-  - jekyll-sitemap
+url: "https://maxkossek.github.io"
+baseurl: ""
 
