@@ -1,7 +1,7 @@
 /* Layout */
 body {
 	-webkit-font-smoothing: antialiased;
-    readab
+    text-rendering: optimizeLegibility;
 	font-family: sans-serif;
 	line-height: 1.3;
     color: #333;
