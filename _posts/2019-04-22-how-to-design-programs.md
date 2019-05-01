@@ -2,7 +2,8 @@
 layout: post
 title: How to Design Programs (Felleisen) Book Notes
 date: 2019-04-22
-categories: [computer science, book]
+categories: [book]
+tags: [computer science]
 ---
 
 1. From Problem Analysis to Data Definitions (Analyze problem statement)

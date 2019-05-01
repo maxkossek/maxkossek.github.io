@@ -15,21 +15,13 @@ description: Max Kossek is a computer science student.
 </ul>
 
 
-{% for category in site.categories %}
-<a href="{{ category | first }}"># {{ category | first }}</a>
+{% for tag in site.tags %}
+# {{ tag | first }}
 <ul class="none">
-{% for post in category.last %}
+{% for post in tag.last %}
 <li><a href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 {% endfor %}
-
-<strong># computer science</strong>
-<ul class="none">
-<li><a href="/articles/c-programming-language">The C Programming Language (Kernighan &amp; Ritchie)</a></li>
-<li><a href="/articles/how-to-design-programs">How to Design Programs (Felleisen)</a></li>
-</ul>
-
-<strong># literature</strong>
 
 </main>
