@@ -4,7 +4,17 @@ layout: default
 <header>
 <h1>{{ page.title }}</h1>
 <time class="date">{{ page.date | date_to_string }}</time>
-<div class="meta">{{ page.categories }}</div>
+<div class="meta">
+{% if post.categories.size > 0 %}
+Categor{% if post.tags.size > 1 %}ies{% endif %}{% else %}y{% endelse %}:
+{{ post.categories | sort | join: ", " }}
+{% endif %}
+<br>
+{% if post.tags.size > 0 %}
+  Tag{% if post.tags.size > 1 %}s{% endif %}:
+  {{ post.tags | sort | join: ", " }}
+{% endif %}
+</div>
 </header>
 
 <main>
