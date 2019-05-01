@@ -49,27 +49,47 @@ pre, code {
 	padding: 1em;
 	overflow: auto;
 }
-
 code {
     	padding: 0px 2px;
 }
 
+/* Page Elements */
+.toc {
+    background: whitesmoke;
+    display: table;
+    padding: 1em;
+}
+.toc ul {
+	margin-bottom: 0;
+}
 .citations {
 	border-top: 2px solid slategray;
-    	font-size: 0.9rem;
+    font-size: 0.9rem;
 	color: dimgray;
-    	margin-top: 5em;
-    	padding-top: 1em;	
+    margin-top: 5em;
+    padding-top: 1em;	
 }
 
+/* Tables */
 table {
+	border-collapse: collapse;
 	border-spacing: 0px;
-	border: 1px solid gainsboro; 
+	font-size: 0.95rem;
+}
+thead {
+    background: beige;
+}
+td, th {
+    border: 1px solid gainsboro;
+    padding: 0.25rem 0.5rem;
 }
 
-td, th {
-	border: 1px solid gainsboro;
-	padding: 0.25em;
+hr {
+	color: gainsboro;
+    background: gainsboro;
+    border: 0;
+    height: 2px;
+    margin: 1.5em 0em;
 }
 
 /* Links */
