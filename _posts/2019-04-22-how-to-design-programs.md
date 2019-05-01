@@ -1,9 +1,10 @@
 ---
 layout: post
-title: How to Design Programs (Felleisen) Book Notes
+title: How to Design Programs (Felleisen)
 date: 2019-04-22
 categories: [book]
 tags: [computer science]
+description: Book Notes for the book How to Design Programs by Matthias Felleisen
 ---
 
 1. From Problem Analysis to Data Definitions (Analyze problem statement)

@@ -6,10 +6,10 @@ layout: default
 <time class="date">{{ page.date | date_to_string }}</time> 
 <span class="meta">
 {% if page.categories.size > 0 %}
- | categories: {{ page.categories | join: ', ' }}
+ | <strong>{{ page.categories | join: ', ' }}</strong>
 {% endif %}
 {% if page.tags.size > 0 %}
- | tags: {{ page.tags | join: ', ' }}
+ - tags: {{ page.tags | join: ', ' }}
 {% endif %}
 </span>
 </header>

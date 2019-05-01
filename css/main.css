@@ -21,6 +21,8 @@ nav a, nav span {
 
 footer {
 	margin-top: 3rem;
+	background: whitesmoke;
+	margin-bottom: -0.5em;
 }
 footer a, a[href~="#"] {
 	color: blue;

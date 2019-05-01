@@ -1,16 +1,32 @@
 ---
 layout: default
-title: Max Kossek Articles
+title: Articles
+description: Collection of all articles written by Max Kossek.
 ---
 
 <header>
 <h1>{{ page.title }}</h1>
 </header>
 <main>
-<ul class="none">
 
-{% for post in site.posts %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <time>{{ post.date | date_to_string }}</time></li>
+<h3>By Type:</h3>
+{% for category in site.categories %}
+<strong># {{ category | first }}</strong>
+<ul class="none">
+{% for post in category.last %}
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
 {% endfor %}
 </ul>
+{% endfor %}
+
+<h3>By Field:</h3>
+{% for tag in site.tags %}
+<strong># {{ tag | first }}</strong>
+<ul class="none">
+{% for post in tag.last %}
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+{% endfor %}
+</ul>
+{% endfor %}
+
 </main>
