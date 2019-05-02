@@ -1,0 +1,22 @@
+---
+layout: default
+title: Tags
+description: Collection of all tags on Max Kossek.
+---
+<header>
+<h1>{{ page.title }}</h1>
+</header>
+
+<main>
+
+{% for tag in site.tags %}
+<strong># {{ tag | first }}</strong>
+<ul class="none">
+{% for post in tag.last %}
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+{% endfor %}
+</ul>
+{% endfor %}
+
+</main>
+

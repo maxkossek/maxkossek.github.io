@@ -1,0 +1,21 @@
+---
+layout: default
+title: Categories
+description: Collection of all categories on maxkossek.
+---
+
+<header>
+<h1>{{ page.title }}</h1>
+</header>
+<main>
+
+{% for category in site.categories %}
+<strong style="text-transform: capitalize;">{{ category | first }}</strong>
+<ul class="none">
+{% for post in category.last %}
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+{% endfor %}
+</ul>
+{% endfor %}
+
+</main>

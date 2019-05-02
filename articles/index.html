@@ -9,24 +9,17 @@ description: Collection of all articles written by Max Kossek.
 </header>
 <main>
 
-{% for category in site.categories %}
-<strong style="text-transform: capitalize;">{{ category | first }}</strong>
-<ul class="none">
-{% for post in category.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
-{% endfor %}
-</ul>
-{% endfor %}
+<p>View: <a href="/categories">Categories</a> | <a href="/tags">Tags</a></p>
 
-<hr>
-
-{% for tag in site.tags %}
-<strong># {{ tag | first }}</strong>
-<ul class="none">
-{% for post in tag.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
-{% endfor %}
-</ul>
+{% assign postsByYear =
+    site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+{% for year in postsByYear %}
+  <strong>{{ year.name }}</strong>
+    <ul class="none">
+      {% for post in year.items %}
+        <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+      {% endfor %}
+    </ul>
 {% endfor %}
 
 </main>

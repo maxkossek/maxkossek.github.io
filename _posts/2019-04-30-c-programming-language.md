@@ -246,7 +246,7 @@ declarations and statements
 }
 ```
 
-If return type is omitted, int is assumed. The return expression `return expression;` converts the expression to the return type if necessary. If a functions fails to return a value, the value will likely be useless. Compiling and load a C program stores in 3 different files can be done on UNIX with command.
+If return type is omitted, int is assumed. The return expression `return expression;` converts the expression to the return type if necessary. If a functions fails to return a value, the value will likely be garbage. Compiling and load a C program stores in 3 different files can be done on UNIX with command.
 ```
 $ cc main.c filename1.c filename2.c
 ```
