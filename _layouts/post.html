@@ -11,7 +11,7 @@ layout: default
 {% if page.categories.size > 0 %}
  | <strong class="category">
 {% for category in page.categories %}
-<a href="{{site.baseurl}}/categories/#{{ category | downcase | url_escape | strip | replace: ' ', '-' }}">{{category}}</a>
+<a href="{{site.baseurl}}/categories#{{ category | downcase | url_escape | strip | replace: ' ', '-' }}">{{category}}</a>
 {% unless forloop.last %}&nbsp;{% endunless %}
 {% endfor %}
 </strong>
@@ -19,7 +19,7 @@ layout: default
 {% if page.tags.size > 0 %}
  - <span class="tag">tags:</span> 
 {% for tag in page.tags %}
-<a href="{{site.baseurl}}/tags/#{{ tag | downcase | url_escape | strip | replace: ' ', '-' }}">{{tag}}</a>
+<a href="{{site.baseurl}}/tags#{{ tag | downcase | url_escape | strip | replace: ' ', '-' }}">{{tag}}</a>
 {% unless forloop.last %}&nbsp;{% endunless %}
 {% endfor %}
 {% endif %}
