@@ -20,7 +20,7 @@ description: Max Kossek is a computer science student.
 <strong># {{ tag | first }}</strong>
 <ul class="none">
 {% for post in tag.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%d/%m/%Y" }}</time></li>
 {% endfor %}
 </ul>
 {% endfor %}

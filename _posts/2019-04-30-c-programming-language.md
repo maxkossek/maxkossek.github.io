@@ -24,7 +24,7 @@ description: Book Notes for the book The C Programming Language by Kernighan & R
 ## 1 - A Tutorial Introduction
 
 ### 1.1 Getting Started
-C program consists of functions and variables. Function contains statements that specify operations, and variables store values. Program begins executing at main so every program must have a `main()` function.
+C program consists of functions and variables.[^1] Function contains statements that specify operations, and variables store values. Program begins executing at main so every program must have a `main()` function.
 
 
 ### 1.2 Variables and Arithmetic Exceptions
@@ -492,12 +492,7 @@ struct node *right;
 ```
 
 
-<div class="citations">
-<strong>Citations:</strong>
-<ol>
-<li id="cite1">Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.</li>
-</ol>
-</div>
+[^1]: Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.
 
 
 
