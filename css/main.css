@@ -8,8 +8,8 @@ body {
     margin: 0;
 }
 main, footer, header, nav {
-	max-width: 70ch;
-	padding: 1.5ch;
+	max-width: 38rem;
+	padding: 1rem;
 	margin: auto;
 }
 
@@ -30,7 +30,6 @@ nav a:hover, nav span:hover {
     margin-top: 3em;
 }
 footer {
-	padding: 3ch 1.5ch;
     background: whitesmoke;
 }
 footer a, footer a:visited {
@@ -77,12 +76,25 @@ code {
 .toc ul {
 	margin-bottom: 0;
 }
-.citations {
-	border-top: 2px solid slategray;
-    font-size: 0.9rem;
-	color: dimgray;
+a.footnote::before {
+    content: "[";
+}
+a.footnote::after {
+    content: "]";
+}
+.footnotes {
+    border-top: 2px solid slategray;
+    font-size: 0.95rem;
+    color: dimgray;
     margin-top: 5em;
-    padding-top: 1em;	
+    padding-top: 1em;   
+}
+.footnotes::before {
+    content: "References";
+    font-weight: bold;
+}
+.footnotes p {
+    margin: initial;
 }
 
 

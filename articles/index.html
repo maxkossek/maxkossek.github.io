@@ -17,7 +17,7 @@ description: Collection of all articles written by Max Kossek.
   <strong>{{ year.name }}</strong>
     <ul class="none">
       {% for post in year.items %}
-        <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m" }}</time></li>
+        <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%d/%m" }}</time></li>
       {% endfor %}
     </ul>
 {% endfor %}

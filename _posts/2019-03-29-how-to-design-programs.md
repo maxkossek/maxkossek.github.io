@@ -18,7 +18,7 @@ description: Book Notes for the book How to Design Programs by Matthias Felleise
 
 
 ## Prologue: How to Program
-A *1String* is a string with length one (char).
+A *1String* is a string with length one (char).[^1]
 
 
 
@@ -294,12 +294,7 @@ Traversals “forget” pieces of the argument when they progress throughout the
 Computing generalizes simple arithmetic (0’s and 1’s) to more general processes, so we can compute almost any type of data in a variety of ways.
 
 
-<div class="citations">
-<strong>Citations:</strong>
-<ol>
-<li id="cite1">Felleisen, M., Findler, R. B., Flatt, M., & Krishnamurthi, S. (2018). How to design programs: an introduction to programming and computing. MIT Press.</li>
-</ol>
-</div>
+[^1]: Felleisen, M., Findler, R. B., Flatt, M., & Krishnamurthi, S. (2018). How to design programs: an introduction to programming and computing. MIT Press.
 
 
 
