@@ -12,7 +12,7 @@ description: Collection of all tags on Max Kossek.
 <p>By <strong>Tags</strong>, view by <a href="/articles">Year</a> or <a href="/categories">Categories</a></p>
 
 {% for tag in site.tags %}
-<strong id="#{{ tag[0] | downcase | url_escape | strip | replace: ' ', '-' }}"># {{ tag | first }}</strong>
+<strong id="#{{ tag[0] | downcase | url_escape | strip | replace: ' ', '-' }}"># {{ tag | first }} <span>[{{ tag[1].size }}]</span></strong>
 <ul class="none">
 {% for post in tag.last %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
