@@ -9,7 +9,7 @@ description: Collection of all articles written by Max Kossek.
 </header>
 <main>
 
-<p>View: <a href="/categories">Categories</a> | <a href="/tags">Tags</a></p>
+<p>By <strong>Year</strong>, view by <a href="/categories">Categories</a> or <a href="/tags">Tags</a></p>
 
 {% assign postsByYear =
     site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
@@ -17,7 +17,7 @@ description: Collection of all articles written by Max Kossek.
   <strong>{{ year.name }}</strong>
     <ul class="none">
       {% for post in year.items %}
-        <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+        <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m" }}</time></li>
       {% endfor %}
     </ul>
 {% endfor %}

@@ -9,11 +9,13 @@ description: Collection of all categories on maxkossek.
 </header>
 <main>
 
+<p>By <strong>Categories</strong>, view by <a href="/articles">Year</a> or <a href="/tags">Tags</a></p>
+
 {% for category in site.categories %}
-<strong style="text-transform: capitalize;">{{ category | first }}</strong>
+<strong id="#{{ category[0] | downcase | url_escape | strip | replace: ' ', '-' }}" style="text-transform: capitalize;">{{ category | first }}</strong>
 <ul class="none">
 {% for post in category.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
 {% endfor %}
 </ul>
 {% endfor %}

@@ -9,10 +9,19 @@ layout: default
 &nbsp;| <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author | escape }}</span>
 {%- endif -%}
 {% if page.categories.size > 0 %}
- | <strong class="category">{{ page.categories | join: ', ' }}</strong>
+ | <strong class="category">
+{% for category in page.categories %}
+<a href="{{site.baseurl}}/categories/#{{ category | downcase | url_escape | strip | replace: ' ', '-' }}">{{category}}</a>
+{% unless forloop.last %}&nbsp;{% endunless %}
+{% endfor %}
+</strong>
 {% endif %}
 {% if page.tags.size > 0 %}
- - <span class="tag">tags:</span> {{ page.tags | join: ', ' }}
+ - <span class="tag">tags:</span> 
+{% for tag in page.tags %}
+<a href="{{site.baseurl}}/tags/#{{ tag | downcase | url_escape | strip | replace: ' ', '-' }}">{{tag}}</a>
+{% unless forloop.last %}&nbsp;{% endunless %}
+{% endfor %}
 {% endif %}
 </span>
 </header>

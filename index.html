@@ -8,7 +8,7 @@ description: Max Kossek is a computer science student.
 </header>
 
 <main>
-<strong># index</strong>
+<strong>index</strong>
 <ul class="none">
 <li><a href="/about">about</a></li>
 <li><a href="/articles">articles</a></li>
@@ -20,7 +20,7 @@ description: Max Kossek is a computer science student.
 <strong># {{ tag | first }}</strong>
 <ul class="none">
 {% for post in tag.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date_to_string }}</time></li>
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
 {% endfor %}
 </ul>
 {% endfor %}
