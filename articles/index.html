@@ -9,7 +9,9 @@ description: Collection of all articles written by Max Kossek.
 </header>
 <main>
 
-<p>By <strong>Year</strong>, view by <a href="/categories">Categories</a> or <a href="/tags">Tags</a></p>
+<div>By <strong>Year</strong>, view by <a href="/categories">Categories</a> or <a href="/tags">Tags</a></div>
+
+<hr>
 
 {% assign postsByYear =
     site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
