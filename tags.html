@@ -11,10 +11,18 @@ description: Collection of all tags on Max Kossek.
 
 <div>By <strong>Tags</strong>, view by <a href="/articles">Year</a> or <a href="/categories">Categories</a></div>
 
+<p>
+<ul class="none">
+{% for tag in site.tags %}
+<li><a class="tag" href="#{{ tag[0] | slugify }}">{{ tag[0] }} <span>[{{ tag[1].size }}]</span></a></li>
+{% endfor %}
+</ul>
+</p>
+
 <hr>
 
 {% for tag in site.tags %}
-<strong id="{{ tag[0] | downcase | url_escape | strip | replace: ' ', '-' }}"># {{ tag | first }} <span>[{{ tag[1].size }}]</span></strong>
+<strong id="{{ tag[0] | slugify }}"># {{ tag | first }} <span>[{{ tag[1].size }}]</span></strong>
 <ul class="none">
 {% for post in tag.last %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
@@ -23,4 +31,3 @@ description: Collection of all tags on Max Kossek.
 {% endfor %}
 
 </main>
-

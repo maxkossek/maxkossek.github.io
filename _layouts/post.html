@@ -11,14 +11,14 @@ layout: default
 {% if page.categories.size > 0 %}
  | <strong class="category">
 {% for category in page.categories %}
-<a href="{{site.baseurl}}/categories#{{ category | downcase | url_escape | strip | replace: ' ', '-' }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
+<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 </strong>
 {% endif %}
 {% if page.tags.size > 0 %}
  - <span class="tag">tags:</span> 
 {% for tag in page.tags %}
-<a href="{{site.baseurl}}/tags#{{ tag | downcase | url_escape | strip | replace: ' ', '-' }}">#{{tag}}</a>{% unless forloop.last %}, {% endunless %}
+<a href="{{site.baseurl}}/tags#{{ tag | slugify }}">#{{tag}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 {% endif %}
 </span>
