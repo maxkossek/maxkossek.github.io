@@ -25,7 +25,18 @@ description: Collection of all tags on Max Kossek.
 <strong id="{{ tag[0] | slugify }}"># {{ tag | first }} <span>[{{ tag[1].size }}]</span></strong>
 <ul class="none">
 {% for post in tag.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br>
+<span class="meta">
+<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%d/%m/%Y" }}</time> 
+{% if post.categories.size > 0 %}
+ | <span class="category">
+{% for category in post.categories %}
+<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
+{% endfor %}
+</span>
+{% endif %}
+</span>
+</li>
 {% endfor %}
 </ul>
 {% endfor %}

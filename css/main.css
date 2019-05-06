@@ -92,6 +92,10 @@ code {
     font-size: 0.9rem;
     color: dimgray;
 }
+.meta a, .meta a:visited {
+    text-decoration: underline;
+    color: inherit;
+}
 .toc {
     background: whitesmoke;
     display: table;
