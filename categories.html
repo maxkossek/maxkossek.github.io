@@ -25,7 +25,7 @@ description: Collection of all categories on maxkossek.
 <strong id="{{ category[0] | slugify }}">{{ category | first | capitalize }} <span>[{{ category[1].size }}]</span></strong>
 <ul class="none">
 {% for post in category.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%-d/%m/%Y" }}</time></li>
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%d/%m/%Y" }}</time></li>
 {% endfor %}
 </ul>
 {% endfor %}
