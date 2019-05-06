@@ -26,7 +26,6 @@ description: Collection of all categories on maxkossek.
 <strong id="{{ category[0] | slugify }}">{{ category | first | capitalize }} <span>[{{ category[1].size }}]</span></strong>
 <ul class="none">
 {% for post in category.last %}
-<<<<<<< HEAD
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br>
 <span class="meta">
 <time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%d/%m/%Y" }}</time> 
@@ -38,9 +37,7 @@ description: Collection of all categories on maxkossek.
 {% endif %}
 </span>
 </li>
-=======
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> - <time>{{ post.date | date: "%d/%m/%Y" }}</time></li>
->>>>>>> master
 {% endfor %}
 </ul>
 {% endfor %}
