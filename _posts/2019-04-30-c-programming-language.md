@@ -17,7 +17,8 @@ description: Book Notes for the book The C Programming Language by Kernighan & R
 <li><a href="#4---functions-and-program-structure">4 - Functions and Program Structure</a></li>
 <li><a href="#5---pointers-and-arrays">5 - Pointers and Arrays</a></li>
 <li><a href="#6---structures">6 - Structures</a></li>
-
+<li><a href="#7---input-and-output">7 - Input and Output</a></li>
+<li><a href="#8---the-unix-system-interface">8 - The UNIX System Interface</a></li>
 </ul>
 </div>
 
@@ -58,8 +59,8 @@ Properly designed functions remove to need to know how a job is done; knowing wh
 ```
 return-type function-name(parameter declarations)
 {
-declarations
-statements
+    declarations
+    statements
 }
 ```
 
@@ -157,7 +158,7 @@ Conditional expressions are used to shorten if else statements `expr1 ? expr2 : 
 9. \^
 10. \|
 11. &&
-12. \||
+12. \|\|
 13. ?:
 14. = += -= *= /= %= &= ^= \|= <<= >>=
 15. ,
@@ -185,8 +186,8 @@ Else-If is written as `else if` in C. If one of the else if statements evaluates
 Switch statement is a way to test if an expresion matches one of a number of branches
 ``` 
 switch(expression) { 
-case const-expr: statements  
-default : statements 
+    case const-expr: statements  
+    default : statements 
 }
 ```
 A break statement causes an immediate exit from the switch `break;`. Unless break is invoked, all switch cases are checked, even if one case already evaluated to true. Best practices is to add a break; after the default statement, even if it is not necessary.
@@ -196,12 +197,12 @@ A break statement causes an immediate exit from the switch `break;`. Unless brea
 A `while` expression continues evaluation until it's condition is not met 
 ```
 while (expression)
-statement
+    statement
 ```
 A `for` statement provides a starting condition, a testing condition, and a incrementing condition. Any of these conditions can be omitted, but the semicolons have to be inserted. Multiple expressions can be inserted inside a for expression by separating them with a comma.
 ```
 for (initial_expr; test_expr; increment_expr)
-statement
+    statement
 ```
 While and for loops can be used interchangeably. For loops are preferred for situations where there is a simple initialization and incrementing step.
 
@@ -225,8 +226,8 @@ A `goto` statement is never necessary and can be easily abused. It may have a us
 ```
 for (...)
 for (...) {
-if ()
-goto error;
+    if ()
+        goto error;
 }
 error:
 ```
@@ -242,7 +243,7 @@ Function definition has form:
 ```
 return-type function-name (arguments)
 {
-declarations and statements
+    declarations and statements
 }
 ```
 
@@ -280,8 +281,8 @@ A `register` declaration tells the compiler that the variable declared will be h
 Declarations of variables can follow the left brace of any compound statement, not just functions. For example:
 ```
 if ( ) {
-int x;
-for (while x ...)
+    int x;
+    for (while x ...)
 }
 ```
 In the above example x is local to the if statement, and is unrelated to any other variable named x outside it's scope. Best practice is to avoid reusing names for local variables.
@@ -341,10 +342,10 @@ C passes arguments to functions by value, hence a function can not alter a varia
 ```
 void swap(int *px, int *py)
 {
-int temp;
-temp = *px;
-*px = *py;
-*py = temp;
+    int temp;
+    temp = *px;
+    *px = *py;
+    *py = temp;
 }
 ```
 
@@ -394,9 +395,9 @@ C has rectangular multi-dimensional arrays (less used in practice). In multi-dim
 To initialize a pointer array:
 ```
 static char *name[] = {
-"Illegal month",
-"January", "February", "March",
-"April", "May", "June"
+    "Illegal month",
+    "January", "February", "March",
+    "April", "May", "June"
 };
 ```
 
@@ -427,12 +428,12 @@ Because of precedence, declarations can be hard to read. `int *f();` is a functi
 To create an object for a point:
 ```
 struct point {
-int x;
-int y;
+    int x;
+    int y;
 };
-struct rect {
-struct point pt1;
-struct point pt2;
+    struct rect {
+    struct point pt1;
+    struct point pt2;
 };
 struct rect screen;
 screen.pt1.x;
@@ -446,9 +447,9 @@ Structures have to be copied or assigned as a unit. They can not be used in comp
 ```
 struct addpoint(struct point p1, struct point p2)
 {
-p1.x += p2.x;
-p1.y += p2.y;
-return p1;
+    p1.x += p2.x;
+    p1.y += p2.y;
+    return p1;
 }
 ```
 
@@ -459,8 +460,8 @@ Structure pointers are like pointers to ordinary variables `struct point *pp;`. 
 Structures can also be used in arrays:
 ```
 struct key {
-char *word;
-int count;
+    char *word;
+    int count;
 } keytab[] = { "auto", 0 }, { "break", 0 }, { "case", 0 }, { "char", 0 };
 ```
 
@@ -485,11 +486,134 @@ To keep a list sorted, we can place elements into their proper position in the o
 Binary search trees can significantly reduce the time of search O(logn). However if the tree becomes "unbalanced", the running time will grow closer to that of a linear search O(n). A node is most conveniently written as a structure:
 ```
 struct node {
-char *word;
-struct node *left;
-struct node *right;
+    char *word;
+    struct node *left;
+    struct node *right;
 };
 ```
+
+### 6.6 Table Lookup
+A hash-search converts an incoming name into a small non-negative integer, used to index into an array. Standard way to walk along a linked list is a for loop `for (ptr = head; ptr != NULL; ptr = ptr->next)`.
+
+
+### 6.7 Typedef
+`typedef` is a facility that creates new data type names; `typedef int Length;` makes the name Length a synonym for int. `typedef char *String;` makes String a synonym for a character pointer. Typedef does not create a new type; it only adds a name for an existing type similar to `#define`. 
+
+
+### 6.8 Unions 
+*Union* is a variable that holds objects of different types and sizes; the compiler keeps track of size and alignment.
+```
+union u_tag {
+int ival;
+float fval;
+char *sval;
+} u;
+```
+
+In the above example, the compiler will make u big enough to hold the largest data type. Members of a union are accessed by `union-name.member` or `union-pointer->member`.
+
+
+### 6.9 Bit-fields
+*Bit-field* is a set of adjacent bits within a single storage unit called a "word". Field are referenced like structures `flags.is_keyword`. Bit-fields can sometimes be used to effectively store information on an identified.
+```
+struct {
+unsigned int is_keyword : 1;
+unsigned int is_extern : 1;
+unsigned int is_static : 1;
+} flags;
+```
+
+
+
+## 7 - Input and Output
+
+
+### 7.1 Standard Input and Output
+Simplest input mechanisms is reading one character at a time with `int getchar(void)`. Getchar returns the value of the char, or else EOF when it reaches the end of the file. To get input from a file instead of the keyboard use `prog <infile`. To output a single character use function `int putchar(int)`. Putchar returns the character written, or EOF if an error occurs. To output characters into a file instead of the default screen write `prog >outfile`. `putchar` and `printf` can be interleaved. To use the input/output functions the line `#include <stdio.h>` is required. 
+
+
+### 7.2 Formatted Output - printf
+`printf` converts, formats and prints it's arguments into the standard output, and returns the number of characters printed. `sprintf` functions similarly to `printf` but stores the output in a string. The string inside printf contains either ordinary characters, or a conversion specification (begins with a `%`). Parameters for the conversion specification in order:
+1. Minus sign: specifies left adjustment
+2. Number: specifies minimum field width
+3. Period: separates field with from precision
+4. Number/Precision: number of characters from a string, or the number of digits after the decimal point
+5. Letter: `h` to print as short, `l` to print as a long
+
+
+### 7.3 Variable-length Argument Lists
+Gives an example of writing a minimal version of printf, that uses the conversion specifications as arguments to print output.
+
+
+### 7.4 Formatted Input - Scanf
+Function `scanf` is the input analog of `printf`. `scanf` reads characters from the standard input, and stores the results. It stops when it exhausts it's format string, or an input fails to match a control specification. Similar to printf, scanf has conversion character rules. Scanf returns the number of successfully matched and assigned input items. Arguments to scanf must be pointers.
+```
+/* Read in dates of form: 25 Dec 1988 */
+int day, year;
+char monthname[20];
+
+scanf("%d %s %d", &day, monthname, &year);
+```
+
+
+### 7.5 File Access
+To access a file outside the standard input and output we can use other functions. `fopen` takes an external name such as `filename.c` and returns a pointer to read & write the file. To declare a file pointer:
+```
+#include <stdio.h>
+FILE *fp;
+FILE *fopen(char *name, char *mode);
+
+fp = fopen(filename, mode);
+```
+
+The available modes of fopen include "r" read, "w" write and "a" append. `getc` returns the next character from a specified file `int getc(FILE *fp)`. `putc` writes a character to a specified file `int putc(int c, FILE *fp)`. `fclose` breaks the connection between the file pointer and the external name making space for another file to be read `int fclose(FILE *fp)`. The functions `getchar` and `putchar` already encountered can be defined in terms of getc, putc, stdin and stdout:
+```
+#define getchar() getc(stdin)
+#define putchar(c) putc((c), stdout)
+```
+
+
+### 7.6 Error Handling - Stderr and Exit
+`stderr` writes output on the screen even if the standard output is redirected. Standard library function `exit` terminates a program when it is called. It returns a value of 0 if no errors occured; else it returns a non-zero value for abnormal situations. Inside the `main` function, return and exit are equivalent. However exit can also be called from within other functions. 
+
+
+### 7.7 Line Input and Output
+Standard library includes input and output function `fgets` and `fputs` that are similar to `getline`. `char *fgets(char *line, int maxline, FILE *fp)` reads at most `maxline` characters` starting at the next input line from file `fp` into char array `line`. `int fputs(char *line, FILE *fp)` writes the string `line` to output file `fp`. 
+
+
+### 7.8 Miscellaneous Functions
+
+#### 7.8.1 String Operations
+Functions in `<string.h>`:    
+`strcat(s,t)`: concatenate t to end of s   
+`strncmp(s,t)`: return negative, zero, positive for s<t, s==t, s>t   
+`strcpy(s,t)`: copy t to s   
+`strlen(s)`: return length of s    
+`srtchr(s,c)`: return pointer to first c in s, or NULL    
+
+#### 7.8.2 Character Class Testing and Conversion
+Function in `<ctype.h>`:    
+`isalpha(c)` : non-zero if c is alphabetic   
+`isdigit(c)` : non-zero if c is digit   
+
+#### 7.8.5 Storage Management
+`malloc` and `calloc` obtain blocks of memory dynamically. `void *malloc(size_t n)` returns a pointer to n bytes of uninitialized storage, or NULL. `void *calloc(size_t n, size_t size)` returns a pointer to enough free space to hold the array of n objects, or NULL. Pointers for malloc or calloc have the correct size based on data type, but have to be cast to the right type:
+```
+int *ip;
+ip = (int *) calloc(n, sizeof(int));
+```
+
+`free(p)` frees the space pointer to by p. Best practice is to only free space that was obtained by calls to malloc or calloc.
+
+#### 7.8.6 Mathematical Functions
+Functions in `<math.h>`:   
+`sin(x)` & `cos(x)` : sine and cosine of x in radians   
+`exp(x)` & `log(x)` : exponential function e<sup>x</sup> and natural logarithm   
+`power(x,y)` & `sqrt(x)` : x<sup>y</sup> and x<sup>1/2</sup>    
+
+
+
+## 8 - The UNIX System Interface
 
 
 [^1]: Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.

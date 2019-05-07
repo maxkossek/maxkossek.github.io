@@ -124,7 +124,12 @@ a.footnote::after {
 .footnotes p {
     margin: initial;
 }
-
+summary:hover {
+    cursor: pointer;
+}
+:target {
+    background: yellow;
+}
 
 /* Tables */
 table {
