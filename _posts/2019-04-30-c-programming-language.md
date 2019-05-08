@@ -616,6 +616,38 @@ Functions in `<math.h>`:
 ## 8 - The UNIX System Interface
 
 
+### 8.1 File Descriptors
+In UNIX operating systems, all input and output is read and written by files. To write to a file, the system checks permission and gives a small positive integer called a file descriptor (similar to file pointer). 
+
+
+### 8.2 Low Level I/O - Read and Write
+Input and output use C functions `read` and `write`. The return value for both is the number of bytes transferred. 
+```
+int n_read = read(int fd, char *buf, int n);
+int n_written = write(int fd, char *buf, int n);
+``` 
+
+
+### 8.3 Open, Creat, Close, Unlink
+Files different from standard input, standard output and error must be explicitly opened. Use system calls `open` and `creat`. Usually there is a limit on the number of concurrent files that can be opened. Function `close(int fd)` breaks the connection between file descriptor and the program.
+
+
+### 8.4 Random Access - Lseek
+`lseek` allows a file to be read and written in any order `long lseek(int fd, long offset, int origin);`. It returns a long that gives the new position in the file, or -1 if an error occurs.
+
+
+### 8.5 Example - An implementation of Fopen and Getc
+Functions and variables in `<stdio.h>` preferablly start with a underscore to avoid colliding with the user's program. 
+
+
+### 8.6 Example - Listing Directories
+UNIX command `ls` prints the names of files in a directory. A directory is a file that contains a list of filenames, and where they are located. The location of a file is the *inode list*, which stores all the information about the file.
+
+
+### 8.7 Example - A Storage Allocator
+Space that `malloc` manages may no be adjacent. Each block of storage contains a pointer to the next block. The last storage block points to the first block. When the user request space, the adjacent blocks are scanned until a big enough block is found. If the block is too big, it is split and returned to the user, else it is simply returned.
+
+
 [^1]: Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.
 
 
