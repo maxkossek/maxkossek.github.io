@@ -153,6 +153,13 @@ hr {
 }
 
 
+/* Forms */
+input {
+    font-size: 1rem;
+    background: white;
+}
+
+
 /* Links */
 a {
 	text-decoration: none;

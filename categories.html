@@ -14,7 +14,7 @@ description: Collection of all categories on maxkossek.
 <p>
 <ul class="none">
 {% for category in site.categories %}
-<li><a class="category" href="#{{ category[0] | slugify }}">{{ category[0] | capitalize }} <span>[{{ category[1].size }}]</span></a>
+<li><a class="category" href="#{{ category[0] | slugify }}">{{ category[0] | capitalize }}</a> <span class="meta">({{ category[1].size }})</span>
 </li>
 {% endfor %}
 </ul>
@@ -23,7 +23,7 @@ description: Collection of all categories on maxkossek.
 <hr>
 
 {% for category in site.categories %}
-<strong id="{{ category[0] | slugify }}">{{ category | first | capitalize }} <span>[{{ category[1].size }}]</span></strong>
+<h3 id="{{ category[0] | slugify }}">{{ category | first | capitalize }} <span class="meta">({{ category[1].size }})</span></h3>
 <ul class="none">
 {% for post in category.last %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br>
