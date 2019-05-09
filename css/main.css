@@ -42,11 +42,9 @@ nav.main a:hover, nav.main span:hover {
 
 
 /* Footer */
-.footer {
-    margin-top: 3em;
-}
 footer {
     background: whitesmoke;
+    margin-top: 3em;
 }
 footer a, footer a:visited {
 	color: inherit;
