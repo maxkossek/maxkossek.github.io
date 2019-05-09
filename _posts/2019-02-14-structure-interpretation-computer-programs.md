@@ -8,6 +8,16 @@ author: "Max Kossek"
 description: Book Notes for the book Structure and Interpretation of Computer Programs by Harold Abelson
 ---
 
+<div class="toc">
+<strong>Table of Contents:</strong><br><br>
+<ul class="none">
+<li><a href="#1-building-abstraction-with-procedures">1 Building Abstraction with Procedures</a></li>
+<li><a href="#2-building-abstractions-with-data">2 Building Abstractions with Data</a></li>
+<li><a href="#3-modularity-objects-and-state">3 Modularity, Objects, and State</a></li>
+<li><a href="#4-metalinguistic-abstraction">4 Metalinguistic Abstraction</a></li>
+</ul>
+</div>
+
 ## 1 Building Abstraction with Procedures
 
 ### 1.1 The Elements of Programming

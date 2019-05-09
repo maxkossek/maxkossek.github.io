@@ -6,10 +6,9 @@ body {
     text-rendering: optimizeLegibility;
 	font-family: arial, sans-serif;
 	line-height: 1.4;
-    color: #333;
     margin: 0;
 }
-main, footer, header, nav {
+main, footer, header {
 	max-width: 38rem;
 	padding: 1rem;
 	margin: auto;
@@ -32,12 +31,12 @@ main, footer, header, nav {
 
 
 /* Navigation */
-nav a, nav a:visited, nav span {
+nav.main a, nav.main a:visited, nav.main span {
     margin: 0 0.5rem;
     color: inherit;
     font-weight: bold;
 }
-nav a:hover, nav span:hover {
+nav.main a:hover, nav.main span:hover {
     background: gold;
 }
 
@@ -154,18 +153,14 @@ hr {
 
 
 /* Forms */
-input {
+input, button, textarea, select, optgroup, option {
     font-size: 1rem;
-    background: white;
 }
 
 
 /* Links */
 a {
 	text-decoration: none;
-}
-a:visited {
-	color: purple;
 }
 a:hover {
 	text-decoration: underline;
