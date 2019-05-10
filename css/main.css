@@ -182,37 +182,26 @@ ul.none {
 
 /* Logo */
 #logo {
-    height: 1.5rem;
-    margin: 0 auto;
-    overflow:hidden;
-    position:relative;
-    float: left;
-    width: 1.5rem;
+  display: block;
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-family: sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+  border-radius: 50%;
+  float: left;
 }
-#logo div {
-    position: absolute;
-    float:left;
-}
-#logo #white {
-    background: white;
-    height: 100%;
-    width: 100%;
-    top: 75%;
-    left: 75%;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -o-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-}
-#logo #green {
-    height: 100%;
-    width: 100%;
-    background: seagreen;
-}
-#logo #gold {
-    background: gold;
-    height: 100%;
-    width: 100%;
-    bottom: 75%;
+#logo:before {
+  display: block;
+  background: seagreen;
+  content: "λ";
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  vertical-align: middle;
+  text-align: center;
+  color: white;
+  border-left: 0.15rem solid gold;
+  border-right: 0.15rem solid gold;
 }
 
