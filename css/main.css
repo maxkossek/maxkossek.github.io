@@ -4,12 +4,12 @@ html {
 }
 body {
     text-rendering: optimizeLegibility;
-	font-family: arial, sans-serif;
+	font-family: sans-serif;
 	line-height: 1.4;
     margin: 0;
 }
 main, footer, header {
-	max-width: 38rem;
+	max-width: 40rem;
 	padding: 1rem;
 	margin: auto;
 }
@@ -35,6 +35,7 @@ nav.main a, nav.main a:visited, nav.main span {
     margin: 0 0.5rem;
     color: inherit;
     font-weight: bold;
+    text-transform: lowercase;
 }
 nav.main a:hover, nav.main span:hover {
     background: gold;
@@ -49,6 +50,7 @@ footer {
 footer a, footer a:visited {
 	color: inherit;
     text-decoration: underline;
+    text-transform: lowercase;
 }
 a[href~="#"], a[href~="#"]:visited {
     color: blue;
@@ -100,12 +102,6 @@ code {
 }
 .toc ul {
 	margin-bottom: 0;
-}
-a.footnote::before {
-    content: "[";
-}
-a.footnote::after {
-    content: "]";
 }
 .footnotes {
     border-top: 2px solid slategray;
@@ -166,6 +162,9 @@ a:hover {
 a[target="_blank"]::after {
   	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
   	margin: 0 3px 0 5px;
+}
+a.footnote {
+    text-decoration: underline;
 }
 
 
