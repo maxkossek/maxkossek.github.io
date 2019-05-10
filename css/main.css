@@ -179,29 +179,3 @@ ul.none {
 	margin-bottom: 1rem;
 }
 
-
-/* Logo */
-#logo {
-  display: block;
-  position: relative;
-  width: 1.5rem;
-  height: 1.5rem;
-  font-family: sans-serif;
-  font-weight: 500;
-  overflow: hidden;
-  border-radius: 50%;
-  float: left;
-}
-#logo:before {
-  display: block;
-  background: seagreen;
-  content: "λ";
-  line-height: 1.5rem;
-  font-size: 1.5rem;
-  vertical-align: middle;
-  text-align: center;
-  color: white;
-  border-left: 0.15rem solid gold;
-  border-right: 0.15rem solid gold;
-}
-
