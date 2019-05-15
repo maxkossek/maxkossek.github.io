@@ -8,7 +8,8 @@ author: "Max Kossek"
 description: Book Notes for the book How to Design Programs by Matthias Felleisen
 ---
 
-How to Design Programs gives a 6 step "design recipe" that can be used to systematically create more complex programs. The author stresses the importance of planning and writing specifications for your code.
+<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/htdp-cover.jpg" alt="How to Design Programs Book Cover">
+How to Design Programs gives a 6 step "design recipe" that can be used to systematically create more complex programs. Felleisen stresses the importance of planning and writing specifications for your code.
 
 1. From Problem Analysis to Data Definitions (Analyze problem statement)
 2. Signature, Purpose Statement, Header (What does my function compute?)
@@ -20,7 +21,7 @@ How to Design Programs gives a 6 step "design recipe" that can be used to system
 
 <div class="toc">
 <strong>Table of Contents:</strong><br><br>
-<ul class="none">
+<ul>
 <li><a href="#i-fixed-size-data">I - Fixed-Size Data</a></li>
 <li><a href="#intermezzo-1">Intermezzo 1</a></li>
 <li><a href="#ii-arbitrarily-large-data">II Arbitrarily Large Data</a></li>

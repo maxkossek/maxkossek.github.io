@@ -8,9 +8,12 @@ author: "Max Kossek"
 description: Book Notes for the book Structure and Interpretation of Computer Programs by Harold Abelson
 ---
 
+<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/sicp-cover.jpg" alt="Structure and Interpretation of Computer Programs Book Cover">
+Structure and Interpretation of Computer Programs is a introductory computer science textbook. Programs in the book are written in Scheme. However, the focus of the book is on programming concepts, not on the syntax of Scheme. Mathematics and logic play a large part in the examples presented.
+
 <div class="toc">
 <strong>Table of Contents:</strong><br><br>
-<ul class="none">
+<ul>
 <li><a href="#1-building-abstraction-with-procedures">1 Building Abstraction with Procedures</a></li>
 <li><a href="#2-building-abstractions-with-data">2 Building Abstractions with Data</a></li>
 <li><a href="#3-modularity-objects-and-state">3 Modularity, Objects, and State</a></li>

@@ -4,6 +4,7 @@ html {
 }
 body {
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 	font-family: sans-serif;
 	line-height: 1.4;
     margin: 0;
@@ -98,6 +99,7 @@ code {
 .toc {
     background: whitesmoke;
     display: table;
+    margin: 1.5em 0em;
     padding: 1em;
 }
 .toc ul {
@@ -156,6 +158,9 @@ input, button, textarea, select, optgroup, option {
 a {
 	text-decoration: none;
 }
+a:visited {
+    color: purple;
+}
 a:hover {
 	text-decoration: underline;
 }
@@ -164,7 +169,13 @@ a[target="_blank"]::after {
   	margin: 0 3px 0 5px;
 }
 a.footnote {
-    text-decoration: underline;
+    color: gray;
+}
+a.footnote:before {
+    content: "[";
+}
+a.footnote:after {
+    content: "]";
 }
 
 
