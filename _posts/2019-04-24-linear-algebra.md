@@ -9,7 +9,7 @@ description: Summary of concepts in Linear Algebra and Steven Leon's Book.
 ---
 
 <div class="toc">
-<strong>Table of Contents:</strong><br><br>
+<strong>Table of Contents:</strong>
 <ul>
 <li><a href="#1-matrices-and-systems-of-equations">1 Matrices and Systems of Equations</a></li>
 <li><a href="#2-determinants">2 Determinants</a></li>

@@ -1,7 +1,4 @@
 /* Layout */
-html {
-    scroll-behavior: smooth;
-}
 body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -31,30 +28,11 @@ main, footer, header {
 }
 
 
-/* Navigation */
-nav.main a, nav.main a:visited, nav.main span {
-    margin: 0 0.25rem;
-    color: inherit;
-    font-weight: bold;
-    text-transform: lowercase;
-}
-nav.main a:hover, nav.main span:hover {
-    background: gold;
-}
-
 
 /* Footer */
 footer {
     background: whitesmoke;
     margin-top: 3em;
-}
-footer a, footer a:visited {
-	color: inherit;
-    text-decoration: underline;
-    text-transform: lowercase;
-}
-a[href~="#"], a[href~="#"]:visited {
-    color: blue;
 }
 .to-top a[href~="#"]::before {
     content: "\25B4  ";
@@ -113,7 +91,7 @@ code {
     padding-top: 1em;   
 }
 .footnotes::before {
-    content: "References";
+    content: "References:";
     font-weight: bold;
 }
 .footnotes p {
@@ -158,9 +136,6 @@ input, button, textarea, select, optgroup, option {
 a {
 	text-decoration: none;
 }
-a:visited {
-    color: purple;
-}
 a:hover {
 	text-decoration: underline;
 }
@@ -180,9 +155,6 @@ a.footnote:after {
 
 
 /* Lists */
-ul, ol {
-	margin-top: 0;
-}
 ul.none {
     margin: 0;
     list-style: none;

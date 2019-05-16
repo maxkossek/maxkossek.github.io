@@ -20,7 +20,7 @@ How to Design Programs gives a 6 step "design recipe" that can be used to system
 
 
 <div class="toc">
-<strong>Table of Contents:</strong><br><br>
+<strong>Table of Contents:</strong>
 <ul>
 <li><a href="#i-fixed-size-data">I - Fixed-Size Data</a></li>
 <li><a href="#intermezzo-1">Intermezzo 1</a></li>

@@ -9,7 +9,7 @@ description: Book Notes for the book The C Programming Language by Kernighan & R
 ---
 
 <div class="toc">
-<strong>Table of Contents:</strong><br><br>
+<strong>Table of Contents:</strong>
 <ul>
 <li><a href="#1---a-tutorial-introduction">1 - A Tutorial Introduction</a></li>
 <li><a href="#2---types-operators-and-expressions">2 - Types, Operators and Expressions</a></li>
