@@ -110,9 +110,6 @@ table {
 	border-spacing: 0px;
 	font-size: 0.95rem;
 }
-thead {
-    background: beige;
-}
 td, th {
     border: 1px solid gainsboro;
     padding: 0.25rem 0.5rem;
