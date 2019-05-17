@@ -1,7 +1,6 @@
 /* Layout */
 body {
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
 	font-family: sans-serif;
 	line-height: 1.4;
     margin: 0;
@@ -12,30 +11,11 @@ main, footer, header {
 	margin: auto;
 }
 
-/* Grid */
-.grid {
-    display: flex;
-    margin: -1em 0 0 -1em;
-}
-.col {
-    flex: 1;
-    padding: 1em 0 0 1em;
-}
-@media (max-width: 40em) {
-  .grid {
-        display: block;
-  }
-}
-
-
 
 /* Footer */
 footer {
     background: whitesmoke;
-    margin-top: 3em;
-}
-.to-top a[href~="#"]::before {
-    content: "\25B4  ";
+    margin-top: 1.5em;
 }
 
 
