@@ -8,6 +8,9 @@ author: "Max Kossek"
 description: Book Notes for the book The C Programming Language by Kernighan & Ritchie
 ---
 
+<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/c-cover.jpg" alt="C Programming Language Book Cover">
+The *C Programming Language* is an introductory text on the programming language C.[^book] Basic concepts such as arithmetic, functions and arrays are introduced. Additionally, focus is spent on C-specfic concepts such as pointers and header files. Plenty of practical and accessible exercises are also provided.
+
 <div class="toc">
 <strong>Table of Contents:</strong>
 <ul>
@@ -25,7 +28,7 @@ description: Book Notes for the book The C Programming Language by Kernighan & R
 ## 1 - A Tutorial Introduction
 
 ### 1.1 Getting Started
-C program consists of functions and variables.[^1] Function contains statements that specify operations, and variables store values. Program begins executing at main so every program must have a `main()` function.
+C program consists of functions and variables. Function contains statements that specify operations, and variables store values. Program begins executing at main so every program must have a `main()` function.
 
 
 ### 1.2 Variables and Arithmetic Exceptions
@@ -59,8 +62,8 @@ Properly designed functions remove to need to know how a job is done; knowing wh
 ```
 return-type function-name(parameter declarations)
 {
-    declarations
-    statements
+declarations
+statements
 }
 ```
 
@@ -102,7 +105,7 @@ Qualifiers 'signed' or 'unsigned' can be added to char or any integer. Unsigned 
 ### 2.3 Constants
 A long constant has to be written with a terminal l or L `123556789L`. Unsigned constants end with terminal u or U and unsigned long end with ul or UL `1234u or 123456978ul`. Floating point constant contain decimal point (123.4), exponents (1e-2) and end with suffix f or F. Integer can be specified as octal or hexadecimal with a leading 0 (octal) or a leding 0x or 0X (hexadecimal). Character constants are written in single quotes and are evaluated based on ASCII value -> '0' is equal to 48 in ASCII. 
 
-String constants are enclosed in double quotes `"Hello world."`. Constant expressions are evaluated at run time `#define SIZE 1000`. String constant have to end with a '\0'. `strlen(s)` in <string.h> returns the length of the string without taking into account '\0'. Enumeration constant is a list of constant integer values `enum boolean { NO, YES };`. The first value in enum has value 0, the next 1, the next 2 and so on. Values in enum can also be assigned names `enum months { JAN = 1; FEB, MAR, APR ... }`. 
+String constants are enclosed in double quotes `"Hello world."`. Constant expressions are evaluated at run time `#define SIZE 1000`. String constant have to end with a '\0'. `strlen(s)` in \<string.h> returns the length of the string without taking into account '\0'. Enumeration constant is a list of constant integer values `enum boolean { NO, YES };`. The first value in enum has value 0, the next 1, the next 2 and so on. Values in enum can also be assigned names `enum months { JAN = 1; FEB, MAR, APR ... }`. 
 
 
 ### 2.4 Declarations
@@ -138,7 +141,7 @@ Shift operators shift a bit by specified number of positions `x << 2` shift x va
 
 
 ### 2.10 Assignment Operators and Expressions
-Assignment operators can be used to compress assigning a new value to a variable `i = i + 2` is equal to `i += 2`. All binary operators can be used as assignment operators (*=, -=, %=, <<= etc.).
+Assignment operators can be used to compress assigning a new value to a variable `i = i + 2` is equal to `i += 2`. All binary operators can be used as assignment operators (*=, -=, %=, \<\<= etc.).
 
 
 ### 2.11 Conditional Expressions
@@ -146,12 +149,12 @@ Conditional expressions are used to shorten if else statements `expr1 ? expr2 : 
 
 
 ### 2.12 Precedence and Order of Evaluation
---- Precedence Table ---
+Precedence of Operators:
 1. () [] -> .
 2. ! ~ ++ -- + - * (type) sizeof
 3. \* / %
 4. \+ -
-5. \>> <<
+5. \>\> \<\<
 6. < <= > >=
 7. == !=
 8. &
@@ -160,7 +163,7 @@ Conditional expressions are used to shorten if else statements `expr1 ? expr2 : 
 11. &&
 12. \|\|
 13. ?:
-14. = += -= *= /= %= &= ^= \|= <<= >>=
+14. = += -= *= /= %= &= ^= \|= \<\<= \>\>=
 15. ,
 
 Writing code that depends on order of evaluation is bad programming practice in any language. 
@@ -186,8 +189,8 @@ Else-If is written as `else if` in C. If one of the else if statements evaluates
 Switch statement is a way to test if an expresion matches one of a number of branches
 ``` 
 switch(expression) { 
-    case const-expr: statements  
-    default : statements 
+case const-expr: statements  
+default : statements 
 }
 ```
 A break statement causes an immediate exit from the switch `break;`. Unless break is invoked, all switch cases are checked, even if one case already evaluated to true. Best practices is to add a break; after the default statement, even if it is not necessary.
@@ -197,12 +200,12 @@ A break statement causes an immediate exit from the switch `break;`. Unless brea
 A `while` expression continues evaluation until it's condition is not met 
 ```
 while (expression)
-    statement
+statement
 ```
 A `for` statement provides a starting condition, a testing condition, and a incrementing condition. Any of these conditions can be omitted, but the semicolons have to be inserted. Multiple expressions can be inserted inside a for expression by separating them with a comma.
 ```
 for (initial_expr; test_expr; increment_expr)
-    statement
+statement
 ```
 While and for loops can be used interchangeably. For loops are preferred for situations where there is a simple initialization and incrementing step.
 
@@ -226,8 +229,8 @@ A `goto` statement is never necessary and can be easily abused. It may have a us
 ```
 for (...)
 for (...) {
-    if ()
-        goto error;
+if ()
+goto error;
 }
 error:
 ```
@@ -243,7 +246,7 @@ Function definition has form:
 ```
 return-type function-name (arguments)
 {
-    declarations and statements
+declarations and statements
 }
 ```
 
@@ -281,8 +284,8 @@ A `register` declaration tells the compiler that the variable declared will be h
 Declarations of variables can follow the left brace of any compound statement, not just functions. For example:
 ```
 if ( ) {
-    int x;
-    for (while x ...)
+int x;
+for (while x ...)
 }
 ```
 In the above example x is local to the if statement, and is unrelated to any other variable named x outside it's scope. Best practice is to avoid reusing names for local variables.
@@ -342,10 +345,10 @@ C passes arguments to functions by value, hence a function can not alter a varia
 ```
 void swap(int *px, int *py)
 {
-    int temp;
-    temp = *px;
-    *px = *py;
-    *py = temp;
+int temp;
+temp = *px;
+*px = *py;
+*py = temp;
 }
 ```
 
@@ -395,15 +398,15 @@ C has rectangular multi-dimensional arrays (less used in practice). In multi-dim
 To initialize a pointer array:
 ```
 static char *name[] = {
-    "Illegal month",
-    "January", "February", "March",
-    "April", "May", "June"
+"Illegal month",
+"January", "February", "March",
+"April", "May", "June"
 };
 ```
 
 
 ### 5.9 Pointers vs. Multi-dimensional Arrays
-There's differences between two-dimensional arrays `int a[i][j]` and an array of pointers `int *b[i]`. Both `a[i][j]` and `b[i][j]` are legal references to an int. But `a` is truly two-dimensional: i*j int locations are set aside, and 20*i+j is used to find element `a[i,j]`. The pointer definition `b` only sets aside 10 uninitizalied pointers; each individual row of the pointer array can have varying lengths (i.e could have 0 elements or 50). This is an advantage, if fixed sizes of the array are unnecessary.
+There's differences between two-dimensional arrays `int a[i][j]` and an array of pointers `int *b[i]`. Both `a[i][j]` and `b[i][j]` are legal references to an int. But `a` is truly two-dimensional: i\*j int locations are set aside, and 20\*i+j is used to find element `a[i,j]`. The pointer definition `b` only sets aside 10 uninitizalied pointers; each individual row of the pointer array can have varying lengths (i.e could have 0 elements or 50). This is an advantage, if fixed sizes of the array are unnecessary.
 
 
 ### 5.10 Command-line Arguments
@@ -428,12 +431,12 @@ Because of precedence, declarations can be hard to read. `int *f();` is a functi
 To create an object for a point:
 ```
 struct point {
-    int x;
-    int y;
+int x;
+int y;
 };
-    struct rect {
-    struct point pt1;
-    struct point pt2;
+struct rect {
+struct point pt1;
+struct point pt2;
 };
 struct rect screen;
 screen.pt1.x;
@@ -447,9 +450,9 @@ Structures have to be copied or assigned as a unit. They can not be used in comp
 ```
 struct addpoint(struct point p1, struct point p2)
 {
-    p1.x += p2.x;
-    p1.y += p2.y;
-    return p1;
+p1.x += p2.x;
+p1.y += p2.y;
+return p1;
 }
 ```
 
@@ -460,8 +463,8 @@ Structure pointers are like pointers to ordinary variables `struct point *pp;`. 
 Structures can also be used in arrays:
 ```
 struct key {
-    char *word;
-    int count;
+char *word;
+int count;
 } keytab[] = { "auto", 0 }, { "break", 0 }, { "case", 0 }, { "char", 0 };
 ```
 
@@ -486,9 +489,9 @@ To keep a list sorted, we can place elements into their proper position in the o
 Binary search trees can significantly reduce the time of search O(logn). However if the tree becomes "unbalanced", the running time will grow closer to that of a linear search O(n). A node is most conveniently written as a structure:
 ```
 struct node {
-    char *word;
-    struct node *left;
-    struct node *right;
+char *word;
+struct node *left;
+struct node *right;
 };
 ```
 
@@ -648,45 +651,5 @@ UNIX command `ls` prints the names of files in a directory. A directory is a fil
 Space that `malloc` manages may no be adjacent. Each block of storage contains a pointer to the next block. The last storage block points to the first block. When the user request space, the adjacent blocks are scanned until a big enough block is found. If the block is too big, it is split and returned to the user, else it is simply returned.
 
 
-[^1]: Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[^book]: Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.
 

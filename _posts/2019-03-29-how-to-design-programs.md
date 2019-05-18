@@ -9,7 +9,8 @@ description: Book Notes for the book How to Design Programs by Matthias Felleise
 ---
 
 <img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/htdp-cover.jpg" alt="How to Design Programs Book Cover">
-How to Design Programs gives a 6 step "design recipe" that can be used to systematically create more complex programs. Felleisen stresses the importance of planning and writing specifications for your code.
+
+*How to Design Programs* gives a 6 step "design recipe" that can be used to systematically create more complex programs. Felleisen stresses the importance of planning and writing specifications for your code.[^book]
 
 1. From Problem Analysis to Data Definitions (Analyze problem statement)
 2. Signature, Purpose Statement, Header (What does my function compute?)
@@ -39,7 +40,7 @@ How to Design Programs gives a 6 step "design recipe" that can be used to system
 
 
 ## Prologue: How to Program
-A *1String* is a string with length one (char).[^1]
+A *1String* is a string with length one (char).
 
 
 
@@ -315,45 +316,4 @@ Traversals “forget” pieces of the argument when they progress throughout the
 Computing generalizes simple arithmetic (0’s and 1’s) to more general processes, so we can compute almost any type of data in a variety of ways.
 
 
-[^1]: Felleisen, M., Findler, R. B., Flatt, M., & Krishnamurthi, S. (2018). How to design programs: an introduction to programming and computing. MIT Press.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+[^book]: Felleisen, M., Findler, R. B., Flatt, M., & Krishnamurthi, S. (2018). How to design programs: an introduction to programming and computing. MIT Press.

@@ -9,7 +9,8 @@ description: Book Notes for the book Structure and Interpretation of Computer Pr
 ---
 
 <img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/sicp-cover.jpg" alt="Structure and Interpretation of Computer Programs Book Cover">
-Structure and Interpretation of Computer Programs is a introductory computer science textbook. Programs in the book are written in Scheme. However, the focus of the book is on programming concepts, not on the syntax of Scheme. Mathematics and logic play a large part in the examples presented.
+
+*Structure and Interpretation of Computer Programs* is a classic computer science textbook.[^book] Programs in the book are written in Scheme. However, the focus of the book is on programming concepts, not on the syntax of Scheme. Mathematics and logic play a large part in the examples presented.
 
 <div class="toc">
 <strong>Table of Contents:</strong>
@@ -24,7 +25,7 @@ Structure and Interpretation of Computer Programs is a introductory computer sci
 ## 1 Building Abstraction with Procedures
 
 ### 1.1 The Elements of Programming
-Languages have: primitive expressions (simplest entities), means of combination (compound elements built from expression) and means of abstraction (naming and manipulation of compound elements).[^1]  `(+ (* 3 5) (- 10 6))` is an example of prefix notation used in scheme. Interpreter runs in a read-eval-print loop (REPL). A name is a *variable*; a value is *object* `(define size 2)`. Evaluation rule is recursive in nature. Program is in “environment”, a place in memory.
+Languages have: primitive expressions (simplest entities), means of combination (compound elements built from expression) and means of abstraction (naming and manipulation of compound elements).  `(+ (* 3 5) (- 10 6))` is an example of prefix notation used in scheme. Interpreter runs in a read-eval-print loop (REPL). A name is a *variable*; a value is *object* `(define size 2)`. Evaluation rule is recursive in nature. Program is in “environment”, a place in memory.
 
 Procedure definitions are abstraction techniques; compound operations are given names and then referred to as units `(define (square x) (* x x))`. Normal-order evaluation completely expands and then reduces. Case analysis is used for conditionals to determine true/false of predicates `(cond ((> x 0) x)`. Scheme has normal primitive predicates (<, =, >) and compound predicates (and, or, not). *Functions* describe things (declarative knowledge); *Procedures* describe how to do things (imperative knowledge).
 
@@ -120,5 +121,5 @@ Evaluating `(try 0 (/ 1 0))` generates an error in Scheme. With lazy evaluation,
 ### 4.3 Variations on a Scheme — Nondeterministic Computing
 Stream processing uses lazy evaluation to decouple the time when the stream of possible answers is assembled from the time when the actual stream elements are produced. The evaluator supports the illusion that all the possible answers are laid out before us in a timeless sequence. With nondeterministic evaluation, an expression represents the exploration of a set of possible worlds, each determined by a set of choices. Some of the possible worlds lead to dead ends, while others have useful values.
 
-[^1]: Abelson, H., Sussman, G. J., & Sussman, J. (1996). Structure and interpretation of computer programs. Justin Kelly.
+[^book]: Abelson, H., Sussman, G. J., & Sussman, J. (1996). Structure and interpretation of computer programs. Justin Kelly.
 

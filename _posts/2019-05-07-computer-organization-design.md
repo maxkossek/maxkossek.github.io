@@ -121,9 +121,9 @@ Hexadecimal numbers are a more compact way of displaying machine instructions. D
 Logical operators on fields of bits:
 
 Logical operation | C operators | Java operator | MIPS
-=== | === | === | ===
-Shift left | << | << |sll
-Shift right | >> | >>> | srl
+--- | --- | --- | ---
+Shift left | \<\< | \<\< |sll
+Shift right | \>\> | \>\>\> | srl
 Bit AND | & | & | and, andi
 Bit OR | \| | \| | or, ori
 Bit NOT | ~ | ~ | nor
@@ -282,14 +282,16 @@ Logic blocks without memory are called *combinational*; those with memory are ca
 
 ### B.3 Combinational Logic
 Decoder has n inputs, and 2<sup>n</sup> outputs:
+
 x | y | Out3 | Out2 | Out1 | Out0
 --- | --- | --- | --- | --- | ---
 0 | 0 | 0 | 0 | 0 | 1
 0 | 1 | 0 | 0 | 1 | 0
 1 | 0 | 0 | 1 | 0 | 0
-1 | 1 | 1 | 0 | 0 | 0 
+1 | 1 | 1 | 0 | 0 | 0
 
-A multiplexer uses a selector value to select one of the inputs to output. For n data inputs, there has to be log<sub>2</sub>n selector inputs. 
+A multiplexer uses a selector value to select one of the inputs to output. For n data inputs, there has to be log<sub>2</sub>n selector inputs.
+
 Sel | x | y | Out
 --- | --- | --- | ---
 0 | 0 | 0 | 0
@@ -299,7 +301,7 @@ Sel | x | y | Out
 1 | 0 | 0 | 0
 1 | 0 | 1 | 1
 1 | 1 | 0 | 0
-1 | 1 | 1 | 1 
+1 | 1 | 1 | 1
 
 Sum of products, and products of sums are two-level representations of combinational logic. Read-only memory (ROM) can be used to hardwire a set of logic functions. Inputs and Outputs that don't necessarily have to be true or false, are labelled as *don't cares*. Don't cares can be used to simplify the logic function. A *bus* is a collection of data inputs that is treated as one logical signal. 
 

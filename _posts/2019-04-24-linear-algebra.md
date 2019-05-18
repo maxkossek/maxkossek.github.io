@@ -8,6 +8,9 @@ author: "Max Kossek"
 description: Summary of concepts in Linear Algebra and Steven Leon's Book.
 ---
 
+<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/linearalgebra-cover.jpg" alt="Linear Algebra with Applications Book Cover">
+*Linear Algebra with Applications* is a linear algebra textbook focused on engineering applications.[^book] The book starts with an introduction to the concept of matrices. Matrix operations, determinants and similar transformation techniques are discussed. The middle of the book focuses on vector spaces and how they can be transformed. Eigenvalues and eigenvectors appear towards the end of the book. Every chapter includes real-world application examples.
+
 <div class="toc">
 <strong>Table of Contents:</strong>
 <ul>
@@ -20,11 +23,10 @@ description: Summary of concepts in Linear Algebra and Steven Leon's Book.
 </ul>
 </div>
 
-
 ## 1 Matrices and Systems of Equations
 
 ### 1.1 Systems of Linear Equations
-Linear equation in n unknowns a<sub>1</sub>x<sub>1</sub> + a<sub>2</sub>x<sub>2</sub> + ... a<sub>n</sub>x<sub>n</sub> = b.[^book] Linear system is either *consistent* (1 or infinite solutions) or *inconsistent* (0 solutions). Augmented matrix includes solution set on right hand side of matrix (A | B). Row operations:
+Linear equation in n unknowns a<sub>1</sub>x<sub>1</sub> + a<sub>2</sub>x<sub>2</sub> + ... a<sub>n</sub>x<sub>n</sub> = b. Linear system is either *consistent* (1 or infinite solutions) or *inconsistent* (0 solutions). Augmented matrix includes solution set on right hand side of matrix (A | B). Row operations:
 
 1. Interchange two rows (swap)
 2. Multiply by non zero number α
@@ -36,11 +38,12 @@ Lead variables are nonzero elements in each row, free variables are variables sk
 1. First nonzero entry in each nonzero row is 1
 2. If row k is not all zero, then number of leading zero's in row k+1 > leading zeros in row k.
 3. All-zero rows are beneath other rows.
+
 ```
 { {1, 4, 2}, {0, 1, 3}, {0, 0, 1} }
 ```
 
-Gaussian elimination is name of process to reduce to row echelon form. Overdetermined system has more equations than unknowns. Underdetermined system has more unknowns than equations. 
+Gaussian elimination is the name of the process to reduce to row echelon form. Overdetermined system has more equations than unknowns. Underdetermined system has more unknowns than equations. 
 
 Conditions for Reduced Row Echelon Form:
 
@@ -52,7 +55,7 @@ Conditions for Reduced Row Echelon Form:
 Matrix notation { {a<sub>11</sub>, a<sub>12</sub>, ..., a<sub>1n</sub>}, ..., { a<sub>m1</sub>, a<sub>m2</sub>, ..., a<sub>mn</sub> } }. Scalar multiplication multiplies each number in a matrix by some number α. Matrix Addition adds each entry of two matrices A + B = C. A (mxn)\*(nxr) matrix multiplication has resulting matrix (mxr). Inner dimension of the two matrices must always match. Matrix multiplication is not commutative AB != BA. For example, here we multiply matrices 2x**2** \* **2**x1 = 2x1.
 
 ```
-{ {1, 2}, {7, 1} } \* { {3}, {4} } = { {11}, {25} }
+{ {1, 2}, {7, 1} } * { {3}, {4} } = { {11}, {25} }
 
 1(3) + 2(4) = 11
 7(3) + 1(4) = 25
@@ -100,6 +103,7 @@ A nxn matrix is singular if and only if det(A) = 0. det(AB) = det(A)det(B).
 
 ### 3.1 Definitions & Examples
 Standard Euclidean R<sup>n</sup> space properties:
+
 ```
 αx = { {αx1}, {αx2}, ..., {αxn} }
 x+y = { {x1+y1}, {x2+y2}, ..., {xn+yn} }
@@ -152,7 +156,8 @@ If L is linear transformation from R<sup>n</sup>-\>R<sup>m</sup> then there is a
 
 
 ### 4.3 Similarity
-If
+Two matrices A and B are similar if:
+
 1. B is matrix representing L with respect to {u1, u2}
 2. A is matrix representing L with respect to {e1, e2}
 3. U is transition matrix for change of basis from {u1, u2} to {e1, e2}
@@ -163,6 +168,7 @@ then B = U<sup>-1</sup>AU. Two matrices A & B are similar if they have a nonsing
 
 ### 5.1 The Scalar Product in R<sup>n</sup>
 Product of x<sup>T</sup>y is a 1x1 matrix (vector), also called scalar product.
+
 ```
 { {3, -2, 1} } * { {4}, {3}, {2} } = 3(4) - 2(3) + 1(2) = 8
 ```
@@ -178,11 +184,13 @@ The least squares of overdetermined system is the minimation of the residual ||r
 
 ### 5.4 Inner Product Spaces
 Inner product for pair of vectors x & y is a real number satisfying:
+
 1. \<x, x> >= 0
 2. \<x, y> = \<y, x> for all x and y.
 3. \<ax, by, z> = a\<x, z> + b\<y, z> for all x,y,z and all scalars a,b.
 
-<p>The standard inner product is \<x,y> = x<sup>T</sup>y. The length or norm of an inner product is \||v|| = sqrt(\<v, v>). If u and v vectors in inner product space of V, then:</p>
+<p>The standard inner product is <x,y> = x<sup>T</sup>y. The length or norm of an inner product is ||v|| = sqrt(<v, v>). If u and v vectors in inner product space of V, then:</p>
+
 1. Scalar Projection u-\>v: α = \<u,v> / \|\|v\|\|
 2. Vector Projection u-\>v: p = α(v/\|\|v\|\|) = [v \* \<u,v>] / \<v, v>
 
