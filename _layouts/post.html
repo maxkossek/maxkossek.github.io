@@ -25,7 +25,15 @@ layout: default
 </header>
 
 <main role="main">
-  {{ content }}
+{{ content }}
 
-  <p><a href="#">&#9652; back to top</a></p>
+<aside class="related" style="margin-top: 3rem">
+<p><a href="#">&#9652; back to top</a></p>
+<strong>Recent:</strong>
+<ul class="none">
+{% for post in site.related_posts limit:5 %}
+<li><span class="meta">{{ post.date | date: "%d/%m/%Y" }}</span> | <a href="{{ post.url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
+</aside>
 </main>

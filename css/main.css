@@ -14,7 +14,7 @@ main, footer, header {
 
 /* Footer */
 footer {
-    background: whitesmoke;
+    background: beige;
     margin-top: 1.5em;
 }
 
@@ -64,10 +64,10 @@ code {
 	margin-bottom: 0;
 }
 .footnotes {
-    border-top: 2px solid slategray;
+    border-top: 2px solid dimgray;
     font-size: 0.95rem;
     color: dimgray;
-    margin-top: 5em;
+    margin: 4rem 0;
     padding-top: 1em;   
 }
 .footnotes::before {
