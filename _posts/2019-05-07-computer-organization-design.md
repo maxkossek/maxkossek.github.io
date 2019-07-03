@@ -205,6 +205,49 @@ There are four steps in transforming a C program in such a way that the computer
 
 
 
+## 3 - Arithmetic for Computers
+
+### 3.5 Floating Point
+Scientific notation writes numbers with a single number left of the decimal point. Binary numbers can also be written in scientific notation. Numbers such as this are called floating point, because the binary point is not fixed.
+
+When writing numbers in floating-point, there is a trade-off between the size of the fraction (mantissa) and the size of the exponent. The number of bits are limited, allocating more bits to the fraction increases accuracy, while allocating more to the exponent increases the capacity or size that can be represented. The general form of floating-point numbers:
+
+(-1)<sup>S</sup> * F * 2<sup>E</sup>      
+F = value of fraction field; E = value in exponent field; S = sign bit
+
+Overflow occurs, when the number is too large to be represented by the number of bits allocated to the exponent. Underflow occurs when the number is too small to be represented by the exponent. Programming languages such as C also offer a *double* which increases the amount of accuracy by representing the floating-point value with two 32-bit words. Some standards use biasing to make sorting easier. By adding a bias negative exponents can be made to smaller than positive exponents. The IEEE 754 standard floating-point representation is:
+
+(-1)<sup>S</sup> * (1 + Fraction) * 2<sup>(Exponent - Bias)</sup>
+
+Adding numbers in scientific notation, for example 9.999<sub>ten</sub> * 10<sup>1</sup> + 1.610<sub>ten</sub> * 10<sup>\-1</sup>:
+
+Operation | Example
+--- | ---
+Align decimal point to match the bigger decimal point |1.610<sub>ten</sub> * 10<sup>-1</sup> -> 0.016<sub>ten</sub> * 10<sup>1</sup>
+Add significands | 9.999 + 0.016 = 10.015 * 10<sup>1</sup>
+Normalize to scientific notation | 1.0015 * 10<sup>2</sup>
+Round to initial precision | 1.002 * 10<sup>2</sup>
+
+Floating-point multiplication, for example 1.110<sub>ten</sub> * 10<sup>10</sup> * 9.200<sub>ten</sub> * 10<sup>-5</sup>:
+
+Operation | Example
+--- | ---
+Calculate exponents by addition | 10 + (-5) = 5
+Multiply the significands | 1.110<sub>ten</sub> * 9.200<sub>ten</sub> = 10.212000<sub>ten</sub>
+Normalize the product and round | 1.021<sub>ten</sub> * 10<sup>6</sup>
+Sign depends on original operands. If both have the same sign, then the result is positive, else negative | +1.021<sub>ten</sub> * 10<sup>6</sup>
+
+MIPS uses separate floating-point registers `$f0,$f1,...` for single precision and double precision. To load and add two single precision values:
+```
+lwcl     $f4,c($sp)
+lwcl     $f6,a($sp)
+add.s    $f2,$f4,$f6
+swcl    $f2,b($sp)
+```
+
+IEEE 754 standard for floating-point value always keeps two extra bits on the right during intermediate additions. These bits are called guard and are used for rounding.
+
+
 
 ## 4 - The Processor
 
@@ -241,6 +284,125 @@ Forwarding hardware has to be designed specific to the circuit. Similarly hazard
 
 
 ### 4.8 Control Hazards
+A control hazard occurs when there is a problem determining the proper instruction to fetch. Branch stalling can be used, but slows down the pipeline. Another option is to assume that the branch will not be taken, and continue executing instructions. If the branch is taken, then the operations executed are simply discarded or flushed. Moving the branch execution to an ealier stage can reduce the cost of taking the wrong branch. Dynamic branch prediction is used when pipelines are more complex. With this technique, history of the program and other factors are taken into account to try to predict the likelihood that a branch is taken.
+
+
+### 4.9 Exceptions
+Exceptions are events other than branches or jumps that disrupt normal instruction execution. Arithmetic overflows, using undefined instructions and hardware malfunctions all are exceptions. When an exception occurs, the address of the exception is saved in an exception program counter. Then control of the program is transferred to a different address. Exceptions can cause the program to terminate, or to continue running with some adjustments.
+
+
+### 4.10 Parallelism via Instructions
+Parallelism can be used to further increase the efficiency gains from pipelining. The depth of the pipeline can be increased to overlap more instructions. Multiple-issue is a technique that adds additional components to the computer so that instructions can launch from any pipeline stage. Parallelism uses speculation to decide which instructions can be reordered or combined. There has to be a method to roll back changes, if a speculation causes unwanted behavior. 
+
+Loop unrolling makes multiple copies of a loop to improve the performance of a program. Register renaming uses different register names for some data in order to decrease hazards. This technique is usually used when some ordering reuses a name of a register, but is not data dependendent (antidependence). Dynamic pipelining reorders how the instructions are executed through hardware. Pipelining potentially decreases the energy efficiency, since speculation results in more false predictions and hazards. 
+
+
+
+
+## 5 Large and Fast: Exploiting Memory Hierarchy
+
+
+### 5.1 Introduction
+There are two types of locality: 1. Temporal locality - if an item is referenced, then it will probably be referenced again soon (loops, reusing variables etc.); 2. Spatial locality - if an item is referenced, then other items close to the target's address are more likely to be referenced (program counters, incrementors, pointers etc.). The bigger the memory, the slower it will be to access any item in that memory. Due to physical constraints, only a small number of locations can be accessed in close proximity.
+
+Hit rate is the fraction of memory accesses found in a higher level of memory. Miss rate is the fraction not found in the upper levle (1 - hit rate). Hit time is the time it takes to access an element in a higher level in the memory hierarchy. Miss penalty is the time it takes to fetch the block from a lower level in the hierarchy if the block is not found.
+
+
+### 5.2 Memory Technologies
+
+Dynamic random access memory (DRAM) | Random access memory (SRAM) | Flash Memory | Magnetic Disk
+--- | --- | --- | ---
+Medium access | Fast accesss | Slow access | Slowest access
+Medium cost | High cost | Low cost | Lowest cost
+Main memory | Caches | Secondary memory | hard disks
+Dynamicall charges on capacitors that have to be periodically refreshed | Integrated circuit | Electrically erasable programmable read-only memory | Movable rotating arm with electromagnetic coil to read and write
+
+
+### 5.3 The Basics of Caches
+Direct mapped- when a memory location can only be in one location in the cache (no index is used). A tag gives the address information of a block in the cache. First the index is used to determine which set the word could be in. Then the tag is used to determine if a word in the set matches the word in memory. Increasing the block size decreases the miss rate, by reducing the ratio of tag storage to data storage. When the program starts up, the cache won't have valid information. Valid bits are used to label entries that contain a useful address.
+
+The control unit must fetch the address from memory if there is a miss in the cache:
+1. Send original program counter value (PC - 4) to memory.
+2. Read from main memory.
+3. Write cache entry with data from memory read.
+4. Restart instruction execution, this time accessing block from cache.
+
+A write-through scheme always simultaneously writes to the cache and main memory. This can be ineffective as it takes a long time to write to main memory. There are two main alternatives to the write-through scheme: 1. Write buffer - Store data in a buffer while it is being written to memory, allowing execution to proceed; 2. Write-back scheme - Only write data to the cache until the block is replaced.
+
+
+### 5.4 Measuring and Improving Cache Performance
+Memory-stall clock cycles = (Memory accesses / Program) * Miss Rate * Miss Penalty     
+Average Memory Access Time (AMAT) = Time for hit + Miss Rate * Miss Penalty
+
+There are three types of block placements:
+- Direct Mapped: all sets with 1 element 
+- Set associative: multiple sets with n elements
+- Fully Associative: 1 set with all elements
+
+In a set-associative cache, the memory block is in the set: (Block Number) modulo (Number of sets in cache). Increasing the associativity decreases the number of sets, while increasing the amount of elements in each set. Increasing the associativity usually decreases the miss rate (due to more flexibility in allocation to a set), but potentially increases the hit time. Each factor of 2 increase in associativity decreases the index by 1 bit and increases the tag by 1 bit.
+
+In a direct-mapped cache there is only one possible block that can be replaced. With set-associative caches there are different strategies for replacements. Least recently used (LRU), replaces the block that has been unused for the longest time. Many computers use multiple levels of caches. This way the first cache focuses on access time, while the secondary caches focus on minimizing the miss rate.
+
+There are several algorithms that have been designed to decrease miss rate. Blocked algorithms make use of temporal locality by loading in rows and columns near a block into the cache. It is important to match the block size to the dimensions being accessed.
+
+
+### 5.5 Dependable Memory Hierarchy
+Reliability is a measure of the continous service accomplishment. Mean time to failure (MTTF) or annual failure rate (AFR) are used to measure reliability. Fault is the failure of a component of the system. Three ways to reduce mean time to failure: (1) fault avoidance; (2) fault tolerance; (3) fault forecasting. Parity bits are used to signal if an error has occured. When everything is ok, parity bits are set to high to create an even number of high bits in a group.
+
+
+
+### 5.8 A Common Framework for Memory Hierarchy
+
+Scheme Name | Number of sets | Block per set
+--- | --- | ---
+Direct mapped | Number of blocks in cache | 1
+Set associative | Number of blocks in cache / Associativity | Associativity (usually 2-16)
+Fully associative | 1 | Number of blocks in cache
+
+Increases in associativity decrease the miss rate, but the benefits quickly drop off. Most of the benefit is gained going from fully associative to 2-way associative. With associate cache strategies, there are many potential strategies for block replacement:
+- Random: Blocks are randomly replaced
+- Last recently used (LRU): Block that has been unused for the longest time is replaced
+
+Misses can be categorized into the "three Cs":
+1. Compulsory: Miss because the block has never been in the cache (start-up of program).
+2. Capacity: Miss because the cache isn't big enough, and the block had to be replaced.
+3. Conflict: Miss because multiple blocks compete for the same set (fully associative caches never have conflic misses)
+
+
+### 5.10 Parallelism and Memory Hierarchy: Cache Coherence
+Cache coherence requires that processors must not read and write values at the same time as to override changes. Write serialization ensures that all writes to the same location occur in the same order. Many multiprocessors employ migration and replication to increase cache coherence. Migration moves a data item to a local cache for easier access. Replication duplicates a data item to the local cache. Write invalidate protocols invalidate all other copies of a data item when writing to the cache. This gives exclusive access to a single processor as long as it takes to write to the cache. 
+
+
+### 5.13 Real Stuff: The ARM Cortex-A8 and Intel Core i7 Memory Hierarchies
+Nonblocking caches allow the processor to reference the cache, while the cache is still handling an earlier miss.
+
+
+### 5.16 Concluding Remarks
+Principle of locality helps us overcome long latency of memory access. Cache hierarchies are used to make use of multiple cache optimization techniques. Prefetching brings data into the cache before it is referenced.
+
+
+
+
+## 6 Parallel Processors from Client to Cloud
+
+### 6.1 Introduction
+Multiprocessors use multiple smaller processors to create more powerful computers. Task-level parllelism occurs when multiprocessors run independent tasks simultaneously. Parallel processing programs run a single task on multiple processors. Shared Memory Processors (SMPs) are separate processors that share the same memory. 
+
+
+### 6.2 The Difficulty of Creating Parallel Processing Programs  
+The challenges in parallel programming include: scheduling, partitioning work evenly, synchronizing and communication overhead. Strong scaling is speed-up measured without increasing the size of the problem. Weak scaling measures the speed-up while proportionally increasing the size of the problem. Increasing the load of just a single processor can dramatically reduce the speed-up acquired from using multiple processors. Amdahl's Law states: S<sub>latency</sub> = 1 / [(1 - p) + p/s].
+
+
+### 6.3 SISD, MIMD, SIMD, SPMD, and Vector
+SISD processors have a single instruction and data stream. MIMD processors have multiple instruction and data streams. SIMD processors have a single instruction stream, but use multiple data streams. The SIMD design is useful for reducing the cost of storing and reading instructions. Vector instructions have properties that make them more efficient for multi-processing than traditional scalar achitectures.
+
+
+### 6.5 Multicore and Other Shared Memory Multiprocessors
+Shared memory multiprocessors use a single physical address space. Uniform memory access (UMA) multiprocessors have the same memory access latency for all processors, while nonuniform memory access (NUMA) multiprocessors have different access times depending on which processor is accessing memory. A lock can be used to synchronize the multiprocessors, by limiting access to a variable for the duration of a single processors access time. OpenMP is an API that allows programmers to model multiprocessors. 
+
+
+### 6.7 Clusters, Warehouse Scale Computers, and Other Message-Passing Multiprocessors
+Message passing is when multiple processors explicity send and receive information to each other. Clusters are computers running in parallel, each running a different copy of the operating system with separate memory.
 
 
 
@@ -288,9 +450,9 @@ x | y | Out3 | Out2 | Out1 | Out0
 0 | 0 | 0 | 0 | 0 | 1
 0 | 1 | 0 | 0 | 1 | 0
 1 | 0 | 0 | 1 | 0 | 0
-1 | 1 | 1 | 0 | 0 | 0
+1 | 1 | 1 | 0 | 0 | 0 
 
-A multiplexer uses a selector value to select one of the inputs to output. For n data inputs, there has to be log<sub>2</sub>n selector inputs.
+A multiplexer uses a selector value to select one of the inputs to output. For n data inputs, there has to be log<sub>2</sub>n selector inputs. 
 
 Sel | x | y | Out
 --- | --- | --- | ---
@@ -301,7 +463,7 @@ Sel | x | y | Out
 1 | 0 | 0 | 0
 1 | 0 | 1 | 1
 1 | 1 | 0 | 0
-1 | 1 | 1 | 1
+1 | 1 | 1 | 1 
 
 Sum of products, and products of sums are two-level representations of combinational logic. Read-only memory (ROM) can be used to hardwire a set of logic functions. Inputs and Outputs that don't necessarily have to be true or false, are labelled as *don't cares*. Don't cares can be used to simplify the logic function. A *bus* is a collection of data inputs that is treated as one logical signal. 
 
@@ -339,7 +501,6 @@ c1 = g0 + (p0 * c0)
 c2 = g1 + (p1 * g0) + (p1 * p0 * c0)
 c3 = g2 + (p2 * g1) + (p2 * p1 * g0) + (p2 * p1 * p0 * c0)
 ```
-
 
 
 [^book]: Patterson, D. A., & Hennessy, J. L. (2013). Computer Organization and Design MIPS Edition: The Hardware/Software Interface. Newnes.
