@@ -30,7 +30,7 @@ description: Collection of all articles written by Max Kossek.
 {% for post in year.items %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br> 
 <span class="meta">
-<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%d/%m" }}</time> 
+<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time> 
 {% if post.categories.size > 0 %}
  | <span class="category">
 {% for category in post.categories %}

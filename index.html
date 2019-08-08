@@ -22,7 +22,7 @@ description: Personal Homepage of Max Kossek.
 {% for post in site.posts %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br> 
 <span class="meta">
-<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%d/%m/%Y" }}</time> 
+<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time> 
 {% if post.categories.size > 0 %}
  | <span class="category">
 {% for category in post.categories %}

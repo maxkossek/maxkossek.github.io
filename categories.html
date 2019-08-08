@@ -28,7 +28,7 @@ description: Collection of all categories on maxkossek.
 {% for post in category.last %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br>
 <span class="meta">
-<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%d/%m/%Y" }}</time> 
+<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time> 
 {% if post.tags.size > 0 %}
  | <span class="tag">tags:</span> 
 {% for tag in post.tags %}
