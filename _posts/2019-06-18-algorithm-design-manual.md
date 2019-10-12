@@ -8,9 +8,6 @@ author: "Max Kossek"
 description: Notes on Skiena's book the Algorithm Design Manual.
 ---
 
-
-# The Algorithm Design Manual - Steven Skiena
-
 ## I Practical Algorithm Design
 
 
@@ -21,9 +18,9 @@ There are two basic classes of summation: (1) Arithmetic - S(n,p) = <sub>i</sub>
 
 
 ### 2 Algorithm Analysis
-Efficiency of algorithms is evaluated with "big Oh" notation. We usually use worst-case analysis for run-time analysis. We ignore specifics such as constant factors because as n grows, these get less relevant. Big-Oh notation states: f(n) = O(g(n)) if c\*g(n) is an upper bound on f(n) for all n >= n<sub>0</sub>. Similarly, f(n) = Ω(g(n)) states that c\*g(n) is a lower bound and f(n) = Θ(g(n)) states that c<sub>1</sub>\*g(n) is an upper bound and c<sub>2</sub>*g(n) is a lower bound. 
+Efficiency of algorithms is evaluated with "big Oh" notation. We usually use worst-case analysis for run-time analysis. We ignore specifics such as constant factors because as n grows, these get less relevant. Big-Oh notation states: f(n) = O(g(n)) if c\*g(n) is an upper bound on f(n) for all n >= n<sub>0</sub>. Similarly, f(n) = Ω(g(n)) states that c\*g(n) is a lower bound and f(n) = Θ(g(n)) states that c<sub>1</sub>\*g(n) is an upper bound and c<sub>2</sub>\*g(n) is a lower bound. 
 
-Functions are put in classes such as Θ(n), and a faster growing set of functions is said to dominate a slower growing class of functions (f(n) = O(g(n)) or g>>f or "g dominates f"). The domination hierarchy is: n! >> 2<sup>n</sup> >> n<sup>3</sup> >> n<sup>2</sup> >> nlogn >> n >> logn >> 1. The sum of two function is the dominant one: O(f(n)) + O(g(n)) = O(max(f(n),g(n))). Multiplication by a constant does not affect the asymptomatic behavior: O(c\*f(n)) = O(f(n)). Multiplying by a function changes the asymptomatic behavior: O(f(n)) * O(g(n)) = O(f(n)*g(n)). 
+Functions are put in classes such as Θ(n), and a faster growing set of functions is said to dominate a slower growing class of functions (f(n) = O(g(n)) or g>>f or "g dominates f"). The domination hierarchy is: n! >> 2<sup>n</sup> >> n<sup>3</sup> >> n<sup>2</sup> >> nlogn >> n >> logn >> 1. The sum of two function is the dominant one: O(f(n)) + O(g(n)) = O(max(f(n),g(n))). Multiplication by a constant does not affect the asymptomatic behavior: O(c\*f(n)) = O(f(n)). Multiplying by a function changes the asymptomatic behavior: O(f(n)) * O(g(n)) = O(f(n)\*g(n)). 
 
 Logarithm is inverse exponential function: b<sup>x</sup> = y is equal to x = log<sub>b</sub>y. Logarithms simplify multiplication operations: a<sup>b</sup> = e(ln(a<sup>b</sup>)) = exp(b*ln(a)). Important property: log<sub>a</sub>(xy) = log<sub>a</sub>(x) + log<sub>a</sub>(y); and log<sub>a</sub>b = [log<sub>c</sub>b] / [log<sub>c</sub>a]. There are three primary bases of logarithms: 
 1. lgx or 2 - binary logarithm;

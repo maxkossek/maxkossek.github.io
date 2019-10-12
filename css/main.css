@@ -21,7 +21,7 @@ footer {
 
 /* Text */
 h1 {
-    margin: 0.5rem auto 0;
+    margin: auto;
     font-size: 1.6rem;
 }
 h2 {
@@ -60,7 +60,7 @@ code {
     margin-bottom: 0;
 }
 .footnotes {
-    border-top: 2px solid dimgray;
+    border-top: 2px solid;
     margin: 3rem 0;
     padding-top: 1em;   
 }

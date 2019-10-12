@@ -9,11 +9,11 @@ layout: default
 &nbsp;| <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author | escape }}</span>
 {%- endif -%}
 {% if page.categories.size > 0 %}
- | <strong class="category">
+ | <span class="category">
 {% for category in page.categories %}
 <a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
-</strong>
+</span>
 {% endif %}
 {% if page.tags.size > 0 %}
  - <span class="tag">tags:</span> 
