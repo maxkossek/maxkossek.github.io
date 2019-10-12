@@ -12,7 +12,7 @@ description: Collection of all tags on Max Kossek.
 <div>View by: <a href="/articles">Year</a> | <a href="/categories">Categories</a> | <strong>Tags</strong></div>
 
 <p>
-<ul class="none">
+<ul>
 {% for tag in site.tags %}
 <li><a class="tag" href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a> <span class="meta">({{ tag[1].size }})</span></li>
 {% endfor %}
@@ -23,20 +23,9 @@ description: Collection of all tags on Max Kossek.
 
 {% for tag in site.tags %}
 <h3 id="{{ tag[0] | slugify }}"># {{ tag | first }} <span class="meta">({{ tag[1].size }})</span></h3>
-<ul class="none">
+<ul>
 {% for post in tag.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a><br>
-<span class="meta">
-<time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time> 
-{% if post.categories.size > 0 %}
- | <span class="category">
-{% for category in post.categories %}
-<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
-{% endfor %}
-</span>
-{% endif %}
-</span>
-</li>
+<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>
 {% endfor %}
 </ul>
 {% endfor %}

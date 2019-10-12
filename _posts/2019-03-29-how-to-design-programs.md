@@ -22,19 +22,19 @@ description: Book Notes for the book How to Design Programs by Matthias Felleise
 
 <div class="toc">
 <strong>Table of Contents:</strong>
-<ul>
-<li><a href="#i-fixed-size-data">I - Fixed-Size Data</a></li>
-<li><a href="#intermezzo-1">Intermezzo 1</a></li>
+<ol>
+<li><a href="#i-fixed-size-data">Fixed-Size Data</a></li>
+<a href="#intermezzo-1">Intermezzo 1</a>
 <li><a href="#ii-arbitrarily-large-data">II Arbitrarily Large Data</a></li>
-<li><a href="#intermezzo-2-quote-unquote">Intermezzo 2: Quote, Unquote</a></li>
+<a href="#intermezzo-2-quote-unquote">Intermezzo 2: Quote, Unquote</a>
 <li><a href="#iii-abstraction">III Abstraction</a></li>
-<li><a href="#intermezzo-3-scope-and-abstraction">Intermezzo 3: Scope and Abstraction</a></li>
+<a href="#intermezzo-3-scope-and-abstraction">Intermezzo 3: Scope and Abstraction</a>
 <li><a href="#iv-intertwined-data">IV Intertwined Data</a></li>
-<li><a href="#intermezzo-4-the-nature-of-numbers">Intermezzo 4: The Nature of Numbers</a></li>
+<a href="#intermezzo-4-the-nature-of-numbers">Intermezzo 4: The Nature of Numbers</a>
 <li><a href="#v-generative-recursion">V Generative Recursion</a></li>
-<li><a href="#intermezzo-5-the-cost-of-computation">Intermezzo 5: The Cost of Computation</a></li>
+<a href="#intermezzo-5-the-cost-of-computation">Intermezzo 5: The Cost of Computation</a>
 <li><a href="#vi-accumulators">VI Accumulators</a></li>
-</ul>
+</ol>
 </div>
 
 

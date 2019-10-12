@@ -13,16 +13,16 @@ The *C Programming Language* is an introductory text on the programming language
 
 <div class="toc">
 <strong>Table of Contents:</strong>
-<ul>
-<li><a href="#1---a-tutorial-introduction">1 - A Tutorial Introduction</a></li>
-<li><a href="#2---types-operators-and-expressions">2 - Types, Operators and Expressions</a></li>
-<li><a href="#3---control-flow">3 - Control Flow</a></li>
-<li><a href="#4---functions-and-program-structure">4 - Functions and Program Structure</a></li>
-<li><a href="#5---pointers-and-arrays">5 - Pointers and Arrays</a></li>
-<li><a href="#6---structures">6 - Structures</a></li>
-<li><a href="#7---input-and-output">7 - Input and Output</a></li>
-<li><a href="#8---the-unix-system-interface">8 - The UNIX System Interface</a></li>
-</ul>
+<ol>
+<li><a href="#1---a-tutorial-introduction">A Tutorial Introduction</a></li>
+<li><a href="#2---types-operators-and-expressions">Types, Operators and Expressions</a></li>
+<li><a href="#3---control-flow">Control Flow</a></li>
+<li><a href="#4---functions-and-program-structure">Functions and Program Structure</a></li>
+<li><a href="#5---pointers-and-arrays">Pointers and Arrays</a></li>
+<li><a href="#6---structures">Structures</a></li>
+<li><a href="#7---input-and-output">Input and Output</a></li>
+<li><a href="#8---the-unix-system-interface">The UNIX System Interface</a></li>
+</ol>
 </div>
 
 ## 1 - A Tutorial Introduction
@@ -113,7 +113,7 @@ Variables and their types must be declared before use. Qualifier `const` can be 
 
 
 ### 2.5 Arithmetic Operators
-Standard binary arithmetic operators +, -, *, / and %. Integer division truncates fractions. Modulo operator % can't be applied to a float or double. *, / and % have higher precedence than + and -. Operators associate left to right.
+Standard binary arithmetic operators +, -, \*, / and %. Integer division truncates fractions. Modulo operator % can't be applied to a float or double. \*, / and % have higher precedence than + and -. Operators associate left to right.
 
 
 ### 2.6 Relational and Logical Operators
@@ -652,4 +652,3 @@ Space that `malloc` manages may no be adjacent. Each block of storage contains a
 
 
 [^book]: Kernighan, B. W., & Ritchie, D. M. (2006). The C programming language.
-

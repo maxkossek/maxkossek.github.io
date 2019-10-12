@@ -1,14 +1,14 @@
 /* Layout */
 body {
     text-rendering: optimizeLegibility;
-	font-family: sans-serif;
-	line-height: 1.4;
+    font-family: sans-serif;
+    line-height: 1.4;
     margin: 0;
 }
 main, footer, header {
-	max-width: 40rem;
-	padding: 1rem;
-	margin: auto;
+    max-width: 40rem;
+    padding: 1rem;
+    margin: auto;
 }
 
 
@@ -34,11 +34,11 @@ h3 {
 
 /* Code */
 pre, code {
-	font-family: Courier, monospace;
-	background: whitesmoke;
-	font-size: 0.95rem;
-	padding: 1em;
-	overflow: auto;
+    font-family: monospace;
+    background: whitesmoke;
+    font-size: 0.95rem;
+    padding: 1em;
+    overflow: auto;
 }
 code {
     padding: 0px 2px;
@@ -50,23 +50,17 @@ code {
     font-size: 0.9rem;
     color: dimgray;
 }
-.meta a, .meta a:visited {
-    text-decoration: underline;
-    color: inherit;
-}
 .toc {
     background: whitesmoke;
     display: table;
     margin: 1.5em 0em;
     padding: 1em;
 }
-.toc ul {
-	margin-bottom: 0;
+.toc ul, .toc ol {
+    margin-bottom: 0;
 }
 .footnotes {
     border-top: 2px solid dimgray;
-    font-size: 0.95rem;
-    color: dimgray;
     margin: 3rem 0;
     padding-top: 1em;   
 }
@@ -77,18 +71,15 @@ code {
 .footnotes p {
     margin: initial;
 }
-summary:hover {
-    cursor: pointer;
-}
 :target {
     background: yellow;
 }
 
 /* Tables */
 table {
-	border-collapse: collapse;
-	border-spacing: 0px;
-	font-size: 0.95rem;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    font-size: 0.95rem;
 }
 td, th {
     padding-right: 1.5rem;
@@ -96,13 +87,6 @@ td, th {
 }
 td:last-of-type, th:last-of-type {
     padding-right: 0;
-}
-hr {
-	color: gainsboro;
-    background: gainsboro;
-    border: 0;
-    height: 2px;
-    margin: 1.5em 0em;
 }
 
 
@@ -114,17 +98,10 @@ input, button, textarea, select, optgroup, option {
 
 /* Links */
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 a:hover {
-	text-decoration: underline;
-}
-a[target="_blank"]::after {
-  	content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
-  	margin: 0 3px 0 5px;
-}
-a.footnote {
-    color: gray;
+    text-decoration: underline;
 }
 a.footnote:before {
     content: "[";
@@ -132,13 +109,3 @@ a.footnote:before {
 a.footnote:after {
     content: "]";
 }
-
-
-/* Lists */
-ul.none {
-    margin: 0;
-    list-style: none;
-    padding: 0;
-	margin-bottom: 1rem;
-}
-

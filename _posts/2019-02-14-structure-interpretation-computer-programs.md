@@ -14,12 +14,12 @@ description: Book Notes for the book Structure and Interpretation of Computer Pr
 
 <div class="toc">
 <strong>Table of Contents:</strong>
-<ul>
-<li><a href="#1-building-abstraction-with-procedures">1 Building Abstraction with Procedures</a></li>
-<li><a href="#2-building-abstractions-with-data">2 Building Abstractions with Data</a></li>
-<li><a href="#3-modularity-objects-and-state">3 Modularity, Objects, and State</a></li>
-<li><a href="#4-metalinguistic-abstraction">4 Metalinguistic Abstraction</a></li>
-</ul>
+<ol>
+<li><a href="#1-building-abstraction-with-procedures">Building Abstraction with Procedures</a></li>
+<li><a href="#2-building-abstractions-with-data">Building Abstractions with Data</a></li>
+<li><a href="#3-modularity-objects-and-state">Modularity, Objects, and State</a></li>
+<li><a href="#4-metalinguistic-abstraction">Metalinguistic Abstraction</a></li>
+</ol>
 </div>
 
 ## 1 Building Abstraction with Procedures
@@ -122,4 +122,3 @@ Evaluating `(try 0 (/ 1 0))` generates an error in Scheme. With lazy evaluation,
 Stream processing uses lazy evaluation to decouple the time when the stream of possible answers is assembled from the time when the actual stream elements are produced. The evaluator supports the illusion that all the possible answers are laid out before us in a timeless sequence. With nondeterministic evaluation, an expression represents the exploration of a set of possible worlds, each determined by a set of choices. Some of the possible worlds lead to dead ends, while others have useful values.
 
 [^book]: Abelson, H., Sussman, G. J., & Sussman, J. (1996). Structure and interpretation of computer programs. Justin Kelly.
-
