@@ -31,6 +31,14 @@ h3 {
     font-size: 1.05rem;
 }
 
+
+/* Code */
+pre, code {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+
 /* Page Elements */
 .meta {
     font-size: 0.9rem;
