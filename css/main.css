@@ -2,12 +2,12 @@
 body {
     text-rendering: optimizeLegibility;
     font-family: sans-serif;
-    line-height: 1.4;
+    line-height: 1.2;
     margin: 0;
 }
 main, footer, header {
     max-width: 40rem;
-    padding: 1rem;
+    padding: 0.75rem;
     margin: auto;
 }
 
@@ -31,24 +31,9 @@ h3 {
     font-size: 1.05rem;
 }
 
-
-/* Code */
-pre, code {
-    font-family: monospace;
-    background: whitesmoke;
-    font-size: 0.95rem;
-    padding: 1em;
-    overflow: auto;
-}
-code {
-    padding: 0px 2px;
-}
-
-
 /* Page Elements */
 .meta {
     font-size: 0.9rem;
-    color: dimgray;
 }
 .toc {
     background: whitesmoke;
@@ -79,7 +64,6 @@ code {
 table {
     border-collapse: collapse;
     border-spacing: 0px;
-    font-size: 0.95rem;
 }
 td, th {
     padding-right: 1.5rem;
