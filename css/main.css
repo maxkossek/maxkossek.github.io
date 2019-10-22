@@ -86,18 +86,3 @@ td:last-of-type, th:last-of-type {
 input, button, textarea, select, optgroup, option {
     font-size: small;
 }
-
-
-/* Links */
-a {
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-a.footnote:before {
-    content: "[";
-}
-a.footnote:after {
-    content: "]";
-}
