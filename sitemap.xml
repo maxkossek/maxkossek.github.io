@@ -6,12 +6,12 @@ layout: null
   {% for post in site.posts %}
   <url>
     <loc>{{ site.url }}{{ site.baseurl }}{{ post.url }}</loc>
-    {% if post.lastmod == null %}
+    {% if post.sitemap.lastmod == null %}
     <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
     {% else %}
-    <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
+    <lastmod>{{ post.sitemap.lastmod | date_to_xmlschema }}</lastmod>
     {% endif %}
-    <changefreq>weekly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   {% endfor %}
@@ -20,8 +20,12 @@ layout: null
   <url>
     <loc>{{ site.url }}{{ site.baseurl }}{{ page.url }}</loc>
     <lastmod>{{ page.sitemap.lastmod | date_to_xmlschema }}</lastmod>
-    <changefreq>{{ page.sitemap.changefreq }}</changefreq>
+    <changefreq>monthly</changefreq>
+    {% if page.sitemap.priority %}
     <priority>{{ page.sitemap.priority }}</priority>
+    {% else %}
+    <priority>1.0</priority>
+    {% endif %}
   </url>
   {% endif %}
   {% endfor %}

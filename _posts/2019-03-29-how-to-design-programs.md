@@ -6,6 +6,8 @@ categories: [book]
 tags: [computer science]
 author: "Max Kossek"
 description: Book Notes for How to Design Programs by Matthias Felleisen
+sitemap:
+    lastmod: 2019-10-21
 ---
 
 <img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/htdp-cover.jpg" alt="How to Design Programs Book Cover">

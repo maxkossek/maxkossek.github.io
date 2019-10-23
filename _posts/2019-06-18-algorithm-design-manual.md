@@ -6,6 +6,8 @@ categories: [book]
 tags: [computer science, mathematics]
 author: "Max Kossek"
 description: Notes on Skiena's book the Algorithm Design Manual.
+sitemap:
+    lastmod: 2019-10-21
 ---
 
 ## I Practical Algorithm Design

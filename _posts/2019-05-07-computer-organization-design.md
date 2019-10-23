@@ -6,6 +6,8 @@ categories: [book]
 tags: [computer science]
 author: "Max Kossek"
 description: Book Notes for the 5th edition of the book Computer Organization and Design by Patterson & Hennessy
+sitemap:
+    lastmod: 2019-10-22
 ---
 
 
@@ -310,13 +312,11 @@ The hit rate is the fraction of memory accesses found in a higher level of memor
 
 
 ### 5.2 Memory Technologies
-
-Dynamic random access memory (DRAM) | Random access memory (SRAM) | Flash Memory | Magnetic Disk
---- | --- | --- | ---
-Medium access | Fast access | Slow access | Slowest access
-Medium cost | High cost | Low cost | Lowest cost
-Main memory | Caches | Secondary memory | hard disks
-Dynamic charges on capacitors that have to be periodically refreshed | Integrated circuit | Electrically erasable programmable read-only memory | Movable rotating arm with electromagnetic coil to read and write
+Types of memory:
+1. Dynamic random access memory (DRAM): Moderately fast access, medium cost. Dynamic charges on capacitors that have to be periodically refreshed.
+2. Random access memory (SRAM): Fast access, high cost. Integrated circuits.
+3. Flash Memory: Slow access, low cost. Electrically erasable, programmable read-only memory.
+4. Magnetic Disk: Slowest access, lowest cost. Movable rotating arm with electromagnetic coil to read and write.
 
 
 ### 5.3 The Basics of Caches
