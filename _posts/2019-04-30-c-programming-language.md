@@ -7,7 +7,7 @@ tags: [computer science]
 author: "Max Kossek"
 description: Book Notes for the book The C Programming Language by Kernighan & Ritchie
 sitemap:
-    lastmod: 2019-10-21
+    lastmod: 2019-11-16
 ---
 
 <img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/c-cover.jpg" alt="C Programming Language Book Cover">
@@ -64,7 +64,8 @@ Declaring an array of specified size 10: `int ndigit[10];`. The first element of
 ### 1.7 Functions
 Properly designed functions remove the need to know how a job is done; knowing what is done can be sufficient for the output. Function definitions have the form:
 ```
-return-type function-name (int y, parameters...) {
+return-type function-name (int y, parameters...)
+{
 	int i = 0;	// Declarations
 	i = i + y;	// Statements
 	return i;	// Return Statement
