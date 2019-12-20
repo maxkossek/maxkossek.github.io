@@ -7,7 +7,7 @@ tags: [computer science]
 author: "Max Kossek"
 description: Book Notes for the book The C Programming Language by Kernighan & Ritchie
 sitemap:
-    lastmod: 2019-11-16
+    lastmod: 2019-11-28
 ---
 
 <img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/c-cover.jpg" alt="C Programming Language Book Cover">
@@ -151,22 +151,24 @@ Conditional expressions are used to shorten if-else statements. `expr1 ? expr2 :
 
 
 ### 2.12 Precedence and Order of Evaluation
-Writing code that depends on order of evaluation is bad programming practice in any language. Precedence of C operators:
+Writing code that depends on order of evaluation is bad programming practice in any language. The order of precedence of C operators is:
+```
 1. () [] -> .
 2. ! ~ ++ -- + - * (type) sizeof
-3. \* / %
-4. \+ -
-5. \>> <<
+3. * / %
+4. + -
+5. >> <<
 6. < <= > >=
 7. == !=
 8. &
-9. \^
-10. \|
+9. ^
+10. |
 11. &&
-12. \||
+12. ||
 13. ?:
-14. = += -= *= /= %= &= ^= \|= <<= >>=
-15. , 
+14. = += -= *= /= %= &= ^= |= <<= >>=
+15. ,
+```
 
 
 
