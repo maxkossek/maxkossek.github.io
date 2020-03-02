@@ -3,7 +3,7 @@ layout: default
 title: Categories
 description: Collection of all categories on maxkossek.
 sitemap:
-    lastmod: 2019-10-22
+    lastmod: 2020-03-01
 ---
 
 <header>
@@ -16,7 +16,7 @@ sitemap:
 <p>
 <ul>
 {% for category in site.categories %}
-<li><a class="category" href="#{{ category[0] | slugify }}">{{ category[0] | capitalize }}</a> <span class="meta">({{ category[1].size }})</span>
+<li><a class="category" href="#{{ category[0] | slugify }}">{{ category[0] }}</a> <span class="meta">({{ category[1].size }})</span>
 </li>
 {% endfor %}
 </ul>
@@ -25,7 +25,7 @@ sitemap:
 <hr>
 
 {% for category in site.categories %}
-<h3 id="{{ category[0] | slugify }}">{{ category | first | capitalize }} <span class="meta">({{ category[1].size }})</span></h3>
+<h3 id="{{ category[0] | slugify }}">{{ category | first }} <span class="meta">({{ category[1].size }})</span></h3>
 <ul>
 {% for post in category.last %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>

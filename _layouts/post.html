@@ -11,7 +11,7 @@ layout: default
 {% if page.categories.size > 0 %}
  | <span class="category">
 {% for category in page.categories %}
-<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
+<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 </span>
 {% endif %}
@@ -34,7 +34,7 @@ layout: default
 {% if page.categories.size > 0 %}
 <span class="category">Category: 
 {% for category in page.categories %}
-<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category | capitalize}}</a>{% unless forloop.last %}, {% endunless %}
+<a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 </span>
 {% endif %}
