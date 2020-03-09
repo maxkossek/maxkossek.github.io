@@ -18,7 +18,7 @@ sitemap:
 {% assign postsByYear =
     site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
 {% for year in postsByYear %}
-<li><a class="year" href="#{{ year.name | slugify }}">{{ year.name }}</a> <span class="meta">({{ postsByYear[0].size }})</span>
+<li><a class="year" href="#{{ year.name | slugify }}">{{ year.name }}</a> <span class="meta">({{ year.size }})</span>
 </li>
 {% endfor %}
 </ul>
