@@ -1,0 +1,229 @@
+---
+layout: post
+title: Python
+date: 2020-03-22
+categories: [usage]
+tags: [programming language]
+author: "Max Kossek"
+description: Reference for the Python scripting language.
+sitemap:
+    lastmod: 2020-03-26
+---
+
+NAME
+====
+
+Python - Interpreted, high-level, general-purpose programming language.
+
+
+DESCRIPTION
+===========
+
+Typing "python" in a shell starts the Python command interpreter. Python files have a ".py" file extension and can be run with the python command.
+```
+$ python
+python>
+
+$ python file.py
+```
+
+Libraries are imported at the top of a file using the "import" keyword. Modules and packages can be imported from within nested file structures.
+```
+import sys
+import test.x
+import test.sub
+```
+
+
+INPUT / OUTPUT
+==============
+
+The print() function is the standard output function. The input() function is the standard input function. Files can be read and written using the open() function.
+```
+print(3 + 5)
+print("Hello World")
+print("Number = %d") % num
+
+x = input()
+age = int(input("Enter your age: "))
+
+with open("file.txt") as f:
+	content = f.readlines()
+f.close()
+```
+
+
+OPERATORS
+=========
+
+Arithmetic Operators: +, -, *, / (float division), // (int division), % (modulo), ** (exponentiation).
+```
+> 2 ++ 5
+25
+> 5 / 2
+2.5
+> 5 // 2
+2
+```
+
+Relational operators: <, >, ==, >=, <=, !=.
+```
+if x == 2
+x is 2
+if str <= "Hello World":
+```
+
+Boolean operators: and, or, not.
+```
+x or y
+not True
+```
+
+Membership and Identity operators: in, not in.
+```
+if 5 not in array
+```
+
+Identity operators: is, is not.
+```
+x is y
+```
+
+Bitwise operators: |, ^, &, <<, >>.
+```
+x ^ y
+> 0b101 & 0b111
+5
+> 8 << 2
+32
+```
+
+
+STRINGS
+=======
+
+Python strings are immutable. In order to modify a string, a new string has to be created. A string can be concatenated with another string using the operators "+" or "+=". The replace() function replaces a pattern in the string.
+```
+> str = "hello"
+> str += " world"
+> str
+'hello world'
+> str = str.replace("llo", "y")
+> str
+'hey world'
+```
+
+Substrings are accessed using the square brackets "[]" surrounding an optional start and end index. The len() function returns the length of a string. The count() function counts the number of occurrences of a character in a string. The index() function returns the index of the first occurrence of a pattern in a string.
+```
+> str[2:]
+'llo world'
+> str[0:5]
+'hello'
+> str[::-1]
+'dlrow olleh'
+
+> len(str)
+> str.count("l")
+> str.index("w")
+```
+
+Calling upper() on a string converts it to uppercase. The split() function splits a string into an array based on a separating character.
+```
+> str.upper()
+'HELLO WORLD'
+> str.split(" ")
+['hello', 'world']
+```
+
+
+VARIABLES
+=========
+
+Python variables do not have to be declared. Additionally, their data type is inferred implicitly.
+```
+x = 0
+x = "Hello World"
+```
+
+
+LISTS
+=====
+
+Lists consist of an ordered set of elements, each assigned an index.
+```
+num = [1,2,3]
+> num[0]
+1
+> del num[2]
+```
+
+Tuples are a collection of immutable, comma-separated values.
+```
+t = True, 1, "hello"
+> t[2]
+'hello'
+> t2 = t, (2, 3, False)
+```
+
+Sets are unordered collections of elements. The add() function adds an element to the set; remove() removes an element. The update() function adds the specified elements to the set.
+```
+a = set("0123")
+b = set("012345")
+> b - a
+{'4', '5'}
+> a & b
+{'0', '2', '3', '1'}
+> a.add("5")
+> a.remove("0")
+> a.update(["10", "11"])
+```
+
+Dictionaries consist of key-value pairs.
+```
+months = {'jan': 1, 'feb': 2, 'mar': 3}
+> months['apr'] = 4
+> months['jan']
+1
+> del months['jan']
+```
+
+
+FUNCTIONS
+=========
+
+Functions are declared using the "def" keyword.
+```
+def func(x,y):
+	return x + y
+```
+
+
+CONDITIONALS
+============
+
+If-else statements use no parentheses, and must be properly indented. They can contain multiple optional elif conditions, as well as a single optional else condition.
+```
+if expr:
+	body
+elif expr:
+	body
+else:
+	body
+```
+
+
+LOOPS
+=====
+
+For loops utilize the standard block condition syntax. While loops are evaluated until a condition no longer holds.
+```
+for x in range(0, 10):
+	body
+
+array = ["a", "ba", "c"]
+for i in sorted(array):
+	body
+
+while x > 0:
+	body
+```
