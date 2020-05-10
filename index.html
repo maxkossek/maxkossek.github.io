@@ -10,21 +10,20 @@ sitemap:
 </header>
 
 <main>
-<strong>index:</strong>
+<h3>Index:</h3>
 <ul>
-<li><a href="/about">about</a></li>
-<li><a href="/articles">articles</a></li>
+<li><a href="/about">About Max Kossek</a></li>
+<li><a href="/articles">Articles</a></li>
 </ul>
 
-<strong>pages:</strong>
-
+<h3>Pages:</h3>
 <ul>
 {% for post in site.posts %}
 <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>
 {% endfor %}
 </ul>
 
-<strong>recently read:</strong>
+<h3>Recently read:</h3>
 <ul>
 <li>Applied Cryptograhy - Bruce Schneier</li>
 <li>Compilers: Principles, Techniques, and Tools - Alfred Aho</li>

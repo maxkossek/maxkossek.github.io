@@ -10,7 +10,7 @@ sitemap:
     lastmod: 2019-05-09
 ---
 
-<div class="toc">
+<p class="toc">
 <strong>Table of Contents:</strong>
 <ol>
 <li><a href="#1-matrices-and-systems-of-equations">Matrices and Systems of Equations</a></li>
@@ -20,7 +20,7 @@ sitemap:
 <li><a href="#5-orthogonality">Orthogonality</a></li>
 <li><a href="#6-eigenvalues">Eigenvalues</a></li>
 </ol>
-</div>
+</p>
 
 ## 1 Matrices and Systems of Equations
 

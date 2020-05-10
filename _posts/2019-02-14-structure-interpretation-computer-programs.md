@@ -10,7 +10,7 @@ sitemap:
     lastmod: 2019-05-09
 ---
 
-<div class="toc">
+<p class="toc">
 <strong>Table of Contents:</strong>
 <ol>
 <li><a href="#1-building-abstraction-with-procedures">Building Abstraction with Procedures</a></li>
@@ -18,7 +18,7 @@ sitemap:
 <li><a href="#3-modularity-objects-and-state">Modularity, Objects, and State</a></li>
 <li><a href="#4-metalinguistic-abstraction">Metalinguistic Abstraction</a></li>
 </ol>
-</div>
+</p>
 
 ## 1 Building Abstraction with Procedures
 

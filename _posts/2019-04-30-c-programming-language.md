@@ -10,7 +10,7 @@ sitemap:
     lastmod: 2019-05-09
 ---
 
-<div class="toc">
+<p class="toc">
 <strong>Table of Contents:</strong>
 <ol>
 <li><a href="#1---a-tutorial-introduction">A Tutorial Introduction</a></li>
@@ -22,7 +22,7 @@ sitemap:
 <li><a href="#7---input-and-output">Input and Output</a></li>
 <li><a href="#8---the-unix-system-interface">The UNIX System Interface</a></li>
 </ol>
-</div>
+</p>
 
 1 - A Tutorial Introduction
 ---------------------------

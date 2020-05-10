@@ -10,7 +10,7 @@ sitemap:
     lastmod: 2019-10-21
 ---
 
-<div class="toc">
+<p class="toc">
 <strong>Table of Contents:</strong>
 <ol>
 <li><a href="#i-fixed-size-data">Fixed-Size Data</a></li>
@@ -25,7 +25,7 @@ sitemap:
 <a href="#intermezzo-5-the-cost-of-computation">Intermezzo 5: The Cost of Computation</a>
 <li><a href="#vi-accumulators">VI Accumulators</a></li>
 </ol>
-</div>
+</p>
 
 
 
