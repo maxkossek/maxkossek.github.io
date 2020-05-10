@@ -701,7 +701,6 @@ $h_ref2 = $h_ref1;
 
 # Make new copy of the underlying array / hash.
 $a_ref2 = [@{$a_ref1}];
-$h_ref2 = {%{$h_ref1}};
 
 # References can point to the same location in memory.
 $a_ref1 = [1, 2, 3];
