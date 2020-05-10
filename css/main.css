@@ -1,88 +1,55 @@
 /* Layout */
 body {
-    text-rendering: optimizeLegibility;
-    font-family: sans-serif;
-    line-height: 1.2;
-    margin: 0;
+	text-rendering: optimizeLegibility;
+	padding: 0.5rem;
 }
 main, footer, header {
-    max-width: 40rem;
-    padding: 0.75rem;
-    margin: auto;
+	margin: auto;
 }
-
-
-/* Footer */
 footer {
-    background: whitesmoke;
-    margin-top: 1.5em;
+	border-top: 1px solid;
+	padding-top: 1rem;
 }
-
-
-/* Text */
-h1 {
-    margin: auto;
-    font-size: 1.6rem;
-}
-h2 {
-    font-size: 1.2rem;
-}
-h3 {
-    font-size: 1.05rem;
-}
-
 
 /* Code */
 pre, code {
-    word-wrap: break-word;
-    white-space: pre-wrap;
+	word-wrap: break-word;
+	white-space: pre-wrap;
 }
 
 
 /* Page Elements */
-.meta {
-    font-size: 0.9rem;
-}
-.toc {
-    background: whitesmoke;
-    display: table;
-    margin: 1.5em 0em;
-    padding: 1em;
-}
-.toc ul, .toc ol {
-    margin-bottom: 0;
-}
 .footnotes {
-    border-top: 2px solid;
-    margin: 3rem 0;
-    padding-top: 1em;   
+	border-top: 1px solid;
+	margin: 1.5rem 0;
+	padding-top: 1rem;	 
 }
 .footnotes::before {
-    content: "References:";
-    font-weight: bold;
+	content: "References:";
+	font-weight: bold;
 }
 .footnotes p {
-    margin: initial;
+	margin: initial;
 }
 :target {
-    background: yellow;
+	background: yellow;
 }
 
 /* Tables */
 table {
-    border-collapse: collapse;
-    border-spacing: 0px;
+	border-collapse: collapse;
+	border-spacing: 0px;
 }
 td, th {
-    padding-right: 1.5rem;
-    vertical-align: top;
+	padding-right: 1.5rem;
+	vertical-align: top;
 }
 td:last-of-type, th:last-of-type {
-    padding-right: 0;
+	padding-right: 0;
 }
 
 
 /* Forms */
 input, button, textarea, select, optgroup, option {
-    font-size: small;
+	font-size: small;
 }

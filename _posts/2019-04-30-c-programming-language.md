@@ -7,11 +7,8 @@ tags: [computer science]
 author: "Max Kossek"
 description: Book Notes for the book The C Programming Language by Kernighan & Ritchie
 sitemap:
-    lastmod: 2019-11-28
+    lastmod: 2019-05-09
 ---
-
-<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/c-cover.jpg" alt="C Programming Language Book Cover">
-The C Programming Language is an introductory text on the programming language C. Use and syntax of arithmetic, variables, arrays, functions and control structures are described. The book focuses on C-specfic concepts such as pointers and header files. Many practical and accessible exercises are provided.
 
 <div class="toc">
 <strong>Table of Contents:</strong>
@@ -27,41 +24,76 @@ The C Programming Language is an introductory text on the programming language C
 </ol>
 </div>
 
-## 1 - A Tutorial Introduction
+1 - A Tutorial Introduction
+---------------------------
 
 ### 1.1 Getting Started
-C programs consist of functions and variables.[^book] Functions contain statements that specify operations, and variables store values. Program begins executing at main so every program must have a `main()` function.
+
+C programs consist of functions and variables.[^book] Functions consist of statements that specify operations, and variables that store values. Every C program begins executing at the `main()` function.
 
 
 ### 1.2 Variables and Arithmetic Exceptions
-All variables must be declared before they are used. Common data types are int, float, char, short, long, double. While loops are notated by `while ( )`. Inside a printf statement a % indicates where an arguments is to be substituted `printf("%d %3.2f\n", fahr, celsius);` substitutes integer fahr into the %d location, and float celsius into %3.2f with two numbers after decimal point, and a space location of at least 3 characters wide.
+
+All variables must be declared before they are used. C supports the following built-in data types: `int`, `float`, `char`, `short`, `long`, `double`, as well as some other combinations such as `unsigned int`. While loops use the `while ( )` keyword. The percent character ("%") marks a substitution inside a `printf()` statement. For example: `printf("%d %3.2f\n", fahr, celsius);` substitutes the integer `fahr` into the first location, and the float `celsius` into the second location, with two decimal points of precision and taking up at least three characters of space.
 
 
 ### 1.3 The for statement
-For loops are written `for (i = 0; i <= 10; i++)`.
+
+For loops are written using the `for` keyword. Each `for` loop consists of an optional initialization, condition, and increment statement.
+```
+for (i = 0; i <= 10; i++) {
+	...
+}
+```
 
 
 ### 1.4 Symbolic Constants
-A define line defines a symbolic name or symbolic constant for a string of characters `#define LOWER 0`. After this define line, every occurrence of LOWER will be replaced with 0 in the program. Symbolic names are conventionally written in upper case letters to distinguish from variable names. There is no semi colon at the end of a define line.
+
+A `#define` line defines a symbolic name or symbolic constant for a string of characters. Each occurrence of the pattern is replaced by the constant at compile time. Symbolic names are conventionally written in upper case letters to distinguish them from variable names. The end of the `#define` line should have no semicolon.
+```
+#define LOWER 0
+#define MAXSIZE 100
+```
 
 
 ### 1.5 Character Input and Output
-Text streams are a sequence of characters divided into lines by new line characters. `c = getchar();` reads the next input character from a text stream every time it is called. `putchar(c);` prints a character each time it is called. `++variable` increments a variable before it is used, while `variable++` increments a variable after usage. For and while loops must have a body, but we can use a semicolon as a null statement `while () { ; }`. To check for equality `==` and `!=` are used. `=` is used for assignment statements. A Character written in single quotes represents an integer value. 'A' has an ASCII value of 65. And has symbol `&&` and or is `||`. Conditional statements are written in the form: 
+
+A text stream is a sequence of characters divided into lines by the newline character ("\n"). The `getchar()` function reads an input character from the standard text stream every time it is called. The `putchar(int c)` function prints a character each time it is called.
+
+Prefixing the increment operator (`++variable`) increments a variable before it is used, while postfixing (`variable++`) increments the variable after it is used.
+
+Each `for` and `while` loop must have a body, but a semicolon (";") can be used as a null statement. If-else statements use the `if`, `else if`, and `else` keywords. Only the `if` clause is mandatory.
 ```
-if ( ) { 
+/* Infinite Loop. */
+while (1) {
+	;
 }
-else if ( ) { 
+
+if (x > 0) {
+	y = 1;
 }
-else { 
+else if (x < 0) {
+	y = -1;
+}
+else {
+	y = 0;
 }
 ```
+
+The `==` and `!=` operators check for equality. The `=` operator is used for assignment statements. A `char` written in single quotes represents an integer value internally. For example, 'A' has an ASCII value of 65. The boolean operators are: `&&` for AND, `||` for OR, and `!` for NOT.
 
 
 ### 1.6 Arrays
-Declaring an array of specified size 10: `int ndigit[10];`. The first element of an array has index 0 `ndigit[0]`. 
+
+The size of an array can be declared statically or allocated during runtime. Every array starts at index 0.
+```
+int array[10];
+array[0] = 5;
+```
 
 
 ### 1.7 Functions
+
 Properly designed functions remove the need to know how a job is done; knowing what is done can be sufficient for the output. Function definitions have the form:
 ```
 return-type function-name (int y, parameters...)
@@ -72,85 +104,101 @@ return-type function-name (int y, parameters...)
 }
 ```
 
-Variables inside a function are local. Reusing their name outside the scope doesn't cause a conflict. Usually every function, even main, should return a value. The notation for returning a value is `return VALUE;`. Returning 0 usually implies a normal termination. Functions have to be declared with a function prototype, written before the main function in the form `int power (int, int);`. The parameters don't have to be named, but they're data types have to be signified. 
+Variables inside a function are local. Reusing their name outside the scope doesn't cause a conflict. Usually every function, even main, should return a value. The notation for returning a value is `return VALUE;`. Returning 0 usually implies a normal termination. Functions have to be declared with a function prototype, written before the main function in the form `int power (int, int);`. The parameters don't have to be named, but they're data types have to be signified.
 
 
 ### 1.8 Arguments - Call by Value
+
 All function arguments are passed by value, they are temporary variables rather than the original variables. Parameters are local initialized variables in the called routine.
 
 
 ### 1.9 Character Arrays
+
 A function that doesn't return a value has return type "void". The "\0" character marks the termination of a string. This character must be added at the end of a char array to be able to print the array as a string.
 
 
 ### 1.10 External Variables and Scope
-Each local variable in a function only comes into existence once that function is called, and disappears when the function is exited. These variables are also called automatic variables. They do not retain their value with each function call, hence they have to be set with each entry. External variables are globally accessible, exist permanently and have to be declared outside of the main function. The global variable's try has to be declared inside a function however `extern int max;`. The extern label isn't needed if the external variables are declared at the beginning of the source file. Definitions create and assign storage to variables. Declarations simply state a variable, but do not allocate storage. 
+
+Each local variable in a function only comes into existence once that function is called, and disappears when the function is exited. These variables are also called automatic variables. They do not retain their value with each function call, hence they have to be set with each entry. External variables are globally accessible, exist permanently and have to be declared outside of the main function. The global variable's try has to be declared inside a function however `extern int max;`. The extern label isn't needed if the external variables are declared at the beginning of the source file. Definitions create and assign storage to variables. Declarations simply state a variable, but do not allocate storage.
 
 
 
-## 2 - Types, Operators and Expressions
+2 - Types, Operators and Expressions
+------------------------------------
 
 ### 2.1 Variable Names
+
 Variables names must start with letters, and can include letters, digits and underscores. The standard is to use underscores to make long variable names more readable. Use short names for local variables (i.e. loop indices) and long names for external variables.
 
 
 ### 2.2 Data Types and Sizes
+
 Basic data types in C:
 - char: single byte which holds a character.
-- int: integer that reflects the natural size of integers on the host machine. 
+- int: integer that reflects the natural size of integers on the host machine.
 - float: single precision floating point.
-- double: double precision floating point. 
+- double: double precision floating point.
 
 Qualifiers signed or unsigned can be added to char or any integer. Unsigned numbers are always positive or zero and go to 2^n. Signed chars can be negative or positive and have a range from 2^(n-1) to 2^(n-1)-1. Standard headers `<limits.h>` and `<float.h>` contain symbolic constants for these sizes.
 
 
 ### 2.3 Constants
-A long constant has to be written with a terminal l or L `123556789L`. Unsigned constants end with terminal u or U and unsigned long values end with ul or UL `1234u or 123456978ul`. Floating point constants can contain decimal points (123.4), exponents (1e-2) and end with the suffix f or F. Integers can be specified as octal or hexadecimal with a leading 0 (octal) or a leading 0x or 0X (hexadecimal). Character constants are written in single quotes and are evaluated based on ASCII value; '0' is equal to 48 in ASCII. 
 
-String constants are enclosed in double quotes `"Hello world."`. Constant expressions are evaluated at run time `#define SIZE 1000`. String constants have to end with a \0 character. `strlen(s)` in <string.h> returns the length of the string without taking into account the termination character \0. Enumeration constants are a list of constant integer values `enum boolean { NO, YES };`. The first value in enum has value 0, the next 1, the next 2 and so on. Values in enum can also be assigned names `enum months { JAN = 1; FEB, MAR, APR ... }`. 
+A long constant has to be written with a terminal l or L `123556789L`. Unsigned constants end with terminal u or U and unsigned long values end with ul or UL `1234u or 123456978ul`. Floating point constants can contain decimal points (123.4), exponents (1e-2) and end with the suffix f or F. Integers can be specified as octal or hexadecimal with a leading 0 (octal) or a leading 0x or 0X (hexadecimal). Character constants are written in single quotes and are evaluated based on ASCII value; '0' is equal to 48 in ASCII.
+
+String constants are enclosed in double quotes `"Hello world."`. Constant expressions are evaluated at run time `#define SIZE 1000`. String constants have to end with a \0 character. `strlen(s)` in <string.h> returns the length of the string without taking into account the termination character \0. Enumeration constants are a list of constant integer values `enum boolean { NO, YES };`. The first value in enum has value 0, the next 1, the next 2 and so on. Values in enum can also be assigned names `enum months { JAN = 1, FEB, MAR, DEC = 12 }`.
 
 
 ### 2.4 Declarations
+
 Variables and their types must be declared before use. Qualifier `const` can be added to signify that a value won't change `const double e 2.71828182845905;`. Const can also be used with arrays so that they don't change.
 
 
 ### 2.5 Arithmetic Operators
-Standard binary arithmetic operators `+, -, \*, / and %`. Integer division truncates fractions. Modulo operator % can't be applied to a float or double. \*, / and % have higher precedence than + and -. Operators associate left to right.
+
+Standard binary arithmetic operators `+, -, *, / and %`. Integer division truncates fractions. Modulo operator % can't be applied to a float or double. \*, / and % have higher precedence than + and -. Operators associate left to right.
 
 
 ### 2.6 Relational and Logical Operators
+
 Standard relational operators `>, >=, <, <=` have higher precedence than equality operators == and !=. Relational operators have lower precedence than arithmetic operators. Logical operators && (and) and || (or) are evaluated left to right and evaluation stops as soon as the result is known. For example `i < SIZE && (c=getchar()) != '\n'` checks if there is a space in the array first, before getting another character. && has higher precedence than ||.
 
 
 ### 2.7 Type Conversions
-Automatic conversions occur when narrower information is converted to wider information without losing information `float + int = int`. Expressions that lose information (long int to short) draw a warning but aren't illegal. Standard header `<ctype.h>` defines a family of functions that make it easier to convert independent of character set. Float to int causes truncation of any fractional part. Type conversions can be forced with casts: `sqrt((double) n)` converts n from int to double before taking it's square root. 
+
+Automatic conversions occur when narrower information is converted to wider information without losing information `float + int = int`. Expressions that lose information (long int to short) draw a warning but aren't illegal. Standard header `<ctype.h>` defines a family of functions that make it easier to convert independent of character set. Float to int causes truncation of any fractional part. Type conversions can be forced with casts: `sqrt((double) n)` converts n from int to double before taking it's square root.
 
 
 ### 2.8 Increment and Decrement Operators
-Increment and decrement operators can be used as a prefix or suffix `i++ ++i i-- --i`. i++ increments the value after it is used, while ++i increments the value before it is used. 
+
+Increment and decrement operators can be used as a prefix or suffix `i++ ++i i-- --i`. i++ increments the value after it is used, while ++i increments the value before it is used.
 
 
 ### 2.9 Bitwise Operators
+
 Bitwise operators can only be applied to integral operands char, short, int and long. They are:
 - & = bitwise AND;
-- \| = bitwise OR; 
-- ^ = bitwise XOR; 
-- << = left shift; 
-- \>> = right shift; 
-- ~ = one's complement 
+- \| = bitwise OR;
+- ^ = bitwise XOR;
+- << = left shift;
+- \>> = right shift;
+- ~ = one's complement
 
-Shift operators shift a bit by a specified number of positions. `x << 2` shifts the x bits two positions to the left, which is equivalent to multiplying by 4. 
+Shift operators shift a bit by a specified number of positions. `x << 2` shifts the x bits two positions to the left, which is equivalent to multiplying by 4.
 
 
 ### 2.10 Assignment Operators and Expressions
+
 Assignment operators can be used to compress assigning a new value to a variable. `i = i + 2` is equal to `i += 2`. All binary operators can be used as assignment operators `*=, -=, %=, <<= etc.`.
 
 
 ### 2.11 Conditional Expressions
-Conditional expressions are used to shorten if-else statements. `expr1 ? expr2 : expr3` means that when expr1 is true, then expr2 is evaluated, else expr3 is evaluated. `z = (a > b) ? a : b;` sets z to the maximum of (a,b). 
+
+Conditional expressions are used to shorten if-else statements. `expr1 ? expr2 : expr3` means that when expr1 is true, then expr2 is evaluated, else expr3 is evaluated. `z = (a > b) ? a : b;` sets z to the maximum of (a,b).
 
 
 ### 2.12 Precedence and Order of Evaluation
+
 Writing code that depends on order of evaluation is bad programming practice in any language. The order of precedence of C operators is:
 ```
 1. () [] -> .
@@ -172,32 +220,38 @@ Writing code that depends on order of evaluation is bad programming practice in 
 
 
 
-## 3 - Control Flow
+3 - Control Flow
+----------------
 
 ### 3.1 Statements and Blocks
+
 Semicolons terminate a statement `x = 0;`. Braces { } group declarations and statements together.
 
 
 ### 3.2 If-Else
+
 If-else is used to express decisions. To check if a expression is not equal to 0, we can use the shortcut `if (expression)` in place of `(expression != 0)`. Else if blocks associate with the closest if statement. The compiler doesn't take into account indentation, so use braces around nested if statements.
 
 
 ### 3.3 Else-If
-Else-If is written as `else if` in C. If one of the else if statements evaluates to true, all other remaining expression are skipped. The else statement can be omitted. 
+
+Else-If is written as `else if` in C. If one of the else if statements evaluates to true, all other remaining expression are skipped. The else statement can be omitted.
 
 
-### 3.4 Switch 
+### 3.4 Switch
+
 Switch statements are a way to test if an expression matches one of a number of branches
-``` 
-switch(expression) { 
-	case const-expr: statements  
-	default : statements 
+```
+switch(expression) {
+	case const-expr: statements
+	default : statements
 }
 ```
 A break statement causes an immediate exit from the switch `break;`. Unless break is invoked, all switch cases are checked, even if a case already evaluated to true. Best practice is to add a break after the default statement, even if it is not necessary.
 
 
 ### 3.5 Loops - While and For
+
 A while expression continues evaluation until it's condition is not met. A for statement provides a starting condition, a testing condition, and a incrementing condition. Any of these conditions can be omitted, but the semicolons have to be inserted. Multiple expressions can be inserted inside a for expression by separating them with a comma. While and for loops can be used interchangeably. For loops are preferred for situations where there is a simple initialization and incrementing step.
 ```
 while (expression) {
@@ -211,6 +265,7 @@ for (initial_expr; test_expr; increment_expr) {
 
 
 ### 3.6 Loops - Do-While
+
 In contrast to for and while loops the do-while loop first executes the body and then tests a expression. In practice the do-while loop is much less used than for and while loops.
 ```
 do {
@@ -220,10 +275,12 @@ do {
 
 
 ### 3.7 Break and Continue
+
 A `break;` statement can be used to exit a for, while or do loop early. Break causes the innermost loop to be exited immediately. A `continue;` statement is similar to break, it causes the next iteration of an enclosing loop to be executed. Continue does not work on switch statements, and is used more rarely. It can be used to simplify complicated loops so that the program doesn't nest too deeply.
 
 
 ### 3.8 Goto and labels
+
 A goto statement is never necessary and can be easily abused. It may have a use for moving out from deeply nested structures, since a break statement only breaks out of the innermost loop. Goto statements make maintaining code more challenging and generally harder to understand.
 ```
 for (...)
@@ -235,12 +292,15 @@ error:
 ```
 
 
-## 4 - Functions and Program Structure
 
-Functions hide details of computation by breaking larger programs into smaller ones. 
+4 - Functions and Program Structure
+-----------------------------------
+
+Functions hide details of computation by breaking larger programs into smaller ones.
 
 
 ### 4.1 Basics of Functions
+
 Function definitions have the form:
 ```
 return-type function-name (arguments)
@@ -253,31 +313,38 @@ If the return type is omitted, int is assumed. The return expression `return exp
 
 
 ### 4.2 Functions Returning Non-integers
+
 To return a value of type other than int, we must declare the function to return that type. Additionally, the calling routine must know that the function returns a non-int value. To explicitly state the return value as type double: `double var_name, function_name(arguments);`.
 
 
 ### 4.3 External Variables
-External variables are defined outside of a function. Functions are always external; C doesn't allow nesting of functions. External variables should be used when the variables are shared among many functions, and if a longer lifetime for the variables is needed. 
+
+External variables are defined outside of a function. Functions are always external; C doesn't allow nesting of functions. External variables should be used when the variables are shared among many functions, and if a longer lifetime for the variables is needed.
 
 
 ### 4.4 Scope Rules
-The scope of a name is the part of the program within which a name can be used. Variables declared at the beginning of a function and function parameters are local to their function. External variables last from declaration until the end of the file is compiled. The extern declaration makes it possible to use an external variable from a different file or before it's declaration. Declarations simply declare the type of a variable name or function for the rest of the file `extern double val[]`. Definitions declare the type, create the variable and also set aside storage `double val[SIZE];`. There can only be one definition of an external variable among all the source files, but there can be more than one declaration of a variable. 
+
+The scope of a name is the part of the program within which a name can be used. Variables declared at the beginning of a function and function parameters are local to their function. External variables last from declaration until the end of the file is compiled. The extern declaration makes it possible to use an external variable from a different file or before its declaration. Declarations simply declare the type of a variable name or function for the rest of the file `extern double val[]`. Definitions declare the type, create the variable and also set aside storage `double val[SIZE];`. There can only be one definition of an external variable among all the source files, but there can be more than one declaration of a variable.
 
 
 ### 4.5 Header Files
+
 Common definitions and declarations are placed in a header with file name extension .h. To include a header in a .c file we write `#include "header_name.h"`. For a moderate program size, one header is usually enough, for a much larger program more headers and organization are needed.
 
 
 ### 4.6 Static Variables
-A static declaration of an external variable or function limits the scope of that object to the rest of the source file. Once declared as static no other routine will be able to access the static object. Static variables declared inside a function remain in existence rather than changing with each function call. 
+
+A static declaration of an external variable or function limits the scope of that object to the rest of the source file. Once declared as static no other routine will be able to access the static object. Static variables declared inside a function remain in existence rather than changing with each function call.
 
 
 ### 4.7 Register Variables
+
 A register declaration tells the compiler that the variable declared will be heavily used. This may result in faster and smaller programs. A variable is declared as register with `register int x;`. There are restrictions on the number and types of register variables depending on the machine.
 
 
 ### 4.8 Block Structure
-Declarations of variables follow the left brace of any compound statement, not just functions. In the example below, x is local to the if statement, and unrelated to any other variable named x outside it's scope. Best practice is to avoid reusing names for local variables.
+
+Declarations of variables follow the left brace of any compound statement, not just functions. In the example below, x is local to the if statement, and unrelated to any other variable named x outside its scope. Best practice is to avoid reusing names for local variables.
 ```
 if ( ) {
 	int x;
@@ -287,19 +354,22 @@ if ( ) {
 
 
 ### 4.9 Initialization
-When not explicitly initialized, external and static variables are initialized to 0. Automatic and register variables have undefined initial values. Variables can be defined and initialized at the same time `int x = 1`. For external and static variables initialization is done once. For automatic and register variables, the value doesn't have to be a constant. It can be any other previously defined value and function. 
 
-Arrays can be initialized with a list enclosed in braces, separated by commas: `int days[] = { 31, 28, 31, 5, 10, 1, 2 };`. If the size of the array is not explicitly stated, the compiler will count the number of variables in the initialization (7 in the above example). If there are fewer initialized variables than the size of the array, then the rest of the elements will be set to 0. There is no way to set a value in the middle of an array without initializing the preceding values. For char arrays, there is a shortcut for initialization by using a string `char pattern = "would";`. 
+When not explicitly initialized, external and static variables are initialized to 0. Automatic and register variables have undefined initial values. Variables can be defined and initialized at the same time `int x = 1`. For external and static variables initialization is done once. For automatic and register variables, the value doesn't have to be a constant. It can be any other previously defined value and function.
+
+Arrays can be initialized with a list enclosed in braces, separated by commas: `int days[] = { 31, 28, 31, 5, 10, 1, 2 };`. If the size of the array is not explicitly stated, the compiler will count the number of variables in the initialization (7 in the above example). If there are fewer initialized variables than the size of the array, then the rest of the elements will be set to 0. There is no way to set a value in the middle of an array without initializing the preceding values. For char arrays, there is a shortcut for initialization by using a string `char *str = "Hello World";`.
 
 
 ### 4.10 Recursion
-C functions can be used recursively. Each recursive call resets all the automatic variables. Recursion doesn't save storage, nor is it faster. It is however more compact and often easier to understand. 
+
+C functions can be used recursively. Each recursive call resets all the automatic variables. Recursion doesn't save storage, nor is it faster. It is however more compact and often easier to understand.
 
 
 ### 4.11 The C Preprocessor
-Most common features of preprocessors are: `#include`, which includes contents of a file; `#define` which replaces a token by a sequence of characters. A file can be included by writing either `#include "filename"` or `#include <filename>`. Search for a filename usually begins in the directory where the source program was found. 
 
-Define statements have the form `#define name replacement text`. The scope of a defined name is until the end of the source file. A definition name doesn't have to be a constant in the strictest sense, for example `#define forever for (;;)` or `#define max(A, B) ((A) > (B) ? (A) : (B))`. The second example is also called a macro, where the replacement text changes based on the input values, similar to a function. 
+Most common features of preprocessors are: `#include`, which includes contents of a file; `#define` which replaces a token by a sequence of characters. A file can be included by writing either `#include "filename"` or `#include <filename>`. Search for a filename usually begins in the directory where the source program was found.
+
+Define statements have the form `#define name replacement text`. The scope of a defined name is until the end of the source file. A definition name doesn't have to be a constant in the strictest sense, for example `#define forever for (;;)` or `#define max(A, B) ((A) > (B) ? (A) : (B))`. The second example is also called a macro, where the replacement text changes based on the input values, similar to a function.
 
 Preprocessing itself can also be controlled with conditional statements. If a #if statement is non-zero, then subsequent lines until an #endif or elif are included. This is useful to avoid including files multiple times:
 ```
@@ -311,12 +381,14 @@ Preprocessing itself can also be controlled with conditional statements. If a #i
 
 
 
-## 5 - Pointers and Arrays
+5 - Pointers and Arrays
+-----------------------
 
-A pointer is a variable that contains the address of a variable. 
+A pointer is a variable that contains the address of a variable.
 
 
 ### 5.1 Pointers and Addresses
+
 Typical machines have arrays of consecutive numbered or addressed memory cells that can be manipulated individually or as a group. One byte is a char, two bytes a short and four adjacent bytes a long. The unary operator & gives the address to an object. `p = &c;` assigns the address of c to variable p; p now points to c. Unary operator \*, is the indirection or dereferencing operator. When applied to a pointer, \* accesses the object the pointer points to.
 ```
 int x = 1, y = 2, z[10];
@@ -331,7 +403,8 @@ Every pointer points to a specific data type (exception: pointer to void can hol
 
 
 ### 5.2 Pointers and Function Arguments
-C passes arguments to functions by value, hence a function can not alter a variable when called. To alter the values, we have to pass pointers to the values that we want to change in memory. 
+
+C passes arguments to functions by value, hence a function can not alter a variable when called. To alter the values, we have to pass pointers to the values that we want to change in memory.
 ```
 swap(&a, &b);
 
@@ -345,8 +418,9 @@ void swap(int *px, int *py)
 ```
 
 
-### 5.3 Pointers and Arrays 
-Any operation that can be done with array subscripting can also be done with pointers (using pointers is faster, but harder to understand). 
+### 5.3 Pointers and Arrays
+
+Any operation that can be done with array subscripting can also be done with pointers (using pointers is faster, but harder to understand).
 ```
 int a[10];	// Define array of size 10
 int *pa;	// pa is pointer to int
@@ -362,7 +436,8 @@ There is a difference between array names and pointers: pointers are variables s
 
 
 ### 5.4 Address Arithmetic
-If p is a pointer to an array, then `p++` makes p point to the next element and `p+=i` makes p point to the element i elements passed the current one. To initialize a character pointer we can write `static char *pointer_name = char_array_name;`, or equivalently `static char *pointer_name = &char_array_name[0];`. 
+
+If p is a pointer to an array, then `p++` makes p point to the next element and `p+=i` makes p point to the element i elements passed the current one. To initialize a character pointer we can write `static char *pointer_name = char_array_name;`, or equivalently `static char *pointer_name = &char_array_name[0];`.
 
 Pointers and integers are not interchangeable. Zero is the only exception, because we can compare and assign a pointer to 0. A common standard is to use NULL defined in `stdio.h>` instead of 0 for a pointer. Any pointer can be compared for equality or inequality with zero (==, !=, <=, > etc.). Pointer manipulations automatically take into account the type of object they are pointing to (int, char, double are all valid). Legal pointer operations include:
 1. Assignment of pointers of the same type.
@@ -372,18 +447,22 @@ Pointers and integers are not interchangeable. Zero is the only exception, becau
 
 
 ### 5.5 Character Pointers and Functions
+
 String constants such as "Hello World" are terminated with a \0 at the end of the char array. There is differences between strings defined by pointers compared to strings defined with an array. An array definition `char hello[] = "hello world";` creates a sequence of chars and ends with a \0 character. Individual characters can be changed, but the array always refers to the same memory. A pointer assignment `char *hello = "hello world";` initializes by pointing to the first char in the string. Pointers can be modified to point to another place in the string, but pointers can't modify string contents. Incrementing and decrementing is legal as usual `*p++` or `*--p`.
 
 
 ### 5.6 Pointer Arrays; Pointers to Pointers
-Pointers are variables, so they can be stored in arrays. In an array of pointers, elements can be modified by exchanging the pointers. 
+
+Pointers are variables, so they can be stored in arrays. In an array of pointers, elements can be modified by exchanging the pointers.
 
 
 ### 5.7 Multi-dimensional Arrays
+
 C has rectangular multi-dimensional arrays. In multi-dimensional arrays, each element stores another array. The subscripts are `array[i][j]`, where i states the row and j the column. To pass an array to a function, the number of columns must be included; the number of rows is irrelevant. Hence `function(int array[i][j])`, `function(int array[][j])` and `function(int (*array)[j])` are equivalent. The parenthesis are necessary because brackets [] have higher precedence than \*.
 
 
 ### 5.8 Initialization of Pointer Arrays
+
 To initialize a pointer array:
 ```
 static char *name[] = {
@@ -395,31 +474,38 @@ static char *name[] = {
 
 
 ### 5.9 Pointers vs. Multi-dimensional Arrays
+
 There's a difference between two-dimensional arrays `int a[i][j]` and an array of pointers `int *b[i]`. Both `a[i][j]` and `b[i][j]` are legal references to an int. But a is truly two-dimensional: i\*j int locations are set aside, and we calculate 20\*i+j to find the element `a[i,j]`. The pointer definition b only sets aside 10 uninitizialized pointers; each individual row of a pointer array can have varying lengths (e.g. one pointer could have 0 elements or 50). This is an advantage, if fixed sizes of the array aren't necessary.
 
 
 ### 5.10 Command-line Arguments
+
 Main is called with two arguments:
 1. argc or argument count, is the number of command line arguments.
 2. argv or argument vector, is a pointer to an array of char strings, each containing an argument.
 
-In `echo hello, world`, `argc` is 3, `argv[0] = "echo"`, `argv[1] = "hello, "` and `argv[2] = "world"`. 
+In `echo hello, world`, `argc` is 3, `argv[0] = "echo"`, `argv[1] = "hello, "` and `argv[2] = "world"`.
 
 
 ### 5.11 Pointers to Functions
+
 A function is not a variable, but pointers can be assigned, passed and returned by functions. For example we can pass a pointer to a function by `void function(arguments, void (*function2)(arguments))`.
 
 
 ### 5.12 Complicated Declarations
+
 Because of precedence, declarations can be hard to read. `int *f();` is a function returning a pointer to an int; `int (*pf)();` is a pointer to a function returning an int. `dcl` converts a C declaration into a word description.
 
 
 
-## 6 - Structures
-Structures are a collection of one or more variables grouped together under a single name. 
+6 - Structures
+--------------
+
+Structures are a collection of one or more variables grouped together under a single name.
 
 
 ### 6.1 Basics of Structures
+
 To create an object for a point:
 ```
 struct point {
@@ -434,10 +520,11 @@ struct rect screen;
 screen.pt1.x;
 ```
 
-The keyword `struct` introduces the structure declaration. Structure tag `point` names the structure (optional). Variables inside the structure are called members. To define a variable with a strcture type `struct point pt;` or for unnamed structures `struct maxpt = { 320, 200 };`. To refer to a member of a structure C uses the syntax `structure-name.member`. For example to print the coordinates `printf("%d,%d", pt.x, pt.y);`. Structures can be nested inside other structures.
+The keyword `struct` introduces the structure declaration. Structure tag `point` names the structure (optional). Variables inside the structure are called members. To define a variable with a structure type `struct point pt;` or for unnamed structures `struct maxpt = { 320, 200 };`. To refer to a member of a structure C uses the syntax `structure-name.member`. For example to print the coordinates `printf("%d,%d", pt.x, pt.y);`. Structures can be nested inside other structures.
 
 
 ### 6.2 Structures and Functions
+
 Structures have to be copied or assigned as a unit. They can not be used in comparison operations. Structures can be passed and returned by functions.
 ```
 struct addpoint(struct point p1, struct point p2)
@@ -452,6 +539,7 @@ Structure pointers are like pointers to ordinary variables `struct point *pp;`. 
 
 
 ### 6.3 Arrays of Structures
+
 C provides the compile time unary operator `sizeof` to compute the size of any object. Structures can also be used in arrays:
 ```
 struct key {
@@ -462,6 +550,7 @@ struct key {
 
 
 ### 6.4 Pointers to Structures
+
 When a program returns a complicated type, we can use the alternate style below to make the program easier to read.
 ```
 struct key *
@@ -470,12 +559,13 @@ binsearch(char *word, struct key *tab, int n)
 
 
 ### 6.5 Self-referential Structures
+
 To keep a list sorted, we can place elements into their proper position based on the order in which they arrive. A binary tree contains one node per element, with each node containing:
 - pointer to the data of the element
 - pointer to the left child node
 - pointer to the right child node
 
-Binary search trees can significantly reduce the time of search O(logn). However if the tree becomes "unbalanced", the running time will grow closer to that of linear search O(n). A node is most conveniently written as a structure:
+Binary search trees can significantly reduce the time of search O(logn). However if the tree becomes unbalanced, the running time will grow closer to that of linear search O(n). A node is most conveniently written as a structure:
 ```
 struct node {
 	char *word;
@@ -486,14 +576,17 @@ struct node {
 
 
 ### 6.6 Table Lookup
+
 A hash-search converts an incoming name into a small non-negative integer, used to index into an array. The standard way to walk along a linked list is a for loop `for (ptr = head; ptr != NULL; ptr = ptr->next)`.
 
 
 ### 6.7 Typedef
-`typedef` is a facility that creates new data type names; `typedef int Length;` makes the name Length a synonym for int. `typedef char *String;` makes String a synonym for a character pointer. Typedef does not create a new type; it only adds a name for an existing type similar to `#define`. 
+
+The typedef facility creates new data type names; `typedef int Length;` makes the name Length a synonym for int. `typedef char *String;` makes String a synonym for a character pointer. Typedef does not create a new type; it only adds a name for an existing type similar to "#define".
 
 
-### 6.8 Unions 
+### 6.8 Unions
+
 Unions are variables that hold objects of different types and sizes; the compiler keeps track of size and alignment. In the example below, the compiler will make u big enough to hold the largest data type. Members of a union are accessed by `union-name.member` or `union-pointer->member`.
 ```
 union u_tag {
@@ -505,6 +598,7 @@ union u_tag {
 
 
 ### 6.9 Bit-fields
+
 Bit-fields are sets of adjacent bits within a single storage unit called "words". Fields are referenced like structures `flags.is_keyword`. Bit-fields can sometimes be used to effectively store information on an identifier.
 ```
 struct {
@@ -516,13 +610,16 @@ struct {
 
 
 
-## 7 - Input and Output
+7 - Input and Output
+--------------------
 
 ### 7.1 Standard Input and Output
-The simplest input mechanism is to read one character at a time with `int getchar(void)`. Getchar returns the value of the char, or EOF when it reaches the end of the file. To get input from a file instead of the keyboard use `prog <infile`. To output a single character we can use the function `int putchar(int)`. Putchar returns the character written, or EOF if an error occurs. To output characters into a file instead of the default screen write `prog >outfile`. `putchar` and `printf` can be interleaved. To use these input/output functions the line `#include <stdio.h>` is required. 
+
+The simplest input mechanism is to read one character at a time with `int getchar(void)`. Getchar returns the value of the char, or EOF when it reaches the end of the file. To get input from a file instead of the keyboard use `prog <infile`. To output a single character we can use the function `int putchar(int)`. Putchar returns the character written, or EOF if an error occurs. To output characters into a file instead of the default screen write `prog >outfile`. `putchar` and `printf` can be interleaved. To use these input/output functions the line `#include <stdio.h>` is required.
 
 
 ### 7.2 Formatted Output - printf
+
 `printf` converts, formats and prints it's arguments into the standard output, and returns the number of characters printed. `sprintf` functions similar to `printf` but stores the output in a string. The string inside printf contains either ordinary characters, or a conversion specification (which begins with a %). Parameters for the conversion specification in order:
 1. Minus sign: specifies left adjustment.
 2. Number: specifies minimum field width.
@@ -531,7 +628,8 @@ The simplest input mechanism is to read one character at a time with `int getcha
 5. Letter: `d` to print an integer, `f` to print a float, `s` to print a string, `c` to print a char, `h` to print as short, `l` to print as long.
 
 
-### 7.4 Formatted Input - Scanf
+### 7.4 Formatted Input - scanf
+
 The function `scanf` is the input analog of `printf`. `scanf` reads characters from the standard input, and stores the results. It stops when it exhausts it's format string, or an input fails to match a control specification. Similar to printf, scanf has conversion character rules. Scanf returns the number of successfully matched and assigned input items. Arguments to scanf must be pointers.
 ```
 /* Read in dates of the form: 25 Dec 1988 */
@@ -542,6 +640,7 @@ scanf("%d %s %d", &day, monthname, &year);
 
 
 ### 7.5 File Access
+
 To access a file outside the standard input and output we can use other functions. `fopen` takes an external name such as `filename.c` and returns a pointer to read & write the file. To declare a file pointer:
 ```
 #include <stdio.h>
@@ -558,28 +657,31 @@ The available modes of fopen include "r" read, "w" write and "a" append. `getc` 
 
 
 ### 7.6 Error Handling - Stderr and Exit
-`stderr` writes output onto the screen even if the standard output is redirected. The standard library function `exit` terminates a program when it is called. It returns a value of 0 if no errors occurred; else it returns a non-zero value for abnormal situations. Return and exit are equivalent inside of the main function, but exit can also be called from within other functions. 
+
+`stderr` writes output onto the screen even if the standard output is redirected. The standard library function `exit` terminates a program when it is called. It returns a value of 0 if no errors occurred; else it returns a non-zero value for abnormal situations. Return and exit are equivalent inside of the main function, but exit can also be called from within other functions.
 
 
 ### 7.7 Line Input and Output
-The standard library includes input and output functions `fgets` and `fputs` that are similar to `getline`. `char *fgets(char *line, int maxline, FILE *fp)` reads at most maxline characters starting at the next input line from file fp into char array line. `int fputs(char *line, FILE *fp)` writes the string line to output file fp. 
+
+The standard library includes input and output functions `fgets` and `fputs` that are similar to `getline`. `char *fgets(char *line, int maxline, FILE *fp)` reads at most maxline characters starting at the next input line from file fp into char array line. `int fputs(char *line, FILE *fp)` writes the string line to output file fp.
 
 
 ### 7.8 Miscellaneous Functions
+
 ```
 /* Functions in <string.h> */
 strcat(s,t);	// concatenate t to end of s
-strncmp(s,t)	// return negative, zero, positive for s<t, s==t, s>t 
+strncmp(s,t)	// return negative, zero, positive for s<t, s==t, s>t
 strcpy(s,t)	// copy t to s
 strlen(s)	// return length of s
 srtchr(s,c)	// return pointer to first c in s, or NULL
 
-/* Functions in <ctype.h> */   
-isalpha(c)	// non-zero if c is alphabetic   
+/* Functions in <ctype.h> */
+isalpha(c)	// non-zero if c is alphabetic
 isdigit(c)	// non-zero if c is digit
 
 /* Functions in <math.h> */
-sin(x);			// sine in radians 
+sin(x);			// sine in radians
 cos(x);			// cosine in radians
 exp(x);			// exponential function e^x
 log(x);			// natural logarithm
@@ -597,37 +699,45 @@ ip = (int *) calloc(n, sizeof(int));
 
 
 
-## 8 - The UNIX System Interface
+8 - The UNIX System Interface
+-----------------------------
 
 ### 8.1 File Descriptors
-In UNIX operating systems, all input and output is read and written by files. To write to a file, the system checks permissions and gives a small positive integer called a file descriptor (similar to file pointer). 
+
+In UNIX operating systems, all input and output is read and written by files. To write to a file, the system checks permissions and gives a small positive integer called a file descriptor (similar to file pointer).
 
 
 ### 8.2 Low Level I/O - Read and Write
-Input and output uses C functions `read` and `write`. The return value for both is the number of bytes transferred. 
+
+Input and output uses C functions `read` and `write`. The return value for both is the number of bytes transferred.
 ```
 int n_read = read(int fd, char *buf, int n);
 int n_written = write(int fd, char *buf, int n);
-``` 
+```
 
 
 ### 8.3 Open, Creat, Close, Unlink
+
 Files that are different from standard input, standard output and error must be explicitly opened using system calls `open` and `create`. Usually there is a limit on the number of concurrent files that can be opened. Function `close(int fd)` breaks the connection between the file descriptor and the program.
 
 
 ### 8.4 Random Access - Lseek
+
 `lseek` allows a file to be read and written in any order `long lseek(int fd, long offset, int origin);`. It returns a long that gives the new position in the file, or -1 if an error occurs.
 
 
 ### 8.5 Example - An implementation of Fopen and Getc
-Functions and variables in `<stdio.h>` preferably start with an underscore to avoid colliding with the user's program. 
+
+Functions and variables in `<stdio.h>` preferably start with an underscore to avoid colliding with the user's program.
 
 
 ### 8.6 Example - Listing Directories
+
 UNIX command `$ ls` prints the names of the files in a directory. A directory is a file that contains a list of filenames, and each files location. The location of a file is the `inode list`, which stores all the information about the file.
 
 
 ### 8.7 Example - A Storage Allocator
+
 Space that `malloc` manages may not be adjacent. Each block of storage contains a pointer to the next block. The last storage block points to the first block. When the user request space, the adjacent blocks are scanned until a big enough block is found. If the block is too big, it is split and returned to the user, else it is simply returned.
 
 

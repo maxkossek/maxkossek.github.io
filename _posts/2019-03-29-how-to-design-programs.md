@@ -10,17 +10,6 @@ sitemap:
     lastmod: 2019-10-21
 ---
 
-<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/htdp-cover.jpg" alt="How to Design Programs Book Cover">
-
-The program "design recipe" consists of 6 steps:
-1. Start with problem analysis and data definitions
-2. Write a signature, purpose statement and header
-3. Give functional examples of the program
-4. Keep function templates or inventories of what is given and what needs to be computed
-5. Code the function definition and evaluate results
-6. Test and revise based on failures / successes
-
-
 <div class="toc">
 <strong>Table of Contents:</strong>
 <ol>

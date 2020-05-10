@@ -7,11 +7,8 @@ tags: [mathematics]
 author: "Max Kossek"
 description: Summary of concepts in Linear Algebra and Steven Leon's Book.
 sitemap:
-    lastmod: 2019-10-22
+    lastmod: 2019-05-09
 ---
-
-<img style="float: right; width: 25%; margin: 0 1rem;" src="/assets/images/book-covers/linearalgebra-cover.jpg" alt="Linear Algebra with Applications Book Cover">
-Linear Algebra with Applications is a linear algebra textbook focused on engineering applications. The book starts with an introduction to the concept of matrices. Matrix operations, determinants and similar transformation techniques are discussed. The middle of the book focuses on vector spaces and how they can be transformed. Eigenvalues and eigenvectors appear towards the end of the book.
 
 <div class="toc">
 <strong>Table of Contents:</strong>

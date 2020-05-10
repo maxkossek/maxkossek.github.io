@@ -7,7 +7,7 @@ tags: [computer science]
 author: "Max Kossek"
 description: Book Notes for the 5th edition of the book Computer Organization and Design by Patterson & Hennessy
 sitemap:
-    lastmod: 2019-10-22
+    lastmod: 2019-05-09
 ---
 
 
