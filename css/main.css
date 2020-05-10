@@ -1,5 +1,6 @@
 /* Layout */
 body {
+	font-family: sans-serif;
 	text-rendering: optimizeLegibility;
 	padding: 0.5rem;
 }
@@ -8,7 +9,6 @@ main, footer, header {
 }
 footer {
 	border-top: 1px solid;
-	padding-top: 1rem;
 }
 
 /* Code */
