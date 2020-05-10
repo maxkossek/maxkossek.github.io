@@ -1,0 +1,1256 @@
+---
+layout: post
+title: Perl
+date: 2020-03-26
+categories: [usage]
+tags: [programming language]
+author: "Max Kossek"
+description: Personal reference for the Python scripting language.
+sitemap:
+    lastmod: 2020-05-10
+---
+
+NAME
+====
+
+Perl - General-purpose, interpreted, dynamic programming language.
+
+
+DESCRIPTION
+===========
+
+Perl scripts conventionally have a ".pl" file extension, Perl modules have a ".pm" file extension, and Pod documentation files have a ".pod" file extension. Perl script should start with a shebang line "#!/usr/bin/perl" to indicate the script type to the shell. Turning on strict compilation and warnings is highly recommended (using `use strict;`, `use warnings;`, and by enabling the "-w" warnings flag). The `perl(1)` command invokes a Perl program from the command line. Modules are installed using `cpan(1)`.
+```
+$ perl file.pl
+$ cpan Acme:Meta
+```
+
+Perl statements must end with a semicolon (";"). The `exit()` function exits a Perl script with an optional exit code.
+
+The use of parenthesis in built-in function calls is optional. For a user-defined function, parenthesis are required, unless the function is predeclared. To differentiate between built-in and user-defined functions, some conventions recommend always using parentheses with user-defined functions, and not using parenthesis for built-in functions.
+
+Comments start with a hashtag "#". Lines starting with the equal sign ("=") are interpreted as the start of a section of embedded documentation. Writing "=cut" ends a documentation section. Some conventions recommend adding POD block documentation after `__END__` at the bottom of the file.
+```
+__END__
+
+=head1 NAME
+
+Module - Module providing some functionality
+
+=head1 DESCRIPTION
+
+Short description of what the module does.
+
+=cut
+```
+
+
+
+INPUT / OUTPUT
+==============
+
+The `print` function is the standard output function for printing strings or list of strings. Enclosing a string in double quotes allows replacement of variables and special characters. Single quotes do not interpolate values.
+```
+print "Hello, World!";
+print("Hello, World!");
+
+$x = 5;
+
+# Prints "x = 5"
+print "x = $x\n"
+
+# Prints "x = $x\n"
+print 'x = $x\n"
+```
+
+The `printf` function provides finer grained control over the output.
+```
+printf "Number: %d\n", $num;
+printf "Str: %s\n", $str;
+printf "Float: %3.2f\n", $float;
+printf "%${column_width}s\n", $str;
+```
+
+The `say` function is just like `print`, except that it implicitly appends a newline. The `say` function is only available if the say feature is enabled.
+```
+say "Hello World";
+```
+
+Strings spanning multiple lines can be connected using the "," operator.
+```
+print "Hello ", $x, "!";
+print "This is a long string spanning multiple lines",
+	" this is the second line";
+```
+
+"<ARGV>" or "<>" reads from the standard input. `<STDIN>` reads from the file that has the 0 file descriptor in the current process. The `chomp` function removes all trailing newlines from the input string. The `chomp` function should be used for most input processing.
+```
+printf = "Enter your name: ";
+my $name = <>;
+chomp $name;
+
+my @aoa;
+while (<>) {
+	push @aoa, [split];
+}
+```
+
+
+
+FILE HANDLING
+=============
+
+The `open` function initializes a filehandle. Filehandles can be used to read and write files. The "<" symbol specifies that the file should be opened for reading, while the ">" symbol opens the file for writing. The `close` function closes a filehandle.
+```
+my $file = "in.txt"
+open my $fr, "<", $file or die "Error opening $file: $OS_ERROR";
+open my $fw, ">", "out.txt" or die;
+my @lines = <$fr>;
+print {$fw} "Writing to file\n" or croak "Couldn't write to $fw: $OS_ERROR";
+close $fw or die "Error closing file $fw: $OS_ERROR";
+```
+
+To read a file line by line:
+```
+open my $fr, "<", $file or die "Could not open file $file: $OS_ERROR\n";
+while (my $line = <$fr>) {
+	chomp $line;
+}
+close($fr);
+```
+
+Read a whole file at once:
+```
+open my $fh, "<", $file or die $!; 
+local $/; 
+my $content = <$fh>;
+close $fh;
+```
+
+The `unlink` function deletes a list of files. The `rename` function renames a file. The `copy` and `move` functions in the "File::Copy" module copy a file from one location to another.
+```
+unlink "file.txt";
+unlink @files or warn "Remove of $_ failed: $!\n";
+
+rename $old, $new;
+
+use File::Copy;
+copy "old.txt", "new.txt";
+move $old, $new or die "Move from $old to $new failed: $!\n";
+```
+
+To print all the files in a directory:
+```
+foreach (<*>) {
+	print "$_\n";
+}
+
+opendir DIR, $dir or die "Can't open $dir: $!\n";
+foreach (readdir DIR) {
+	print "$_\n";
+}
+```
+
+Command line arguments are stored in ARGV--the argument vector. $#ARGV stores the argument count.
+```
+my $x = $ARGV[0];
+$num_args = $#ARGV + 1;
+```
+
+The `stat` function returns a 13-element giving the status info for a file.
+```
+my ($dev,$ino,$mode,$nlink,$uid,$gid,$rdev,$size,
+	$atime,$mtime,$ctime,$blksize,$blocks)
+	= stat($filename);
+```
+
+To check the properties of a file, Perl supports the following unary operators:
+- "-r": File readable by EUID.
+- "-w": File writable by EUID.
+- "-x": File executable by EUID.
+- "-o": File owned by EUID.
+- "-r": File readable by RUID.
+- "-w": File writable by RUID.
+- "-x": File executable by RUID.
+- "-o": File owned by RUID.
+- "-e": File exists.
+- "-z": File has size zero (empty).
+- "-s": File is non-empty.
+- "-f": File is a plain file.
+- "-d": File is a directory.
+- "-l": File is a symbolic link.
+- "-p": File is a named pipe (FIFO).
+- "-s": File is a socket.
+- "-b": File is a block special file.
+- "-c": File is a character special file.
+- "-t": Filehandle opened to a tty.
+- "-u": File has SUID bit set.
+- "-g": File has SGID bit set.
+- "-k": File has sticky bit set.
+- "-T": File is in ASCII or UTF-8.
+- "-B": File is in binary.
+- "-M": Script start time minus file modification time.
+- "-A": Script start time minus file access time.
+- "-C": Script start time minus inode change time.
+
+
+Reserved filehandling variable names:
+- $ARGV: The name of the current file when reading from "<>".
+- @ARGV: Array containing the command-line arguments intended for the script.
+- ARGV: Filehandle that iterates over command-line filenames in @ARGV.
+- ARGVOUT: Filehandle that points to the currently open output file.
+- $OUTPUT_FIELD_SEPARATOR or $OFS or $,: Output field separator for the print operator. What is printed when there is a "," in your print statement.
+- $INPUT_LINE_NUMBER or $NR or $.: Current line number for the last filehandle accessed.
+- $INPUT_RECORD_SEPARATOR or $RS or $/: Input record separator, newline by default.
+- $OUTPUT_RECORD_SEPARATOR or $ORS or $\: Output record separator for the print operator. The value that is printed after the last of print's arguments.
+- $OUTPUT_AUTOFLUSH or $|: If set to nonzero, forces a flush right away and after every write or print on the currently selected output channel.
+- `${^LAST_FH}`: Reference to the last-read filehandle.
+
+
+
+OPERATORS
+=========
+
+Mathematical operators: +, -, *, /, %, **;
+```
+$x = 5 + 5 * 2;
+$even = $x % 2;
+$sqr = $x ** 2;
+```
+
+Bitwise operators: &, |, ^, ~, <<, >>.
+```
+$x = $x & $mask;
+```
+
+Assignment operators: =, +=, -=, *=, /=, %=, **=, ++, --. "$x++" is post-autoincrement, while "++$x" is pre-autoincrement.
+```
+$x += $y;
+$x++;
+$y = ++$y;
+```
+
+Logical operators: and, &&, or, ||, xor, ^, not, !. The unnamed operators (&&, ||, ^, !) have higher precedence than the named operators (and, or, xor, not). Use the named operators during flow control operations.
+```
+if (($x == 5) && ($y || $z)) {
+	$x++;
+}
+
+close $fh or die "Could not close $fh: $!";
+```
+
+Comparison operators: ==, !=, !, <=> (numeric comparison), <, <=, >, >=.
+```
+if ($x > 0) {
+	print "$x\n";
+}
+```
+
+String comparison operators: eq, ne, gt, lt, ge, le, cmp. The "cmp" operator returns -1, 0, or 1 depending on whether the left argument is stringwise less than, equal to, or greater than the right argument.
+```
+if ($y eq "hello") {
+	print "$y world\n";
+}
+if ("a" < "b") {
+	print "Always executes\n";
+}
+```
+
+String operators: . (concatenation), x (repetition).
+```
+$my_str = "hello " . $y;
+$my_str = "hello" x 3;
+```
+
+Range operator: "..".
+```
+@my_num_array = (1..10);
+@my_str_array = ("a".."z");
+```
+
+
+
+VARIABLES
+=========
+
+Perl supports 3 kinds of variables:
+- Scalars, containing a single string or numerical value. The variable must start with a dollar sign ("$"). Scalars are initialized to 0 and "".
+- Arrays, containing a randomly accessed ordered set of values. The variable name must start with an at sign ("@").
+- Hashes, containing key-value pairs efficiently accessed per key. The variable name must start with a percentage sign ("%").
+```
+$x = 5;
+$y = "hello world";
+
+@num_list = (1, 2, 3);
+$num_list[3] = 4;
+@str_list = ("a", "b", "c");
+
+%kv = ("a" => 1, "b" => 2, "c" => 3);
+print "a = $kv{\"a\"}\n";
+$b = "b";
+print "b = $kv{$b}\n";
+```
+
+Scalars can be assigned as decimal, binary (prefix "0b"), or hexadecimal (prefix "0x"). Perl supports a number of builtin math functions: abs, cos, exp, hex, rand, sin, sqrt.
+```
+$decimal = 7;
+$binary = 0b0101;
+$hexadecimal = 0xf2;
+
+print sqrt 30;
+print hex "f3e";
+```
+
+Variable names are case sensitive, must begin with a letter or underscore, and may contain letters, digits, underscores, or the package qualifiers "::" or "'". Using "strict" mode require you to declare your variables using the "my" keyword. The "my" keyword signifies that the variable will have a local scope. Multiple variables can be declared at once by placing them inside parentheses.
+```
+my $x = 1;
+my $X = 100;
+
+my $local_var = 1;
+my ($a, $b) = (1, 2);
+my ($c, $d) = (0) x 2;
+```
+
+The `defined` function checks if a location has been defined. It returns a Boolean value based on whether its argument has a value other than the undefined value "undef". Assigning "undef" to a variable returns it to its unitialized state.
+```
+$x = 5;
+print "defined" if defined $x;
+$x = undef;
+```
+
+The `constant` pragma declares a variable as a constant. Constant names must begin with a letter or underscore. Perl replaces constant values at compile time.
+```
+use constant PI		=> 4 * atan2(1, 1);
+use constant DEBUG	=> 0;
+
+use constant {
+	JAN	=> 1;
+	FEB	=> 2;
+	MAR	=> 3;
+};
+```
+
+The "state" keyword declares a lexically scoped variable that is not reinitialized whenever its enclosing block is entered.
+```
+sub sum {
+	sum $state;
+	$state += $_[0];
+}
+```
+
+Some variable names are reserved for special purposes. Writing `use English;` at the top of the file, allows you to use the string versions of the built-in variables.
+
+Reserved system variable names:
+- $ARG or $_: Default input and pattern-searching space. Used as the default argument / variable for many functions and language structures.
+- @ARG or @_: Contains the parameters passed to a subroutine.
+- $LIST_SEPARATOR or $": Elements of an array are separated by this value during interpolation into a double-quoted string.
+- $PROCESS_ID or $PID or $$: Process number of the Perl script.
+- $PROGRAM_NAME or $0: Name of the program being executed.
+- $REAL_GROUP_ID or $GID or $(: Real GID of the process.
+- $EFFECTIVE_GROUP_ID or $EGID or $): Effective GID of the process.
+- $REAL_USER_ID or $UID or $<: Real UID of the process.
+- $EFFECTIVE_USER_ID or $EUID or $>: Effective UID of the process.
+- $SUBSCRIPT_SEPARATOR or $SUBSEP or $;: Subscript separator for multidimensional array emulation.
+- %ENV: Hash containing the current environment.
+- $SYSTEM_FD_MAX or $^F: Maximum system file descriptor.
+- @INC: Array contains the list of places that "do EXPR", "require", and "use" constructs look for library files.
+- %INC: Hash containing entries for each filename included via the "do", "require", or "use" operators.
+- @ISA: A list of the class's parent classes.
+- $^M: Emergency memory pool.
+- $OSNAME or $^O: Name of the operating system.
+- %SIG: Hash containing signal handlers for signals.
+- $BASETIME or $^T: Time at which the program began executing.
+- $PERL_VERSION or $^V: Current version of the Perl interpreter.
+- $EXECUTABLE_NAME or $^X: Name used to execute Perl (argv[0]).
+
+
+
+STRINGS
+=======
+
+Literal strings can be surrounded by double or single quotes. However, only the double quotes interpolate variables and special characters.
+
+Strings can be concatenated using the "." operator or by evaluating an existing variable inside a string. The "x" operator replicates a string.
+```
+$str .= " world!";
+$str = "${str} world!";
+$str = "hello " . $str . "!";
+
+$repeat = "abc" x 3;
+```
+
+The `lc` function returns a lowercased version of a string or expression. The `uc` function returns a uppercase version of a string or expression.
+```
+my $lower_case = lc $str;
+my $upper_case = uc $str;
+```
+
+The `length` function returns the length of a string.
+```
+my $len = length $str;
+```
+
+The `substr` function extracts a substring from a variable. The `split` function splits a string based on a substring pattern.
+```
+# Print last character of string.
+print substr $text, -1;
+# Store string until first occurence of "abc".
+$y = substr $x, 0, index $x, "abc";
+
+my @array = split "-", "2000-12-12";
+my ($a, $b) = split $FIELD_SEPARATOR, $record, $FIELD_COUNT + 1;
+```
+
+The `pack` function takes a list of values and converts it to a string. The `unpack` function takes a string and expands it into a list of values.
+```
+my($what,$where,$howmuch) = @_;
+unpack("x$where a$howmuch", $what);
+```
+
+The `join` function separates the elements of an array based on a field separator.
+```
+print join ",", @array;
+```
+
+The `reverse` function can be used in a scalar context to reverse strings.
+```
+print scalar reverse "edcba";
+```
+
+The `qw` function takes a list of barewords and quotes them.
+```
+my @array = qw(hello world abc);
+```
+
+
+
+ARRAYS
+======
+
+Values are assigned to an array in a parenthesized list. Arrays can store any type of scalar value. Array elements can be retrieved individually or as a slice.
+```
+my @array = (1, "abc", undef, 3.14);
+my @months = qw(jan feb mar apr);
+my @zeroed_array = (0) x 15;
+
+$array[0] = 2;
+my @sub_array = @array[0, 1];
+my @complete_array = @array[0..$#array];
+@complete_array = @array;
+```
+
+Prefixing the array name with "$#" allows you to set the size of an array. Converting the array back to a scalar returns its size. Perl automatically creates new space in an array if an assignment exceeds the maximum index. All the intervening elements are set to "undef".
+```
+$#array = 100;
+
+print scalar @array;
+my $array_size = @array;
+
+my @array = (1, 2);
+$array[5] = 1;
+
+my $last_element = $array[$#array];
+```
+
+An array slice looks similar to a regular array access except that the array keeps its leading "@" and you're allowed to specify more than one index in the square brackets.
+```
+@array[-1, -2, -3] = @active{'top', 'prev', 'backup'};
+
+($array[-1], $array[-2], $frames[-3]) =
+	($active{'top'}, $active{'prev'}, $active{'backup'});
+```
+
+The `shift` function shifts the first value of the array off and returns it, shortening the array by 1 and moving everything down. The `unshift` function adds an element to the beginning of an array, and shifts all other element up one index.
+```
+my $x = shift @array;
+
+unshift @array, $element;
+unshift @array, @add_array;
+```
+
+The `push` function treats the array as a stack, by appending it's arguments to the end of the array. The `pop` function pops and returns the last value of the array, shortening the array by one element. 
+```
+push @array, $element;
+push @array, @add_array;
+
+my $y = pop @array;
+```
+
+The `splice` function removes and replaces some elements with an optional offset with another list. In a list context, it returns the elements removed from the array. In a scalar context, it returns the last element removed, or `undef`.
+```
+splice(@a,@a,0,$x,$y);
+push(@a,$x,$y);
+
+splice(@a,-1);
+pop(@a);
+
+splice(@a,0,1);
+shift(@a);
+
+splice(@a,0,0,$x,$y);
+unshift(@a,$x,$y);
+
+splice(@a,$i,1,$y);
+$a[$i] = $y;
+```
+
+All Perl arrays are internally one-dimensional. However, multi-dimensional arrays can be simulated by storing references to other arrays inside an array. There are several ways to construct an array of references. The square brackets "[]" create an anonymous array, and return a reference to that array. Reference variables access array elements using the "->" operator.
+```
+my @aoa = ([1, 2, 3], [4, 5, 6], [7, 8], [9]);
+$array[0][0] = 0;
+$array[3][0] = "test";
+print "$array[0][0];
+
+my @a1 = (1, 2);
+my @a2 = (5, 6);
+my @a3 = (\@a1, [3, 4], \@a2, ["a", "b", "c"]);
+my @a3_ref = \@a3;
+print "$a3[3][0]\n";
+print "$a3_ref->[3][0]\n";
+foreach (@$a3) {
+	print "$_->[0]\n";
+}
+
+my $b1 = [1, 2];
+my @b2 = ($b1, 3);
+
+my $aoa_ref = [["a", "b"], [1, 2], [undef]];
+print $aoa_ref->[1][1];
+
+for my $i (1..10) {
+	@array = func($i);
+	$aoa[$i] = [@array];
+}
+```
+
+Hashes and arrays can be combined to form different types of multi-dimensional data structures.
+```
+$array[1][2];
+$array[1]{abc};
+$hash{abc}[2];
+$hash{abc}{dfe};
+```
+
+The `map` function evaluates an expression or block of expressions for each element on a list. It returns a list of the elements. The `grep` function applies an expression or block to a list of elements and returns the list of elements for which the expression returned true.
+```
+print map { "\t$_\n" } <*>;
+my @squares = map { $_ * $_ } @numbers;
+my @squares = map { $_ * $_ } grep { $_ > 5 } @numbers;
+
+print grep { /a/ } ("abc", "a", "world");
+print grep { $_ > 5 } (1, 2, 7, 99);
+@without_comment = grep(!/^#/, @input);
+```
+
+The `sort` function sorts the elements in an array. The `reverse` function returns a new list constructed from reversing the elements of the existing list. Calling `reverse scalar` reverses a scalar argument.
+```
+@unsorted = (1, 3, 4, 2);
+@sorted = sort @unsorted;
+
+@unsorted = ("a", "c", "b");
+@sorted = sort @unsorted;
+
+@sorted = sort { $a cmp $b } @unsorted_strings;
+@sorted = sort { $a <=> $b } @unsorted_numbers;
+
+@original = (5, 4, 3, 2, 1); 
+@reversed = reverse @original;
+
+my $reversed = scalar reverse $original;
+```
+
+The `first` function in "List::Util" returns the first element that satisfies the specified condition.
+```
+my $test_score = first { $_ > 50 } @grades;
+```
+
+
+
+HASHES
+======
+
+A hash is a set of key/value pairs. The parenthesis around the key values are optional.
+```
+my %hash = ("k1", "v1", "k2", "v2");
+
+my %hash = (
+	k1 => "v1",
+	"k2" => 10,
+);
+
+$hash{k1};
+$hash{"k1"};
+```
+
+The `keys` function returns the list of keys of a hash. The `values` function returns the list of values of a hash. The keys function can also be used to increase the number of buckets allocated for the hash, and to determine the size of a hash. The `values` function returns the list of values in a hash.
+```
+my @keys = keys %hash;
+my @values = values %hash;
+
+foreach my $key (keys %ENV) {
+	print $key, "=", $ENV{$key}, "\n";
+}
+
+keys %hash = 100;
+print scalar keys %hash;
+my $hash_size = keys %hash;
+```
+
+The `exists` operator checks if the specified element in the hash has ever been initialized. Calling `exists` on array values is strongly discouraged. The `exists` operator can also be used to check if a specified subroutine has ever been declared.
+```
+if (exists $hash{$key}) {
+	print "Exists\n";
+}
+if (defined $hash{$key}) {
+	print "Defined\n";
+}
+
+if (exists &subroutine) {
+	print "Exists\n";
+}
+```
+
+The `delete` function deletes a key/value pair from the hash. It returns the values of the deleted keys.
+```
+$deleted_scalar = delete $hash{foo};
+@deleted_array	= delete @hash{qw(foo baz)};
+```
+
+
+
+REFERENCES
+==========
+
+A reference is a scalar data type that defines the location of another data type value. References are created by using the backslash ("\") operator on a variable, subroutine, or value. De-referencing is done by prececeding the reference name with "$", "@", or "%", depending on the type of the reference. This is why it is important to keep track of the original data type of the reference.
+```
+$scalar = 5;
+$scalar_ref = \$scalar;
+print "$$scalar_ref\n";
+
+@array = ("a", "b");
+$array_ref = \@array;
+print "@$array_ref\n";
+print "$array_ref->[1]\n";
+
+%hash = ("a" => 1, "b" => 2);
+$hash_ref = \%hash;
+print $$hash_ref{"a"};
+
+sub subroutine { return $_[0] + $_[1]; }
+$sub_ref = \&subroutine;
+&$sub_ref($scalar, $scalar);
+$sub_ref->($scalar, $scalar);
+```
+
+To use a reference, replace the variable name with the reference enclosed in curly braces `{$ref}`. The braces can be dropped in a scalar value.
+```
+$scalar;
+${$s_ref};
+$$s_ref;
+
+@array;
+@{$a_ref};
+@$a_ref;
+
+$array[0];
+${$a_ref}[0];
+$$a_ref[0];
+$a_ref->[0];
+
+%hash;
+%{$h_ref};
+%$h_ref;
+
+$hash{KEY};
+${$h_ref}{KEY};
+$$h_ref{KEY};
+$h_ref->{KEY};
+
+subroutine(@args);
+${subroutine_ref}(@args);
+&$subroutine_ref(@args);
+$subroutine_ref->(@args);
+```
+
+References can be copied and stored like any other scalar value. The brackets ("[]") create a new anonymous array, and return a reference to that array. The curly braces ("{}") create a new anonymous hash, and return a reference to that hash.
+```
+my $array_ref = [1, "abc", undef, 4.5];
+my $href = {a = 1, b = 2};
+
+# The following two are equivalent.
+my $aref = [1, 2, 3];
+
+my @array = (1, 2, 3);
+my $aref = \@array;
+```
+
+Elements inside a reference variable can be accessed in two ways: `${aref}[3]` or `$aref->[3]`. Hash elements can be accessed similarly: `${$href}{"red"}` or `$href->{"red"}`.
+```
+${aref}[3]
+$aref->[3]
+
+${$href}{"red"}
+$href->{"red"}
+```
+
+Assigning a reference to another reference gives you two references to the same array. The anonymous array / hash operator should be used to copy an underlying array.
+```
+# Two references to the same array / hash.
+$a_ref2 = $a_ref1;
+$h_ref2 = $h_ref1;
+
+# Make new copy of the underlying array / hash.
+$a_ref2 = [@{$a_ref1}];
+$h_ref2 = {%{$h_ref1}];
+
+# References can point to the same location in memory.
+$a_ref1 = [1, 2, 3];
+$a_ref2 = $a_ref1;
+@$a_ref2[0] = 5;
+print "Now is 5 as well: $a_ref1->[0]\n";
+```
+
+The arrow operator ("->") is optional in between two subscripts.
+```
+$a[1]->[2] = 5
+$a[1][2] = 5
+```
+
+The `ref` function returns the variable type of a reference. The possible return values are: ARRAY, CODE, GLOB, HASH, REF, SCALAR.
+```
+print ref $example_ref;
+```
+
+
+
+SUBROUTINES
+===========
+
+Subroutines are declared using the "sub" keyword. Arguments to a function are collected in the special array `@_`. The individual function arguments can be accessed as $_[0], $_[1], $_[2], and so on. The "my" keyword confines a variable to the current scope. The `return` function returns a value from a subroutine. Writing "return;", causes a function to return false (0 or an empty list depending on the context).
+```
+sub subroutine_name { ... }
+
+sub greeting {
+	print "Hello World\n";
+}
+greeting();
+
+sub add {
+	my ($x, $y) = @_;
+	if ($y > 0) {
+		return $_[0] + $_[1];
+	}
+	else {
+		return $_[0] + $_[2];
+	}
+}
+add(5, 2);
+
+sub average {
+	my $count = scalar @_;
+	my $sum = 0;
+	foreach (@_) {
+		$sum += $_;
+	}
+	my $average = $sum / $count;
+	return $average;
+}
+average(1, 2, 5, 4.5, 10);
+
+sub max {
+	my $max = -1;
+	foreach (@_) {
+		if ($_ > $max) {
+			$max = $_;
+		}
+	}
+	return $max;
+}
+```
+
+Arrays and hashes can be passed to a subroutine by first creating a reference, and then passing the scalar to the subroutine. The reference can then be de-referenced inside the subroutine to reconstruct the original array or hash. Similarly, when returning a value, an array or hash should be converted to a reference first.
+```
+sub check_in_array {
+	my $needle = $_[0];
+	my $arrayref = $_[1];
+	my @haystack = @$arrayref;
+
+	foreach my $element (@haystack) {
+		if ($element eq $needle) {
+			print "In array\n";
+			return;
+		}
+	}
+	print "Not in array\n";
+}
+```
+
+The `wantarray` function returns true if the context of the currently executing subroutine is looking for a list value. This function is useful when you are trying to return a list or scalar depending on the context.
+```
+return wantarray ? @a : $x;
+```
+
+When calling a method on an object, the object is passed as the first argument to the method. Calling `$obj->subroutine($a, $b)` is equivalent to calling `subroutine($obj, $a, $b)`. It is standard for subroutines to assign the variable "$self" to the object.
+```
+sub example {
+	my $self = shift;
+	my ($a, $b) = @_;
+	...
+}
+
+sub example2 {
+	my ($self, $x) = @_;
+	return if 
+}
+```
+
+
+
+CONDITIONALS
+============
+
+Perl conditional statements execute based on whether the conditional value evaluates to "true" or "false". Perl does not support native boolean types, but the number 0, the strings "0" and "", the empty array (), and `undef` are all considered false in the context of condition evaluation.
+
+Perl supports several types of conditional statements:
+```
+if (condition) statement
+if (condition) {statement1; statement2; statement3;}
+if (condition) statement else statement
+if (condition) elsif (condition) statement else statement
+unless (condition) statement
+unless (condition) statement else statement
+unless (condition) elsif (condition) statement else statement
+
+if ($x > 0) {
+	print "Greater than 0";
+}
+elsif ($x < 0) {
+	print "Less than 0";
+}
+else {
+	print "Zero";
+}
+
+print "valid" if $x;
+$max = $x if $x > $max;
+```
+
+The ternary conditional operator "?" is a simplified version of `if (condition) statement else statement`.
+```
+(condition) ? statement1 : statement2
+
+(1 && 1) ? print "true" : print "false";
+```
+
+
+
+LOOPS
+=====
+
+Perl supports 5 basic loop structures: while, until, for, foreach, and do while.
+
+A "while" loop repeats a block while the condition remains true. The condition is tested before executing the block.
+```
+$count = 10;
+while ($count > 0) {
+	print "Countdown: $count\n";
+	$count--;
+}
+```
+
+An "until" loop repeats a block until the condition is false. The condition is evaluated before the block.
+```
+$count = 1;
+until ($count > 10) {
+	print "Countup: $count\n";
+	$count++;
+}
+```
+
+A "for" loop has an initialization, condition, and iteration statement. The initalizaiton statement is executed before the loop starts. The statement block is the executed while the condition remains true. The iteration statement is executed after each iteration.
+```
+for ($count = 1; $count < 10; $count++) {
+	print "Count: $count\n";
+}
+
+for my $i (0..$#array) {
+	print $array[$i];
+}
+```
+
+A "foreach" loop iterates over all the values inside an array, assigning a variable name to the next value from the array in each iteration.
+```
+@my_array = ("a", "b", "c");
+foreach my $i (@my_array) {
+	print "String: $i\n";
+}
+
+$sum += $_ foreach @array;
+
+foreach my $item (@array) { $item; }
+foreach (@array) { $_; }	
+foreach my $i (0..$#array) { $i; }
+```
+
+A "do while" loop repeats a statement block while the condition remains true. The condition is tested after executing the block.
+```
+$count = 10;
+do {
+	print "Countdown: $count\n";
+	$count--;
+} while ($count > 0);
+```
+
+The "next" command causes the loop to skip to the next iteration. The "last" command causes a break from the loop (like "break" in C). The "redo" command restarts the loop block without reevaluating its condition again. Loops can be labeled to explicitly specify the loop to be affected.
+```
+@my_array = ("a", "b", "c", "d");
+foreach my $i (@my_array) {
+	if ($i eq "a") {
+		next;
+	}
+	print "Str: $i\n";
+	if ($i eq "c") {
+		last;
+	}
+}
+
+INPUT:
+for my $try ($1..$MAX_TRIES) {
+	print 'Enter an integer: ';
+	$int = <>;
+	
+	last INPUT if not defined $int;
+	redo INPUT if $int eq "\n";
+}
+```
+
+
+
+REGULAR EXPRESSIONS
+===================
+
+A regular expression is a sequence of characters that define a search pattern.
+
+The matching operator "m//" matches a string pattern. The matching operator is used in conjunction with the "=~" or "!~" binding operators. The matching operator supports the following optional modifiers: "i" (case-insensitive). The value of the parenthesized patterns are stored in the variables "$1", "$2", and so on. Perl matches to the default variable "$_" unless otherwise specified.
+```
+my $pattern = "^abc";
+if ("abc" =~ m/$pattern/) {
+	print 'Match';
+}
+
+if ($str =~ m/^[0-9]{4}$/) {
+	$year = $str;
+}
+
+if ("abc" =~ m/ABC/i) {
+	print 'Match';
+}
+
+if ($line !~ m{ /pattern/ }xms) {
+	print 'No match';
+}
+
+if ($date =~ m/^(\d{4})-(\d{2})-(\d{2})$/) {
+	print "Year: $1; Month: $2; Day: $3\n";
+}
+
+/$pattern/;
+$_ =~ m/$pattern/;
+
+$perl_program =~ m{ \A (.*?) ^__END__$ }xms;
+$source =~ m/ \A ([^%]*) % ([^&]*) & (.*) /xms;
+```
+
+Patterns can be directly assigned to variables.
+```
+($a) = $line =~ /(.*)/;
+my ($a, $b) = $line =~ /(.\`?)\s(.\`)/;
+
+next NAME if $full_name !~ m/\A (Mrs?|Ms|Dr) \s+ (\S+) \s+ (\S+) \z/xms;
+($title, $first_name, $last_name) = ($1, $2, $3);
+```
+
+The substitute operator "s///" searches and replaces a pattern. The operator has the form: "s/REGEX/REPLACEMENT/MODIFIER". The substitute operator supports the following optional modifiers: "i" (case-insenstive), "o" (once-only evaluation), "g" (global replace), "e" (use return value as replacement text).
+```
+$str =~ s/OLD/NEW/;
+
+$source_code =~ s{ / \* (.*?) \* / }{}gxms;
+$source_code =~ s{$C_COMMENT}{$EMPTY_STR}gxms;
+```
+
+The transliteration operator "tr///" replaces a single character with another character, and returns the number of replacements that were made.
+```
+my $string = 'hello world';
+my $count_l = $string =~ tr/l/L/;
+```
+
+Variable names that are reserved for purposes related to regular expressions:
+- `$<digits> ($1, $2, ...)`: Subpattern fro the corresponding set of capturing parenthesis from the last successful pattern match.
+- `@{^CAPTURE}`: Contents of the capture buffer.
+- `$MATCH` or $&: String matched by the last successful pattern match.
+- `${^MATCH}`: Faster version of $MATCH.
+- `$PREMATCH` or $`: String preceding whatever was matched by the last successful pattern match.
+- `${^PREMATCH}`: Faster version of $PREMATCH.
+- `$POSTMATCH` or $': String following whatever was matched by the last successful pattern match.
+- `${^POSTMATCH}`: Faster version of $POSTMATCH.
+- `$LAST_PAREN_MATCH` or $+: Text matched by the highest used capture group of the last successful search pattern.
+- `$LAST_SUBMATCH_RESULT` or N: Text matched by the used group most-recently closed or the last successful search pattern.
+- `@LAST_MATCH_END` or @+: Offsets of the ends of the last successful submatches in the currently active dynamic scope.
+- `%{^CAPTURE}` or %LAST_PAREN_MATCH or %+: Named capture buffers, should they exist, in the last successful match in the currently active dynamic scope.
+- `@LAST_MATCH_START` or @-: Offset of the start of the last successful match.
+- `%{^CAPTURE_ALL}` or %-: Named capture groups in the last successful match in the currently active dynamic scope.
+- `$LAST_REGEXP_CODE_RESULT` or $^R: Result of evaluation of the last successful regular expression assertion.
+- `${^RE_COMPILE_RECURSION_LIMIT}`: Maximum number of open but unclosed parenthetical group there may be at any point during a regular expression compilation.
+- `${^RE_DEBUG_FLAGS}`: Current value of the regex debugging flags.
+- `${^RE_TRIE_MAXBUF}`: Controls how certain regex optimisations are applied and how much memory they utilize.
+
+
+
+SYSTEM FUNCTIONS
+================
+
+The `exec` function executes a system command and never returns. The `system` function executes a system command and returns the exit status of the command. Calling `system` creates a forked process that the parent thread waits on for completion. The "$?" system variable holds the return value of the command. The backtick operator ("`") executes a system command and captures its output to STDOUT. Unlike other Perl commands, `system` returns false on success and true on failure.
+```
+exec "sort $outfile | uniq";
+
+system "ls -la";
+system "ls", "-la";
+if ($? == -1) {
+	print "Failed to execute: $!";
+}
+
+@args = ("command", "arg1", "arg2");
+system(@args) == 0 or die "system @args failed: $?";
+
+my $output = `ls`;
+```
+
+
+
+OBJECT-ORIENTED PROGRAMMING & CLASSES
+=====================================
+
+An object is a data structure that bundles together data (its attributes) and subroutines (its methods) which operate on that data. An object can be of any Perl data type (scalar, array, hash). Objects call methods using the array ("->") operator.
+```
+Invocant->method(@args);
+
+my $pet = Animal->new("Dog");
+my $contact = Person->new(first_name => "John", last_name => "Doe");
+$contact->phone_number();
+```
+
+The `bless` function associates a referenced object to the specified class. Calling `ref` on the blessed object returns its class.
+```
+package MyClass;
+my $ref = { };
+bless $ref, "MyClass";
+```
+
+The constuctor subroutine creates a new object. The constructor can have any name, but most Perl modules use `new()` or `New()`. Constructors always receive the class as their first argument.
+```
+sub new {
+	my $class = shift;
+	my ($path, $data) = @_;
+
+	my $self = bless {
+		path => $path,
+		data => $data,
+	}, $class;
+
+	return $self;
+}
+
+my $file = File->new('/my/dir', 'jpeg');
+```
+
+A method is a subroutine that lives in a class's package. The arrow operator ("->") tells Perl that the call is a method call. Methods always receive the object as their first argument.
+```
+sub speak {
+	my $self = shift;
+	print "File path: ", $self->path, "\n";
+}
+
+$file->speak;
+```
+
+Each class define its attributes. Attributes should generally only be accessed through accessor methods. A getter method gets the attribute's value, while a setter method sets it.
+```
+sub get_path {
+	my $self = shift;
+	return $self->{path};
+}
+
+sub set_path {
+	my $self = shift;
+	if (@_) {
+		$self->{path} = shift;
+	}
+	return $self->{path};
+}
+```
+
+The `isa($class)` method returns true if the object is a member of the $class, or a member of a subclass of $class. The `can($method)` method checks to see if the class or object it was called on has a method named `$method`.
+
+Inheritance allows a new class to reuse the methods and attributes of another class. Inheritance relationships are parent-child relationships. The `parent` module allows you to define inheritance relationships. By default, every method in the parent class is also available in the child class. A child class can explicitly override a parent method to provide its own implementation. The "SUPER::" specifier tells Perl to explicitly call a parent method from a child.
+```
+package File::MP3;
+use parent "File";
+
+$self->SUPER::print_info();
+```
+
+
+
+MODULES
+=======
+
+A module is a package contained in its own file and loadable with "use" or "require". Modules can contain any valid Perl code: variables, functions, classes, and data structures.
+
+External Perl modules are available from CPAN. User-defined Perl modules usually have a ".pm" file extension. The Exporter module allows you decide what functions other people can import. The module name "My::Module" causes Perl to look for a module named "My/Module.pm" in every directory in the "@INC" list. Module names are case-sensitive. User-defined modules should be capitalized, since lower case module names are reserver for built-in pragmas.
+```
+package My::Module;
+
+use strict;
+use Exporter;
+
+our @ISA = qw(Exporter);
+
+# Export tags (e.g. "use My::Module qw(:tag)").
+our %EXPORT_TAGS = (
+	"all" => [qw(add sub avg max min)],
+	"list" => [qw(avg max min)],
+);
+
+# Ok to export.
+our @EXPORT_OK = qw(@{$EXPORT_TAGS{"all"}});
+
+# Exported by default.
+our @EXPORT = qw(avg);
+
+sub avg {
+	return (scalar @_) ? ((sum @_) / scalar @_) : 0;
+}
+
+...
+
+1;
+```
+
+The "use" keyword can be used to include a module in a file. Add folders to search path by adding them to "@INC" or by using "use lib".
+```
+use lib "/my/dir";
+BEGIN {push @INC, "/my/dir"};
+BEGIN {unshift @INC, "/my/dir"};
+
+use My::Math;
+```
+
+
+ERRORS
+======
+
+The "-w" command line flag enables warnings throughout the program. The "warnings" pragma enables warnings in lexical scopes. Writing "no warnings;" disables warnings in the lexical scope. Most modern scripts elect to use the "warnings" pragma over the command line flag.
+```
+#!/usr/bin/perl -w
+use strict;
+use warnings;
+```
+
+The `die` function raises an exception. If the exception is outside of all enclosing evals, then the uncaught exception is printed to STDERR and perl exits with an exit code indicating failure.
+```
+die "Can't cd to $dir: $!\n" unless chdir $dir;
+```
+
+The `warn` function emits a warning, usually printing it to STDERR.
+```
+warn "$x is undefined\n";
+```
+
+`Carp` is a module that provides alternatives for `die` and `warn`. The `carp` function warns the user from the perspective of the caller. The `croak` function dies of errors from the perspective of the caller. The `confess` function dies of errors with a stack backtrace. The `cluck` function warns the user with a stacktrace.
+```
+use Carp;
+
+carp "Warn user";
+croak "Die of errors";
+confess "Die with stack backtrace";
+cluck "Warn with stack backtrace";
+```
+
+Reserved error variable names:
+- $EXTENDED_OS_ERROR or $^E: Error information specific to the current operating system.
+- $EXCEPTIONS_BEING_CAUGHT or $^S: Current state of the interpreter.
+- $WARNING or $^W: Current value of the warning switch.
+- $OS_ERROR or $ERRNO or $!: Current value of the C errno integer variable. Only meaningful immediately after a failure.
+- $CHILD_ERROR or $?: Status returned by the last pipe close, backtick ("`") command, successful call to wait() or waitpid(), or from the system() operator.
+- $EVAL_ERROR or $@: Perl error from the last eval operator. The last exception that was caught.
+
+
+
+
+TESTING
+=======
+
+Perl projects usually include a "/t" directory with one or more ".t" test files. Each ".t" file should correspond to a ".pm" file and to a logical feature.
+
+The `Test` module provides a number of basic units for writing tests suites. The `Test::Simple` module defines the `ok()` function, which prints "ok" or "not ok" depending on whether a test fails. The `Test::More` module extends the simple module by adding the is() function, which can be used to specify an expected value. Both of these functions take an optional parameter that provides a description of the test case. The Test module causes the return status of the script to be set to the number of failed tests (hence there is a maximum of 254 failed tests).
+```
+# Load the module and indicate the number of tests.
+use Test::More tests => 5;
+
+ok(1 + 1 == 2);
+
+my $str = "hello";
+ok($str eq "hey",	"$str equals 'hey'");
+
+my $date = DateTime->now;
+ok($date->year == 2005, "Check year");
+is($date->month, 2,	"Check month");
+
+my @array = (1, 2, 3, 4);
+is(@array, 4,		"Number of elements in the array");
+```
+
+Usually, the number of planned tests must be specified after the Test module name: "tests => TEST_COUNT;".
+```
+# Run 5 tests.
+use Test::More tests => 5;
+```
+
+It is also possible to use the `plan` function in "Test::More" to specify the number of tests.
+```
+# Run 8 tests, one for each key in the hash.
+plan tests => keys(%hash_table) * 8;
+```
+
+Alternatively, the `done_testing` function can be used if there is no specified number of tests.
+```
+use Test::More;
+
+# Tests here.
+
+done_testing();
+```
+
+A "SKIP" block causes the Tests module to skip over some number of tests depending on a condition.
+```
+SKIP: {
+	skip("Skip tests on Mac OS", 2) if $^O eq "darwin";
+	ok(1 + 2 == 3);
+	ok("a" eq "b");
+}
+```
+
+A "TODO" block marks some tests as unimplemented.
+```
+TODO: {
+	local $TODO = 	"Multiplication not yet implemented";
+	is (2 * 4, 10,	"Two times four equals 10");
+}
+```
+
+
+
+SECURITY
+========
+
+The "-T" enables taint mode--a sticky piece of metadata attached to all data which comes from outside of your program. Using tainted data insecurely causes Perl to throw a fatal error. Taint can from file input or the program's operating environment. For example, the "%ENV" environment variable is tainted. The "@INC" list will contain the current directory under taint mode.

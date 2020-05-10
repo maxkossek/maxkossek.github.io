@@ -17,8 +17,9 @@ pre, code {
 	white-space: pre-wrap;
 }
 pre {
-	padding: 1rem;
+	padding: 0.5rem;
 	background: whitesmoke;
+	border: 1px solid lightgray;
 }
 
 
