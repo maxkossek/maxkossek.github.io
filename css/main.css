@@ -1,11 +1,11 @@
 /* Layout */
 body {
-	font-family: sans-serif;
 	text-rendering: optimizeLegibility;
 	padding: 0.5rem;
 }
 main, footer, header {
 	margin: auto;
+	max-width: 45rem;
 }
 footer {
 	border-top: 1px solid;
@@ -15,6 +15,10 @@ footer {
 pre, code {
 	word-wrap: break-word;
 	white-space: pre-wrap;
+}
+pre {
+	padding: 1rem;
+	background: whitesmoke;
 }
 
 
