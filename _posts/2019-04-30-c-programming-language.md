@@ -161,7 +161,7 @@ Standard binary arithmetic operators `+, -, *, / and %`. Integer division trunca
 
 ### 2.6 Relational and Logical Operators
 
-Standard relational operators `>, >=, <, <=` have higher precedence than equality operators == and !=. Relational operators have lower precedence than arithmetic operators. Logical operators && (and) and || (or) are evaluated left to right and evaluation stops as soon as the result is known. For example `i < SIZE && (c=getchar()) != '\n'` checks if there is a space in the array first, before getting another character. && has higher precedence than ||.
+The standard relational operators `>, >=, <, <=` have higher precedence than the equality operators `==` and `!=`. Relational operators have lower precedence than arithmetic operators. The logical operators `&&` (and) and `||` (or) are evaluated left to right, with `&&` having higher precedence than `||`. Evaluation of a Boolean expression stops as soon as the result can be determined.
 
 
 ### 2.7 Type Conversions
