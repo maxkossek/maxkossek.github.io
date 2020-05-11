@@ -2,12 +2,12 @@
 layout: post
 title: Linear Algebra with Applications (Leon)
 date: 2019-04-24
-categories: [book, class]
+categories: [book]
 tags: [mathematics]
 author: "Max Kossek"
 description: Summary of concepts in Linear Algebra and Steven Leon's Book.
 sitemap:
-    lastmod: 2019-05-09
+    lastmod: 2020-05-11
 ---
 
 <p class="toc">
