@@ -1,3 +1,3 @@
 # Website
  
-This repository hosts the content for my personal website located at <https://maxkossek.github.io/>.
+This repository hosts the content for my personal website located at <http://kossek.org>.
