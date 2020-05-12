@@ -9,16 +9,16 @@ layout: default
 &nbsp;| <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">{{ page.author | escape }}</span>
 {%- endif -%}
 {% if page.categories.size > 0 %}
- | <span class="category">
+ | Category: <span class="category">
 {% for category in page.categories %}
 <a href="{{site.baseurl}}/categories#{{ category | slugify }}">{{category}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 </span>
 {% endif %}
 {% if page.tags.size > 0 %}
- - <span class="tag">tags:
+ - Tags: <span class="tag">
 {% for tag in page.tags %}
-<a href="{{site.baseurl}}/tags#{{ tag | slugify }}">#{{tag}}</a>{% unless forloop.last %}, {% endunless %}
+<a href="{{site.baseurl}}/tags#{{ tag | slugify }}">{{tag}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 </span>
 {% endif %}
@@ -26,6 +26,7 @@ layout: default
 </header>
 
 <main role="main">
+
 {{ content }}
 
 <aside class="related" style="margin-top: 3rem">
@@ -41,7 +42,7 @@ layout: default
 {% if page.tags.size > 0 %}
  - <span class="tag">Tags:  
 {% for tag in page.tags %}
-<a href="{{site.baseurl}}/tags#{{ tag | slugify }}">#{{tag}}</a>{% unless forloop.last %}, {% endunless %}
+<a href="{{site.baseurl}}/tags#{{ tag | slugify }}">{{tag}}</a>{% unless forloop.last %}, {% endunless %}
 {% endfor %}
 </span>
 {% endif %}
@@ -55,4 +56,5 @@ layout: default
 </ul>
 <p><a title="Scroll back to the top of the page" href="#">^ back to top</a></p>
 </aside>
+
 </main>
