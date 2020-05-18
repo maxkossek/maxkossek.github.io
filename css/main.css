@@ -22,7 +22,6 @@ pre {
 	border: 1px solid lightgray;
 }
 
-
 /* Page Elements */
 .footnotes {
 	border-top: 1px solid;
@@ -53,6 +52,10 @@ td:last-of-type, th:last-of-type {
 	padding-right: 0;
 }
 
+/* Description Lists */
+dt code {
+	font-weight: bold;
+}
 
 /* Forms */
 input, button, textarea, select, optgroup, option {
