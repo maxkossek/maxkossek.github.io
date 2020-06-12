@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Categories
-description: Collection of all categories on maxkossek.
+description: Collection of all categories on the site.
 sitemap:
-    lastmod: 2020-03-01
+    lastmod: 2020-06-12
 ---
 
 <header>
@@ -28,7 +28,7 @@ sitemap:
 <h3 id="{{ category[0] | slugify }}">{{ category | first }} <span class="meta">({{ category[1].size }})</span></h3>
 <ul>
 {% for post in category.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>
+<li><span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span> | <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 {% endfor %}

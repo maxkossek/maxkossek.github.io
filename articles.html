@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Articles
-description: Collection of all articles written by Max Kossek.
+description: Collection of all pages on the site.
 sitemap:
-    lastmod: 2020-03-09
+    lastmod: 2020-06-12
 ---
 
 <header>
@@ -30,7 +30,7 @@ sitemap:
 <h3 id="{{ year.name | slugify }}">{{ year.name }} <span class="meta">({{ year.size }})</span></h3>
 <ul>
 {% for post in year.items %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>
+<li><span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span> | <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 {% endfor %}

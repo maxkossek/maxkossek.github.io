@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Tags
-description: Collection of all tags on Max Kossek.
+description: Collection of all the tags on the site.
 sitemap:
-    lastmod: 2019-10-22
+    lastmod: 2020-06-12
 ---
+
 <header>
 <h1>{{ page.title }}</h1>
 </header>
@@ -27,7 +28,7 @@ sitemap:
 <h3 id="{{ tag[0] | slugify }}">{{ tag | first }} <span class="meta">({{ tag[1].size }})</span></h3>
 <ul>
 {% for post in tag.last %}
-<li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>
+<li><span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span> | <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 {% endfor %}
