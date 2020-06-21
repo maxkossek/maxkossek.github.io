@@ -7,7 +7,7 @@ tags: [language, functional]
 author: "Max Kossek"
 description: Reference for the Standard ML functional programming language.
 sitemap:
-    lastmod: 2020-06-17
+    lastmod: 2020-06-20
 ---
 
 NAME
@@ -33,7 +33,15 @@ Hello World
 val it = () : unit
 ```
 
-Expressions in the interpreter have to separated by a semicolon (";"). In a source code file, this operator should not be used.
+Expressions in the interpreter have to separated by a semicolon (";"). In a source code file, this operator should not be used. In the toplevel, the result of an expression is bound to the value `it` if it is not bound to another value.
+```
+- "hello world";
+val it = "hello world" : string
+- 3 + 5;
+val it = 8 : int
+- it + 1;
+val it = 9 : int
+```
 
 Standard ML implementation files have a ".sml" files. Signature files carry a ".sig" extension.
 
@@ -102,8 +110,14 @@ DATA TYPES
 `string`
 : String data type. Strings are immutable and not a list of `char`s.
 
+`unit`
+: Unit type.
+
 `word`
 : Unsigned integer that supports modular arithmetic, and logical operations.
+
+`order`
+: Ordered type. Defined as `datatype order = LESS | EQUAL | GREATER`.
 
 `'a array`
 : Array.
@@ -114,6 +128,9 @@ DATA TYPES
 `'a option`
 : Option type. Defined as `datatype 'a option = NONE | SOME of 'a`.
 
+`'a ref`
+: Reference type.
+
 `'a vector`
 : Vector.
 
@@ -123,7 +140,7 @@ The "type" keyword creates a synonym to a built-in data type.
 type id = string
 ```
 
-The "datatype" keyword creates a new user-defined data type. The data constructors in a `datatype` declaration must be capitalized.
+The "datatype" keyword creates a new user-defined data type. The data constructors in a `datatype` declaration are usually capitalized.
 ```
 datatype binop = Plus | Minus | Times | Div
 
@@ -145,14 +162,21 @@ datatype ('a,'b) either = Left of 'a | Right of 'b
 val it = Left 5 : (int,'a) either
 ```
 
-Standard ML can determine most types using type inference. To explicitly state a value's type use the syntax: `e : t`.
+Standard ML can determine most types using type inference. However, some operators are overloaded. To explicitly state a value's type use the syntax: `e : t`.
 ```
-- val r = 5.0 : real;
-val r = 5.0 : real
-
-- fun add x y = x + y;
+- fun add (x, y) = x + y;
 val add = fn : int -> int -> int
-- fun add (x : real) (y : real) = x + y;
+
+- fun add (x, y) : real = x + y;
+val add = fn : real -> real -> real
+
+- fun add (x, y) = (x + y) : real;
+val add = fn : real -> real -> real
+
+- fun add (x : real, y : real) = x + y;
+val add = fn : real -> real -> real
+
+- fun add (x : real, y) = x + y;
 val add = fn : real -> real -> real
 ```
 
@@ -171,12 +195,14 @@ Equality operators: `=`, `<>` (not equal), `<`, `>`, `<=`, `>=`.
 
 Concatenation operator: `^` (string concatenation), `@` (list concatenation).
 
+Function composition operator: `o`.
+
 
 
 VARIABLES
 ---------
 
-Variables are assigned using the "val" keyword. Variable names can begin with a lowercase or uppercase letter and are usually written in camelCase.
+Variables are assigned using the "val" keyword. Variable names can begin with a lowercase or uppercase letter and are usually written in camelCase. Pattern matching allows you to assign values from a list or tuple.
 ```
 - val i = 5;
 val i = 5 : int
@@ -188,9 +214,20 @@ val n = ~100 : int
 val c = #"a" : char
 - val s = "Hello World\n";
 val s = "Hello World\n" : string
+
+- val (a, b) = (1, 2);
+val a = 1 : int
+val b = 2 : int
+
+- val [a, b, c] = [1, 2, 3];
+stdIn:21.5-21.26 Warning: binding not exhaustive
+          a :: b :: c :: nil = ...
+val a = 1 : int
+val b = 2 : int
+val c = 3 : int
 ```
 
-The "let" keyword binds an expression to a value. Let bindings have the form: let val n = e ... in e end`.
+The "let" keyword binds an expression to a value. Let bindings have the form: let val n = e ... in e end`. Let bindings are the main mechanism to nest functions and expressions.
 ```
 fun circleArea r =
   let val pi = Math.pi
@@ -206,8 +243,15 @@ REFERENCES
 
 A reference is a pointer to a location in memory.
 
-The "ref" keyword creates a new reference. The ":=" assignment operator assigns a new value to a reference: `r := e`. The "!" operator dereferences the value of a reference.
+The "ref" keyword creates a new reference. The ":=" assignment operator assigns a new value to a reference: `re := e`. The "!" operator dereferences the value of a reference: `! re`.
 ```
+- ref;
+val it = fn : 'a -> 'a ref
+- op :=;
+val it = fn : 'a ref * 'a -> unit
+- !;
+val it = fn : 'a ref -> 'a
+
 - val r = ref 5;
 val r = ref 5 : int ref
 - !r;
@@ -223,12 +267,33 @@ val it = 10 : int
 FUNCTIONS
 ---------
 
-Functions are defined using the "fun" keyword. Function names can begin with a lowercase or uppercase letter and are usually written in camelCase.
+Functions are defined using the "fun" keyword. Functions definitions have the form: `fun f p = e`. Function calls have the form: `f a`. Function names can begin with a lowercase or uppercase letter and are usually written in camelCase.
 ```
-- fun adder x y = x + y ;;
-val adder = fn : int -> int -> int
-- adder 5 3 ;;
+- fun add x y = x + y ;;
+val add = fn : int -> int -> int
+- add 5 3 ;;
 val it = 8 : int
+
+- fun pointAdd (x1, y1) (x2, y2) = (x1 + x2, y1 + y2);
+val pointAdd = fn : int * int -> int * int -> int * int
+- pointAdd (5, 5) (3, 7);
+val it = (8,12) : int * int
+
+- fun sqrtList l = List.map Math.sqrt l;
+val sqrtList = fn : real list -> real list
+- sqrtList [25.0, 256.0];
+val it = [5.0,16.0] : real list
+```
+
+Functions with multiple arguments can be written with tuples, as curried functions, or a combination of the two. Curried functions can be partially applied. Conventionally, higher-order functions (functions that take other functions as arguments) are curried, while first-order functions are written as tuples. For example, the list concatenation operator `@` takes in a list tuple, while the higher-order functions `List.map` and `List.filter` are curried.
+```
+- fun add (x, y) = x + y;
+val add = fn : int * int -> int
+
+- fun add x y = x + y;
+val add = fn : int -> int -> int
+- add 5;
+val it = fn : int -> int
 ```
 
 By default, the Standard ML will try to infer the types of a function. To explicitly specify the types of the function parameters / return value use the ":" operator.
@@ -246,11 +311,14 @@ val floatAdd = fn : real * real -> real
 val it = 8.0 : real
 ```
 
-Functions can be recursive.
+Functions can be recursive. The "and" keyword allows you to create mutually recursive functions.
 ```
 fun fact n =
   if n <= 1 then 1
   else n * fact (n - 1);
+
+fun even n = n = 0 orelse odd (n - 1)
+and odd n = n <> 0 andalso even (n - 1)
 ```
 
 Lambda / anonymous functions have the form: `(fn a => e)`.
@@ -267,7 +335,7 @@ val getThird = fn : 'a * 'b * 'c -> 'c
 val it = 3 : int
 ```
 
-The "infix" keyword declares a function as infix. The infix keyword can be declared before or after a function is being defined. An optional number before the function name specifies the precedence of the infix operator. Using an infix operator as prefix raises an error.
+The "infix" keyword declares a function as infix. The infix keyword can be declared before or after a function is being defined. Using an infix operator as prefix raises an error. Optionally, you can specify the precedence of the infix function name using the syntax: `infix [0-9] f`; where `[0-9]` is the precedence of the `f`. The built-in infix identifiers have the following precedences: `infix 7 * / div mod`; `infix 6 + - ^`; `infix 5 :: @`; `infix 4 = <> > >= < <=`; `infix 3 := o`; `infix 0 before`.
 ```
 - fun floatAdd (x, y) : real = x + y;
 val floatAdd = fn : real * real -> real
@@ -286,14 +354,42 @@ val it = 2 : int
 val it = 8 : int
 ```
 
-The "op" keyword converts an infix operator to prefix.
+The "op" keyword converts an infix operator to prefix. This is useful if you want to determine the signature of an infix operator, or want to pass an infix operator to a higher-order function.
 ```
 - op + (3, 5);
 val it = 8 : int
-- foldl (op +) 0 [1, 2, 3];
+
+- op +;
+val it = fn : int * int -> int
+- op <;
+val it = fn : int * int -> bool
+
+- List.foldl (op +) 0 [1, 2, 3];
 val it = 6 : int
-- foldl (op ::) [1, 2] [3, 4];
+
+- List.foldl (op ::) [1, 2] [3, 4];
 val it = [4,3,1,2] : int list
+
+- List.reduce (op @) [] [[1, 2], [3, 4]];
+val it = [3,4,1,2] : int list
+```
+
+The "o" operator is used for function composition: `f o g`. The expression `(f o g) a` is equivalent to `f (g a)`. The "before" keyword evaluates two expressions and returns the first of them: `a before b`. The "ignore" keyword discards the result of a computation, and returns the unit value `()`.
+```
+- op o;
+val it = fn : ('a -> 'b) * ('c -> 'a) -> 'c -> 'b
+- (Math.sqrt o Math.sqrt o Math.sqrt) 256.0;
+val it = 2.0 : real
+
+- ignore;
+val it = fn : 'a -> unit
+- ignore (3 + 5);
+val it = () : unit
+
+- op before;
+val it = fn : 'a * unit -> 'a
+- 3 + 5 before print "computed";
+computedval it = 8 : int
 ```
 
 
@@ -302,23 +398,21 @@ val it = [4,3,1,2] : int list
 LISTS
 -----
 
-Lists contain a comma-separated list of elements that must all have the same data type. The empty list is represented as `[]`.
+Lists contain a comma-separated list of elements that must all have the same data type. The empty list is represented as `[]` or `nil`.
 ```
 - [];
+val it = [] : 'a list
+- nil;
 val it = [] : 'a list
 - [1, 2, 3];
 val it = [1,2,3] : int list
 - ["hello", "world"];
 val it = ["hello","world"] : string list
-```
-
-Lists can be nested.
-```
 - [[1, 2], [3, 4]];
 val it = [[1,2],[3,4]] : int list list
 ```
 
-The "::" cons operator conses an element to the front of a list.
+The "::" cons operator conses an element to the front of a list. The "@" operator concatenates two lists.
 ```
 - 1 :: [];
 val it = [1] : int list
@@ -326,19 +420,19 @@ val it = [1] : int list
 val it = [2,1] : int list
 - 3 :: 2 :: [1];
 val it = [3,2,1] : int list
-```
 
-The "@" operator concatenates two lists.
-```
 - [1, 2] @ [3, 4];
 val it = [1,2,3,4] : int list
 ```
 
-List functions:
-
+The `List` structure in the Basis library provides most of the standard list functions.
 ```
-- foldl op+ 0 [1, 2, 3];
+- List.filter (fn x => x mod 2 = 0) [1, 2, 3, 4];
+val it = [2,4] : int list
+- List.foldl (op +) 0 [1, 2, 3];
 val it = 6 : int
+- List.map (fn x => x + 5) [1, 2, 3];
+val it = [6,7,8] : int list
 ```
 
 
@@ -446,6 +540,9 @@ fun fib 0 = 0
   | fib 1 = 1
   | fib n = fib (n - 1) + fib (n - 2)
 
+fun err "" = "error: unspecified error"
+  | err x = "error: " ^ x
+
 fun add5 [] = []
   | add5 (x :: xs) = (x + 5) :: add5 xs
 
@@ -465,7 +562,7 @@ fun addOpt x = fn
 
 fun nthOpt n = fn
     [] => NONE
-  | x :: xs => if n = 0 then SOME x else nth (n - 1) xs
+  | x :: xs => if n = 0 then SOME x else nthOpt (n - 1) xs
 ```
 
 The "case" keyword is another way to perform pattern matching. A `case` statement has the form: `case e of p1 => e | ... | pn => e`. Case statements have higher precedence than imperative statements.
@@ -479,6 +576,15 @@ fun initList l =
   case l of
     [] => (print "Empty list: initializing\n"; [0])
   | _ => (print "Non-empty list\n"; l)
+```
+
+A pattern match should handle all possible input cases. The interpreter will warn you if a pattern match is non-exhaustive. The wildcard pattern `_` matches any value. To avoid future errors, the wildcard pattern should be used conservatively when matching types whose values can change (such as user-defined types).
+```
+- fun f 1 = true;
+stdIn:30.5-30.15 Warning: match nonexhaustive
+          1 => ...
+
+val f = fn : int -> bool
 ```
 
 
@@ -529,75 +635,13 @@ fun dec r = while !r > 0 do r := !r - 1;
 ```
 
 
-STRUCTURES
-----------
-
-A structure's signature is written in a ".sig" signature file. The signature defines the interface of a structure. Structure signature are conventionally written as all uppercase: `signature NAME`. A function signature has the form: `val f: a [ -> a -> ... -> a ]`.
-```
-signature EXAMPLE =
-  sig
-    exception IndexOutOfBounds
-
-    val nthExn: 'a list -> int -> 'a
-
-    val nthOpt: 'a list -> int -> 'a option
-  end
-```
-
-The structure of a signature is placed in a ".sml" file. The structure defines the implementation of its corresponding interface. The names of structures are usually capitalized: `structure Name :> NAME`.
-```
-structure Example: EXAMPLE =
-  struct
-    exception IndexOutOfBounds
-
-    fun nthExn l n =
-      case l of
-        [] => raise IndexOutOfBounds
-      | x :: xs => if n = 0 then x else nthExn xs (n - 1)
-
-    fun nthOpt l n =
-      case l of
-        [] => NONE
-      | x :: xs => if n = 0 then SOME x else nthOpt xs (n - 1)
-  end
-
-open Example
-```
-
-To load the signature and structure in the interpreter use the "use" command.
-```
-- use "example.sig";
-[opening example.sig]
-signature EXAMPLE =
-  sig
-    exception IndexOutOfBounds
-    val nthExn : 'a list -> int -> 'a
-    val nthOpt : 'a list -> int -> 'a option
-  end
-val it = () : unit
-- use "example.sml";
-[opening example.sml]
-structure Example : EXAMPLE
-opening Example
-  exception IndexOutOfBounds
-  val nthExn : 'a list -> int -> 'a
-  val nthOpt : 'a list -> int -> 'a option
-val it = () : unit
-- nthExn [1, 2, 3] 4;
-
-uncaught exception IndexOutOfBounds
-  raised at: example.sml:7.21-7.37
-- nthOpt [1, 2, 3] 4;
-val it = NONE : int option
-```
-
-
-
 
 EXCEPTIONS
 ----------
 
-The "raise" keyword raises an exception. Built-in exception types: `Domain`, `Empty`, `Fail of string`, `Subscript`, `SysErr of string * syserror option`, `UnequalLengths`, `Option`, `Overflow`.
+The built-in exception types: `Bind`, `Chr`, `Div`, `Domain`, `Empty`, `Fail of string`, `Match`, `Size`, `Span`, `Subscript`, `SysErr of string * syserror option`, `UnequalLengths`, `Option`, `Overflow`.
+
+The "raise" keyword raises an exception.
 ```
 - fun safeDiv (x, y) = if y = 0 then raise Domain else x div y;
 val safeDiv = fn : int * int -> int
@@ -628,6 +672,160 @@ exception BadLog of string
 - BadLog "Invalid input row";
 val it = BadLog(-) : exn
 ```
+
+
+
+STRUCTURES
+----------
+
+A structure's signature is written in a ".sig" signature file. The signature defines the interface of a structure. Structure signature are conventionally written as all uppercase: `signature NAME`. A function signature has the form: `val f: a [ -> a -> ... -> a ]`.
+```
+signature EXAMPLE =
+  sig
+    exception IndexOutOfBounds
+
+    val nthExn: 'a list -> int -> 'a
+    val nthOpt: 'a list -> int -> 'a option
+  end
+```
+
+The structure of a signature is placed in a ".sml" file. The structure defines the implementation of its corresponding interface. The names of structures are usually capitalized: `structure Name :> NAME`.
+```
+structure Example: EXAMPLE =
+  struct
+    exception IndexOutOfBounds
+
+    fun nthExn l n =
+      case l of
+        [] => raise IndexOutOfBounds
+      | x :: xs => if n = 0 then x else nthExn xs (n - 1)
+
+    fun nthOpt l n =
+      case l of
+        [] => NONE
+      | x :: xs => if n = 0 then SOME x else nthOpt xs (n - 1)
+  end
+```
+
+To load the signature and structure in the interpreter use the "use" command.
+```
+- use "example.sig";
+[opening example.sig]
+signature EXAMPLE =
+  sig
+    exception IndexOutOfBounds
+    val nthExn : 'a list -> int -> 'a
+    val nthOpt : 'a list -> int -> 'a option
+  end
+val it = () : unit
+- use "example.sml";
+[opening example.sml]
+structure Example : EXAMPLE
+opening Example
+  exception IndexOutOfBounds
+  val nthExn : 'a list -> int -> 'a
+  val nthOpt : 'a list -> int -> 'a option
+val it = () : unit
+- nthExn [1, 2, 3] 4;
+
+uncaught exception IndexOutOfBounds
+  raised at: example.sml:7.21-7.37
+- nthOpt [1, 2, 3] 4;
+val it = NONE : int option
+```
+
+The "open" keyword opens the definitions of a structure within the current context. This allows you to view all of a structure's signatures and use a structure's definitions without qualifying them.
+```
+- Math.sqrt;
+val it = fn : real -> real
+- sqrt;
+stdIn:1.2-1.6 Error: unbound variable or constructor: sqrt
+- open Math;
+opening Math
+  type real = ?.real
+...
+- sqrt;
+val it = fn : real -> real
+```
+
+The ":>" operator stands for a signature constraint. Signature constraints allow you to work with abstract data types.
+```
+signature UNSAFESTR =
+  sig
+    type unsafestr
+    val tounsafe : string -> unsafestr
+    val tosafe : unsafestr -> string option
+  end
+
+structure UnsafeStr :> UNSAFESTR =
+  struct
+    type unsafestr = string
+    fun tounsafe s = s
+    fun tosafe s = if s = "" then NONE else SOME s
+  end
+
+- structure U = UnsafeStr;
+structure U : UNSAFESTR
+- val userInput = U.tounsafe "Some input";
+val userInput = - : UnsafeStr.unsafestr
+- U.tosafe userInput;
+val it = SOME "Some input" : string option
+- val userInput = U.tounsafe "";
+val userInput = - : UnsafeStr.unsafestr
+
+- U.tosafe "";
+stdIn:10.1-10.12 Error: operator and operand do not agree [tycon mismatch]
+  operator domain: UnsafeStr.unsafestr
+  operand:         string
+  in expression:
+    U.tosafe ""
+- (U.tosafe o U.tounsafe) "";
+val it = NONE : string option
+```
+
+The Basis library provides standard library functions: `Array`, `Bool`, `Byte`, `Char`, `CommandLine`, `Date`, `General`, `INetSock`, `Int`, `IO`, `List`, `ListPair`, `Math`, `NetHostDB`, `Option`, `OS`, `OS.IO`, `OS.Path`, `OS.Process`, `Posix`, `Real`, `Socket`, `Stream`, `String`, `Text`, `Time`, `Timer`, `Unix`, `UnixSock`, `Vector`, `Word`.
+
+
+
+FUNCTORS
+--------
+
+A functor is a mapping from one structure to another structure that preserves the properties of the structures. A functor definition has the form: `functor F (F : T) :> T = struct ... end`.
+```
+signature BASE =
+sig
+  type t
+  val base : t
+end
+
+signature TO =
+sig
+  type t
+  val toList : t list
+  val toPair : int -> int * t
+end
+
+functor ToFunctor (I : BASE) :> TO =
+struct
+  type t = I.t
+  val toList = [I.base]
+  fun toPair x = (x, I.base)
+end
+
+structure IntBase : BASE =
+struct
+  type t = int
+  val base = 5
+end
+
+structure IntTo = ToFunctor(IntBase)
+
+- IntTo.toList;
+val it = [-] : IntTo.t list
+- IntTo.toPair 3;
+val it = (3,-) : int * IntTo.t
+```
+
 
 
 Src: [^chilipala] [^reppy]
