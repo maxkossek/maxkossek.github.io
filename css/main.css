@@ -2,8 +2,6 @@
 body {
 	text-rendering: optimizeLegibility;
 	padding: 0.5rem;
-	font-family: sans-serif;
-	background: antiquewhite;
 }
 main, footer, header {
 	margin: auto;
