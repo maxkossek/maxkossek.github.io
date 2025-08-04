@@ -14,19 +14,16 @@ sitemap:
 <div>View by: <a href="/articles">Year</a> | <strong>Categories</strong> | <a href="/tags">Tags</a></div>
 
 <p>
-<ul>
 {% for category in site.categories %}
-<li><a class="category" href="#{{ category[0] | slugify }}">{{ category[0] }}</a> <span class="meta">({{ category[1].size }})</span>
-</li>
+<a class="category" href="#{{ category[0] | slugify }}">{{ category[0] }}</a> <span class="meta">({{ category[1].size }})</span>{% if forloop.last %}{% else %}, {% endif %}
 {% endfor %}
-</ul>
 </p>
 
 <hr>
 
 {% for category in site.categories %}
 <h3 id="{{ category[0] | slugify }}">{{ category | first }} <span class="meta">({{ category[1].size }})</span></h3>
-<ul>
+<ul style="list-style-type:none; padding: 0;">
 {% for post in category.last %}
 <li><span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span> | <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 {% endfor %}

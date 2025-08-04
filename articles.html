@@ -14,21 +14,18 @@ sitemap:
 <div>View by: <strong>Year</strong> | <a href="/categories">Categories</a> | <a href="/tags">Tags</a></div>
 
 <p>
-<ul>
 {% assign postsByYear =
     site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
 {% for year in postsByYear %}
-<li><a class="year" href="#{{ year.name | slugify }}">{{ year.name }}</a> <span class="meta">({{ year.size }})</span>
-</li>
+<a class="year" href="#{{ year.name | slugify }}">{{ year.name }}</a> <span class="meta">({{ year.size }}){% if forloop.last %}{% else %}, {% endif %}
 {% endfor %}
-</ul>
 </p>
 
 <hr>
 
 {% for year in postsByYear %}
 <h3 id="{{ year.name | slugify }}">{{ year.name }} <span class="meta">({{ year.size }})</span></h3>
-<ul>
+<ul style="list-style-type:none; padding: 0;">
 {% for post in year.items %}
 <li><span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span> | <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 {% endfor %}
