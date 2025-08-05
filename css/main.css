@@ -3,6 +3,7 @@ body {
 	text-rendering: optimizeLegibility;
 	background-color: #fffbf2;
 	font-family: system-ui, sans-serif;
+	margin: 0;
 }
 main, footer, header {
 	margin: auto;
