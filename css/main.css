@@ -22,6 +22,21 @@ header nav a:hover,
 footer nav a:hover {
 	text-decoration: underline;
 }
+main .front, main aside {
+	border-style: double;
+	border-color: #003d2c;
+	padding: 0.5rem;
+	background: #f0f0f0;
+	margin: 0rem -0.5rem 0 -0.5rem;
+}
+
+main .front {
+	border-width: 0px 3px 3px 3px;
+}
+
+main aside {
+	border-width: 3px 3px 0px 3px;
+}
 main article {
 	line-height: 1.4rem;
 }
