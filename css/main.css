@@ -1,18 +1,32 @@
+:root {
+	--brand-color: #003d2c;
+	--bg-color: #fffbf2;
+	--max-width: 45rem;
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 /* Layout */
 body {
 	text-rendering: optimizeLegibility;
-	background-color: #fffbf2;
+	background-color: var(--bg-color);
 	font-family: system-ui, sans-serif;
 	margin: 0;
 }
 main, footer, header {
-	margin: auto;
+	margin-left: auto;
+	margin-right: auto;
 	max-width: 45rem;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
 header, footer {
-	background-color: #003d2c;
+	background-color: var(--brand-color);
 	color: white;
-	padding: 0.5rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 header nav a,
 footer nav a {
@@ -24,22 +38,21 @@ footer nav a:hover {
 	text-decoration: underline;
 }
 main .front, main aside {
-	border-style: double;
-	border-color: #003d2c;
+	border: 3px double var(--brand-color);
 	padding: 0.5rem;
 	background: #f0f0f0;
 }
 
 main .front {
-	border-width: 0px 3px 3px 3px;
+	border-top-width: 0;
 	margin: 0rem -0.5rem 1rem -0.5rem;
 }
 main .front h1 {
-  margin: 0;
-  padding: 0.25rem 0 0.25rem 0;
+	margin: 0;
+	padding: 0.25rem 0;
 }
 main aside {
-	border-width: 3px 3px 0px 3px;
+	border-bottom-width: 0;
 	margin: 1rem -0.5rem 0 -0.5rem;
 }
 main article {
@@ -80,14 +93,9 @@ table {
 	border-spacing: 0px;
 }
 td, th {
-	padding-right: 1.5rem;
+	padding-inline-end: 1.5rem;
 	vertical-align: top;
 }
 td:last-of-type, th:last-of-type {
 	padding-right: 0;
-}
-
-/* Forms */
-input, button, textarea, select, optgroup, option {
-	font-size: small;
 }

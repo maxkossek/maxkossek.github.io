@@ -10,7 +10,7 @@ sitemap:
 
 <p>
 {% for tag in site.tags %}
-<a class="tag" href="#{{ tag[0] | slugify }}">#{{ tag[0] }}</a> <span class="meta">[{{ tag[1].size }}]{% if forloop.last %}{% else %} {% endif %}
+<a class="tag" href="#{{ tag[0] | slugify }}">{{ tag[0] }}</a> <span class="meta">[{{ tag[1].size }}]{% if forloop.last %}{% else %} {% endif %}
 {% endfor %}
 </p>
 
