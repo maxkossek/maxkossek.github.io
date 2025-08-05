@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Circularity on Review Sites
+title: The Circularity of Ratings
 date: 2025-08-04
 categories: [society]
 tags: [algorithms, consumerism, marketing]
 author: "Max Kossek"
-description: A short article about what you can tell about a person based on their use of review sites and deviation of ratings from the average.
+description: A short article about what you can tell about a person based on their use of review sites and deviation of ratings from the average, as well as the problems with the use of product reviews and ratings.
 sitemap:
     lastmod: 2025-08-04
 ---
 
-Today, most people when confronted with a decision consult review sites. This may be either a conscious decision, in the form of seeking out review sites, or an unconscious decision such as by seeing ratings under products or using platforms with recommendation algorithms. The averages of previous reviews clearly influence our decisions to decide whether to consider a product, location, or experience. The success of rating-based system in lowering search costs for customers and consumer is why it has been applied in many areas: pieces of art (GoodReads, RateYourMusic, Letterboxd, IMDb), products (Amazon, eBay), gig worker performance (Uber, Lyft), physical locations (Google, Yelp), hospitality (TripAdvisor, AirBnB).
+Today, most people when confronted with a decision consult review sites. This may be either a conscious decision, in the form of seeking out review sites, or an unconscious decision such as by seeing ratings under products or using platforms with recommendation algorithms. The averages of previous reviews clearly influence our decisions to decide whether to consider a product, location, or experience. The success of rating-based system in lowering search costs for customers and consumer is why it has been applied in many areas: pieces of art (GoodReads for books, RateYourMusic for music, Letterboxd and IMDb for movies), products (Amazon, eBay, most clothing stores), gig worker performance (Uber, Lyft, DoorDash), physical locations (Google, Yelp), hospitality (TripAdvisor, AirBnB).
 
 But ratings on review sites don't just tell us things about the reviewed, but also the reviewer. One can measure how disagreeable and independent-minded a person is by how far their ratings deviate from the average ratings on review sites. If a person rates items similar to other people on review sites, they tend to be more agreeable and conventional-minded. Reviews from these type of individuals provide less information, and hence should be weighted less on review sites.
 
