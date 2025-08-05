@@ -1,17 +1,29 @@
 /* Layout */
 body {
 	text-rendering: optimizeLegibility;
-	padding: 0.5rem;
+	background-color: #fffbf2;
+	font-family: system-ui, sans-serif;
 }
 main, footer, header {
 	margin: auto;
 	max-width: 45rem;
 }
+header, footer {
+	background-color: #003d2c;
+	color: white;
+	padding: 0.5rem;
+}
+header nav a,
+footer nav a {
+	color: white;
+	text-decoration: none;
+}
+header nav a:hover,
+footer nav a:hover {
+	text-decoration: underline;
+}
 main {
 	line-height: 1.25rem;
-}
-footer {
-	border-top: 1px solid;
 }
 
 /* Code */
