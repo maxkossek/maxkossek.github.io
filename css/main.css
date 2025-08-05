@@ -81,7 +81,7 @@ pre {
 	font-weight: bold;
 }
 .footnotes p {
-	margin: initial;
+	margin: 0;
 }
 :target {
 	background: yellow;
@@ -90,12 +90,11 @@ pre {
 /* Tables */
 table {
 	border-collapse: collapse;
-	border-spacing: 0px;
 }
 td, th {
 	padding-inline-end: 1.5rem;
 	vertical-align: top;
 }
 td:last-of-type, th:last-of-type {
-	padding-right: 0;
+	padding-inline-end: 0;
 }
