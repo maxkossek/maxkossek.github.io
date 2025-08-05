@@ -28,13 +28,15 @@ header, footer {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
-header nav a,
-footer nav a {
+nav a {
 	color: white;
 	text-decoration: none;
 }
-header nav a:hover,
-footer nav a:hover {
+nav a:hover {
+	text-decoration: underline;
+}
+nav a.active {
+	font-weight: bold;
 	text-decoration: underline;
 }
 main .front, main aside {
