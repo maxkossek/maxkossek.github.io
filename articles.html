@@ -12,15 +12,15 @@ sitemap:
 {% assign postsByYear =
     site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
 {% for year in postsByYear %}
-<a class="year" href="#{{ year.name | slugify }}">{{ year.name }}</a> <span class="meta">({{ year.size }}){% if forloop.last %}{% else %}, {% endif %}
+<a class="year" href="#{{ year.name | slugify }}">{{ year.name }}</a> <span class="meta">[{{ year.size }}]{% if forloop.last %}{% else %}, {% endif %}
 {% endfor %}
 </p>
 
 <hr>
 
 {% for year in postsByYear %}
-<h3 id="{{ year.name | slugify }}">{{ year.name }} <span class="meta">({{ year.size }})</span></h3>
-<ul style="list-style-type:none; padding: 0;">
+<strong id="{{ year.name | slugify }}">{{ year.name }} <span class="meta">[{{ year.size }}]</span></strong>
+<ul style="list-style-type:none; padding: 0; margin: 0.1rem 0 1.5rem 0">
 {% for post in year.items %}
 <li><span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span> | <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
 {% endfor %}
