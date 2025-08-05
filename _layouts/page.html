@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="front"><h1>{{ page.title }}</h1></div>
+
+<article>
+{{ content }}
+</article>
+
+<aside class="related">
+
+<strong>Recent:</strong>
+<ul>
+{% for post in site.related_posts limit:5 %}
+<li><a href="{{ post.url }}">{{ post.title }}</a> | <span class="meta"><time class="date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: "%Y-%m-%d" }}</time></span></li>
+{% endfor %}
+</ul>
+<span><a title="Scroll back to the top of the page" href="#">^ back to top</a></span>
+</aside>
