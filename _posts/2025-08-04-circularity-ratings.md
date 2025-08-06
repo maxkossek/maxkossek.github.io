@@ -5,9 +5,9 @@ date: 2025-08-04
 categories: [society]
 tags: [algorithms, consumerism, marketing]
 author: "Max Kossek"
-description: A short article about what you can tell about a person based on their use of review sites and deviation of ratings from the average, as well as the problems with the use of product reviews and ratings.
+description: What you can tell about a person based on their use of review sites and deviation of ratings from the average, as well as the problems with the use of product reviews and ratings.
 sitemap:
-    lastmod: 2025-08-04
+    lastmod: 2025-08-05
 ---
 
 Today, most people when confronted with a decision consult review sites. This may be either a conscious decision, in the form of seeking out review sites, or an unconscious decision such as by seeing ratings under products or using platforms with recommendation algorithms. The averages of previous reviews clearly influence our decisions to decide whether to consider a product, location, or experience. The success of rating-based system in lowering search costs for customers and consumer is why it has been applied in many areas: pieces of art (GoodReads for books, RateYourMusic for music, Letterboxd and IMDb for movies), products (Amazon, eBay, most clothing stores), gig worker performance (Uber, Lyft, DoorDash), physical locations (Google, Yelp), hospitality (TripAdvisor, AirBnB).
