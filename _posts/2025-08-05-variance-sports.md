@@ -21,9 +21,9 @@ You can measure performance or skill based on win-to-loss variance or probabilit
 - have smaller field sizes; and
 - be affected by weather conditions (that is, outdoor sports).
 
-The rules of the league and the sport can be adjusted to increase or decrease the variance, even within the same sport. For example, March Madness (single-elimination) has much higher variance than NBA Playoffs (Best of 7). In general, these are ways to increase the variance of a sport:
+Within a single sport, the rules can be adjusted to increase or decrease the variance. For example, March Madness (single-elimination) has much higher variance than NBA Playoffs (Best of 7). Women's tennis (best-of-three sets) has higher variance than men's tennis (best-of-five sets). In general, these rule changes would increase the variance of a sport:
 
 - make games longer;
 - add more games (such as best of 7, or a longer season);
-- don't require strict standardization of equipment or vehicles; and
-- don't require strict standardization of field size, stadiums, and characteristics.
+- lax standardization of equipment or vehicles; and
+- lax standardization of field size, stadiums, and characteristics.
