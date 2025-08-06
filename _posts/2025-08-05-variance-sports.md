@@ -3,7 +3,7 @@ layout: post
 title: Variance in Sports Outcomes
 date: 2025-08-05
 categories: [sports]
-tags: [performance, statistics]
+tags: [performance, statistics, sports betting]
 author: "Max Kossek"
 description: How the design of sports games and leagues affect their variance and spread for betting.
 sitemap:
