@@ -7,7 +7,7 @@ tags: [performance, statistics, sports betting]
 author: "Max Kossek"
 description: How the design of sports games and leagues affect their variance and spread for betting.
 sitemap:
-    lastmod: 2025-08-05
+    lastmod: 2025-08-15
 ---
 
 Sports where the top dog almost always wins have low variance; sports where the underdog has a higher chance of winning have higher variance. Examples of high variance sports include ice hockey, soccer, and baseball. Low variance sports include tennis, weightlifting, Formula 1, track and field, weightlifting, and chess.
@@ -21,7 +21,7 @@ You can measure performance or skill based on win-to-loss variance or probabilit
 - have smaller field sizes; and
 - be affected by weather conditions (that is, outdoor sports).
 
-Within a single sport, the rules can be adjusted to increase or decrease the variance. For example, March Madness (single-elimination) has much higher variance than NBA Playoffs (Best of 7). Women's tennis (best-of-three sets) has higher variance than men's tennis (best-of-five sets). In general, these rule changes would increase the variance of a sport:
+Within a single sport, the rules can be adjusted to increase or decrease the variance. For example, March Madness (single-elimination) has much higher variance than NBA Playoffs (Best of 7). Grand Slam tennis for women (best-of-three sets) has higher variance than men (best-of-five sets). In general, these rule changes would increase the variance of a sport:
 
 - make games longer;
 - add more games (such as best of 7, or a longer season);

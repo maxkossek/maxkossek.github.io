@@ -6,3 +6,5 @@ permalink: /articles/:title
 url: "https://maxkossek.github.io"
 baseurl: ""
 
+include:
+  - google1234567890abcdef.html
